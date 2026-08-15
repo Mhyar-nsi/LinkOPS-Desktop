@@ -1,15 +1,35 @@
 'use client'
 
 import { ArrowDown, Download, Lock, ShieldCheck, TerminalSquare } from 'lucide-react'
+import PixelBlast from '@/components/ui/PixelBlast'
 import { useLang } from '@/lib/lang'
 import { DOWNLOAD_URL } from '@/lib/site'
+
+/** Resolved value of --terminal-accent (hsl 152 72% 48% in both themes). */
+const BLAST_COLOR = '#22d280'
 
 export function Hero(): React.JSX.Element {
   const { t } = useLang()
 
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
+      {/* Interactive pixel field behind the hero content — ripples on click. */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <PixelBlast
+          variant="square"
+          pixelSize={3}
+          color={BLAST_COLOR}
+          patternDensity={0.6}
+          patternScale={2.2}
+          edgeFade={0.55}
+          enableRipples
+          rippleIntensityScale={0.9}
+          rippleThickness={0.12}
+          rippleSpeed={0.35}
+          className="opacity-60"
+        />
+      </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-sidebar px-3 py-1 text-xs text-muted-foreground">
             <TerminalSquare className="h-3.5 w-3.5" />

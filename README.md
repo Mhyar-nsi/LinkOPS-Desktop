@@ -50,7 +50,8 @@ web/
 │   ├── SiteHeader.tsx    # sticky header: nav, theme, language, mobile menu
 │   ├── Download.tsx      # per-OS download cards + version badge (FaWindows / FaLinux logos)
 │   ├── Pricing.tsx       # 3/6/12-month license plans + yearly discount
-│   ├── Hero.tsx          # headline + animated terminal mock
+│   ├── Hero.tsx          # headline + animated terminal mock over an interactive PixelBlast background
+│   ├── ui/PixelBlast.tsx # WebGL pixel-field effect (three + postprocessing), ripples on click
 │   ├── Features.tsx      # capability grid
 │   ├── Screenshots.tsx   # tabbed gallery of real app screenshots
 │   ├── Protocols.tsx     # SSH vs Telnet comparison
@@ -133,6 +134,11 @@ change.
   every machine with no external requests.
 - **Static output** — no server-only data; the whole page prerenders to static
   HTML for Vercel's edge CDN.
+- **Interactive hero** — `Hero.tsx` renders `PixelBlast` (a WebGL shader, via
+  `three` + `postprocessing`) as an absolute background layer behind the hero
+  content: a subtle animated pixel matrix in the app's terminal-accent green
+  that ripples where you click. It is a client component with its own
+  lifecycle, so the static HTML still hydrates cleanly with no SSR mismatch.
 
 ---
 
