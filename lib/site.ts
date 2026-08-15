@@ -91,7 +91,7 @@ export const DOWNLOADS = {
   windows: {
     url:
       process.env.NEXT_PUBLIC_DOWNLOAD_URL_WINDOWS ??
-      'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.0.0/LinkOPS.Desktop.Setup.1.0.0.exe'
+      'https://zerfour.files.ir/filesir/uploads/d2e7a7cd-b91f-46a4-bd7d-b320670027e1/d2e7a7cd-b91f-46a4-bd7d-b320670027e1?response-content-type=application%2Foctet-stream&response-content-disposition=attachment%3Bfilename%3DLinkOPS%2520Desktop%2520Setup%25201.0.0.exe&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=q2DzOfyFs0ZXawLWsrPyQHGQ1dc8%2F20260815%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260815T091540Z&X-Amz-SignedHeaders=host&X-Amz-Expires=2469&X-Amz-Signature=9519ba3e918380d765f3e2739a01919277d93cae7d85ff9e55ede924e37e13e2'
   },
   linux: {
     deb: {
