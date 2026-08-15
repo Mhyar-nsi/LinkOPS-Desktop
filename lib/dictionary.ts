@@ -8,6 +8,7 @@ const en = {
   },
   header: {
     features: 'Features',
+    pricing: 'Pricing',
     screenshots: 'Screenshots',
     protocols: 'Protocols',
     security: 'Security',
@@ -169,6 +170,28 @@ const en = {
   footer: {
     rights: 'All rights reserved.'
   },
+  pricing: {
+    tag: '// licensing',
+    title: 'Simple, fair pricing',
+    lead: 'One license per machine. Choose the term that fits — longer terms save more.',
+    popular: 'Best value',
+    perMonth: '≈ {{price}} / month',
+    off: '−{{pct}}%',
+    save: 'Save {{pct}}%',
+    buy: 'Get {{name}}',
+    includes: [
+      'Full app access — SSH & Telnet',
+      'Batch runs, templates & audit trail',
+      'Free updates during the term',
+      'Email support'
+    ],
+    plans: {
+      '3m': { name: '3 months', desc: 'Perfect for trying the full app' },
+      '6m': { name: '6 months', desc: 'For ongoing projects and small teams' },
+      '12m': { name: '12 months', desc: 'Best value for regular network work' }
+    },
+    note: 'Prices shown in USD (English) and Toman (Persian). Need more seats or a custom term? Contact us.'
+  },
   download: {
     tag: '// download',
     title: 'Download LinkOPS Desktop',
@@ -221,6 +244,7 @@ const fa: typeof en = {
   },
   header: {
     features: 'امکانات',
+    pricing: 'پلن‌ها',
     screenshots: 'تصاویر',
     protocols: 'پروتکل‌ها',
     security: 'امنیت',
@@ -382,6 +406,28 @@ const fa: typeof en = {
   },
   footer: {
     rights: 'تمامی حقوق محفوظ است.'
+  },
+  pricing: {
+    tag: '// پلن‌ها',
+    title: 'قیمت‌گذاری ساده و منصفانه',
+    lead: 'هر دستگاه یک لایسنس. مدت‌اشتراک را خودتان انتخاب کنید — هرچه طولانی‌تر، صرفه‌جویی بیشتر.',
+    popular: 'بهترین ارزش',
+    perMonth: '≈ {{price}} در ماه',
+    off: '٪{{pct}}−',
+    save: '{{pct}}٪ تخفیف',
+    buy: 'خرید {{name}}',
+    includes: [
+      'دسترسی کامل به برنامه — SSH و Telnet',
+      'اجرای گروهی، قالب‌ها و گزارش کامل',
+      'به‌روزرسانی رایگان در طول دوره',
+      'پشتیبانی ایمیلی'
+    ],
+    plans: {
+      '3m': { name: '۳ ماهه', desc: 'مناسب برای آشنایی با امکانات کامل' },
+      '6m': { name: '۶ ماهه', desc: 'مناسب پروژه‌های جاری و تیم‌های کوچک' },
+      '12m': { name: '۱۲ ماهه', desc: 'بهترین گزینه برای کار منظم با شبکه' }
+    },
+    note: 'قیمت‌ها در نسخه‌ی فارسی به تومان و در نسخه‌ی انگلیسی به دلار نمایش داده می‌شوند. تعداد بیشتر یا دوره‌ی سفارشی؟ با ما تماس بگیرید.'
   },
   download: {
     tag: '// دانلود',

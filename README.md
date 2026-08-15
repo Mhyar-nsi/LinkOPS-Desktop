@@ -49,6 +49,7 @@ web/
 ├── components/
 │   ├── SiteHeader.tsx    # sticky header: nav, theme, language, mobile menu
 │   ├── Download.tsx      # per-OS download cards + version badge (FaWindows / FaLinux logos)
+│   ├── Pricing.tsx       # 3/6/12-month license plans + yearly discount
 │   ├── Hero.tsx          # headline + animated terminal mock
 │   ├── Features.tsx      # capability grid
 │   ├── Screenshots.tsx   # tabbed gallery of real app screenshots
@@ -88,9 +89,31 @@ set environment variables in Vercel so the same build can be reused:
 | `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_DEB` | Linux `.deb` package | `https://cdn.example.com/linkops-desktop_1.0.0_amd64.deb` |
 | `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_APPIMAGE` | Linux AppImage | `https://cdn.example.com/LinkOPS.Desktop-1.0.0.AppImage` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for Open Graph / Twitter cards | `https://linkops.example.com` |
+| `NEXT_PUBLIC_PURCHASE_URL` | Checkout link for the pricing “Buy” buttons | `https://checkout.example.com/buy` |
+| `NEXT_PUBLIC_CURRENCY` | Currency symbol in the English pricing section | `$` |
+| `NEXT_PUBLIC_CURRENCY_FA` | Currency label in the Persian pricing section | `تومان` |
 
 Until a URL is set, the matching button is disabled, so the site never
-renders broken links. The install steps shown on the cards (Windows wizard,
+renders broken links. Pricing plans (3/6/12 months with a 33% discount on
+the yearly term) live in `lib/site.ts` as `PLANS` — edit prices there or
+override via env if you ever need to.
+
+## 💳 Pricing section
+
+`#pricing` shows three license plans (`lib/site.ts` → `PLANS`), with **dual
+pricing**: the English UI shows USD, the Persian (فارسی) UI shows Toman
+automatically based on the active language:
+
+| Plan | USD | USD compare-at | Toman | Toman compare-at | Discount |
+|---|---|---|---|---|---|
+| 3 months | $14.99 | — | ۱٬۴۹۰٬۰۰۰ تومان | — | — |
+| 6 months | $24.99 | $29.98 | ۲٬۴۹۰٬۰۰۰ تومان | ۲٬۹۹۰٬۰۰۰ تومان | 17% |
+| 12 months | $39.99 | $59.96 | ۳٬۹۹۰٬۰۰۰ تومان | ۵٬۹۹۰٬۰۰۰ تومان | 33% (featured) |
+
+The 12-month card is highlighted as “Best value”. Prices are per machine,
+per term. Each “Buy” button links to `PURCHASE_URL` when set (otherwise it
+scrolls to `#download`), so the site works even before the checkout is wired
+up. The install steps shown on the cards (Windows wizard,
 `sudo apt install ./…deb`, `chmod +x …AppImage`) are static copy in
 `lib/dictionary.ts` — update them together with the version if filenames
 change.
@@ -180,6 +203,7 @@ Manual smoke checklist:
 - [ ] Switch to فارسی — everything flips RTL, dates/digits render Persian.
 - [ ] Toggle Light / Dark / System — persists across reloads; System follows the OS.
 - [ ] Click any **Download** button — the page scrolls to the `#download` section.
+- [ ] Scroll to **Pricing** — 3 cards, the 12-month one highlighted with its discount.
 - [ ] Open the gallery tabs — each shows the matching real app screenshot.
 
 ---

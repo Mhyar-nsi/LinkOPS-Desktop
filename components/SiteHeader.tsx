@@ -10,6 +10,7 @@ import { ThemeToggle } from './ThemeToggle'
 
 const NAV_IDS = [
   { id: 'features', key: 'features' as const },
+  { id: 'pricing', key: 'pricing' as const },
   { id: 'screenshots', key: 'screenshots' as const },
   { id: 'protocols', key: 'protocols' as const },
   { id: 'security', key: 'security' as const }

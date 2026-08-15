@@ -1,6 +1,7 @@
 import { SiteHeader } from '@/components/SiteHeader'
 import { Hero } from '@/components/Hero'
 import { Download } from '@/components/Download'
+import { Pricing } from '@/components/Pricing'
 import { Features } from '@/components/Features'
 import { Screenshots } from '@/components/Screenshots'
 import { Protocols } from '@/components/Protocols'
@@ -15,6 +16,7 @@ export default function Page(): React.JSX.Element {
       <main>
         <Hero />
         <Download />
+        <Pricing />
         <Features />
         <Screenshots />
         <Protocols />
