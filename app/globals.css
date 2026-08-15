@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens mirrored from the LinkOPS Desktop app (src/renderer/src/
+   styles/index.css) — the site supports the same light/dark/system themes. */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 7% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 7% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 7% 8%;
+  --primary: 240 6% 10%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 6% 15%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 44%;
+  --accent: 240 5% 93%;
+  --accent-foreground: 240 6% 12%;
+  --destructive: 0 72% 47%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 152 62% 32%;
+  --success-foreground: 0 0% 100%;
+  --warning: 32 95% 44%;
+  --warning-foreground: 0 0% 100%;
+  --info: 217 91% 56%;
+  --info-foreground: 0 0% 100%;
+  --border: 240 6% 90%;
+  --input: 240 6% 88%;
+  --ring: 240 6% 40%;
+  --sidebar: 240 6% 98%;
+  --sidebar-foreground: 240 6% 15%;
+  --sidebar-muted: 240 4% 46%;
+  --sidebar-border: 240 6% 90%;
+  --terminal-background: 240 9% 7%;
+  --terminal-foreground: 0 0% 88%;
+  --terminal-muted: 240 6% 52%;
+  --terminal-accent: 152 72% 48%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 240 8% 5%;
+  --foreground: 0 0% 95%;
+  --card: 240 8% 7%;
+  --card-foreground: 0 0% 95%;
+  --popover: 240 8% 8%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 0 0% 97%;
+  --primary-foreground: 240 8% 6%;
+  --secondary: 240 6% 11%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 240 6% 11%;
+  --muted-foreground: 240 5% 58%;
+  --accent: 240 6% 15%;
+  --accent-foreground: 0 0% 92%;
+  --destructive: 0 70% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 152 60% 42%;
+  --success-foreground: 0 0% 100%;
+  --warning: 38 92% 52%;
+  --warning-foreground: 0 0% 100%;
+  --info: 217 91% 60%;
+  --info-foreground: 0 0% 100%;
+  --border: 240 6% 15%;
+  --input: 240 6% 17%;
+  --ring: 240 5% 45%;
+  --sidebar: 240 8% 6%;
+  --sidebar-foreground: 0 0% 92%;
+  --sidebar-muted: 240 5% 56%;
+  --sidebar-border: 240 6% 14%;
+  --terminal-background: 240 9% 6%;
+  --terminal-foreground: 0 0% 86%;
+  --terminal-muted: 240 6% 52%;
+  --terminal-accent: 152 72% 48%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background-attachment: fixed;
+  }
+
+  /* Subtle ambient gradients — per theme so light mode stays clean. */
+  body {
+    background-image: radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        hsl(240 6% 96%),
+        transparent
+      ),
+      radial-gradient(ellipse 60% 40% at 90% 20%, hsl(152 62% 40% / 0.06), transparent);
+  }
+  .dark body {
+    background-image: radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        hsl(240 8% 12% / 0.9),
+        transparent
+      ),
+      radial-gradient(ellipse 60% 40% at 90% 20%, hsl(152 60% 30% / 0.08), transparent);
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.4);
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* Section label like a comment in the app's terminal */
+  .mono-tag {
+    @apply font-mono text-xs tracking-wide text-muted-foreground;
+  }
+
+  .link-underline {
+    @apply text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-muted-foreground;
+  }
+
+  .glow-border {
+    box-shadow:
+      0 0 0 1px hsl(var(--border)),
+      0 20px 60px -20px hsl(240 8% 0% / 0.8);
+  }
+}
