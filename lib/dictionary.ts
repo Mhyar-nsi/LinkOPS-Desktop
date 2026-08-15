@@ -177,14 +177,37 @@ const en = {
     windows: {
       name: 'Windows',
       file: 'Installer (.exe)',
-      cta: 'Download',
-      comingSoon: 'Coming soon'
+      cta: 'Download installer',
+      stepsTitle: 'Install',
+      steps: [
+        'Run LinkOPS.Desktop.Setup.1.0.0.exe and follow the setup wizard',
+        'Choose an install folder and finish the wizard',
+        'Launch LinkOPS from the Start menu or the desktop shortcut'
+      ]
     },
     linux: {
       name: 'Linux',
-      file: 'AppImage & deb',
-      cta: 'Download',
-      comingSoon: 'Coming soon'
+      file: 'Two packages — pick one',
+      deb: {
+        name: '.deb package',
+        file: 'Debian / Ubuntu',
+        cta: 'Download .deb',
+        stepsTitle: 'Install',
+        steps: [
+          'sudo apt install ./linkops-desktop_1.0.0_amd64.deb',
+          'linkops-desktop'
+        ]
+      },
+      appImage: {
+        name: 'AppImage',
+        file: 'Any Linux distro',
+        cta: 'Download AppImage',
+        stepsTitle: 'Run',
+        steps: [
+          'chmod +x LinkOPS.Desktop-1.0.0.AppImage',
+          './LinkOPS.Desktop-1.0.0.AppImage'
+        ]
+      }
     },
     note: 'Free to download — no account required.'
   }
@@ -368,14 +391,37 @@ const fa: typeof en = {
     windows: {
       name: 'ویندوز',
       file: 'نصب‌کننده (.exe)',
-      cta: 'دانلود',
-      comingSoon: 'به‌زودی'
+      cta: 'دانلود نصب‌کننده',
+      stepsTitle: 'نصب',
+      steps: [
+        'فایل LinkOPS.Desktop.Setup.1.0.0.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
+        'پوشه‌ی نصب را انتخاب کنید و نصب را تمام کنید',
+        'لینک‌اپس را از منوی استارت یا میانبر دسکتاپ اجرا کنید'
+      ]
     },
     linux: {
       name: 'لینوکس',
-      file: 'AppImage و deb',
-      cta: 'دانلود',
-      comingSoon: 'به‌زودی'
+      file: 'دو بسته — یکی را انتخاب کنید',
+      deb: {
+        name: 'بسته‌ی .deb',
+        file: 'دبیان / اوبونتو',
+        cta: 'دانلود .deb',
+        stepsTitle: 'نصب',
+        steps: [
+          'sudo apt install ./linkops-desktop_1.0.0_amd64.deb',
+          'linkops-desktop'
+        ]
+      },
+      appImage: {
+        name: 'AppImage',
+        file: 'هر توزیع لینوکسی',
+        cta: 'دانلود AppImage',
+        stepsTitle: 'اجرا',
+        steps: [
+          'chmod +x LinkOPS.Desktop-1.0.0.AppImage',
+          './LinkOPS.Desktop-1.0.0.AppImage'
+        ]
+      }
     },
     note: 'دانلود رایگان — بدون نیاز به ثبت‌نام.'
   }

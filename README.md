@@ -74,8 +74,9 @@ web/
 ## ⚙️ Configuration (download links & version)
 
 The user-facing download buttons point at the **#download** section, which
-shows one card per supported OS (Windows / Linux) with a **version badge** and
-a download button per platform.
+shows a **Windows** card (`.exe` installer with install steps) and a
+**Linux** card with two packages — `.deb` (Debian/Ubuntu) and **AppImage**
+(any distro) — each with its own install commands.
 
 Set the real links — either edit the fallbacks in `lib/site.ts`, or (better)
 set environment variables in Vercel so the same build can be reused:
@@ -83,12 +84,16 @@ set environment variables in Vercel so the same build can be reused:
 | Env var | Purpose | Example |
 |---|---|---|
 | `NEXT_PUBLIC_APP_VERSION` | Version shown on the download cards | `1.0.0` |
-| `NEXT_PUBLIC_DOWNLOAD_URL_WINDOWS` | Windows installer (`.exe` / `.msi`) | `https://cdn.example.com/LinkOPS-1.0.0-setup.exe` |
-| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX` | Linux package (AppImage / `.deb`) | `https://cdn.example.com/LinkOPS-1.0.0.AppImage` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_WINDOWS` | Windows installer (`.exe` / `.msi`) | `https://cdn.example.com/LinkOPS.Desktop.Setup.1.0.0.exe` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_DEB` | Linux `.deb` package | `https://cdn.example.com/linkops-desktop_1.0.0_amd64.deb` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_APPIMAGE` | Linux AppImage | `https://cdn.example.com/LinkOPS.Desktop-1.0.0.AppImage` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for Open Graph / Twitter cards | `https://linkops.example.com` |
 
-Until a URL is set, the matching card shows a disabled **“Coming soon”**
-button, so the site never renders broken links.
+Until a URL is set, the matching button is disabled, so the site never
+renders broken links. The install steps shown on the cards (Windows wizard,
+`sudo apt install ./…deb`, `chmod +x …AppImage`) are static copy in
+`lib/dictionary.ts` — update them together with the version if filenames
+change.
 
 ---
 
