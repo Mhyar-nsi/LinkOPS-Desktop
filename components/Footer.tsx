@@ -24,6 +24,9 @@ export function Footer(): React.JSX.Element {
           <Link href="/guide" className="transition-colors hover:text-foreground">
             {t.header.guide}
           </Link>
+          <Link href="/changelog" className="transition-colors hover:text-foreground">
+            {t.header.changelog}
+          </Link>
           <Link href="/privacy" className="transition-colors hover:text-foreground">
             {lang === 'fa' ? 'حریم خصوصی' : 'Privacy'}
           </Link>

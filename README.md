@@ -23,13 +23,16 @@ screenshots captured from the app itself.
 | 🌗 **Light / Dark / System themes** | Zero-flash inline script in `<head>`, persisted to `localStorage`, follows OS preference in System mode. |
 | 📸 **Real screenshots** | Gallery tabs mirror the app's sidebar and show PNGs captured from the running desktop app (see below). |
 | 📖 **Paginated guide** | The tutorial is split into 9 pages (`/guide`, `/guide/install`, `/guide/devices`, …) with real prev/next pagination — each section is its own URL, navigated client-side. |
+| 🚀 **Changelog page** | `/changelog` lists every release (bilingual, newest first) — the same data powers the JSON feed the desktop app checks for updates. |
+| 💳 **Pricing page** | `/pricing` is its own page — the 3/6/12-month plans (USD in English, Toman in Persian) live there, not on the landing page. |
+| 🗂 **Tabbed downloads** | The `#download` section is a full-width tab bar (Windows / macOS / Linux) — pick your OS and see its full details, install steps and download button. |
 | 💻 **Terminal-style details** | Every terminal/command block (hero mock, Linux install commands, guide) is forced `dir="ltr"` so it never mirrors inside the Persian RTL layout, with a copy button. |
 | ⚡ **Static by default** | `output: static`-style App Router pages prerender to plain HTML — fast, cacheable, no server needed. |
 | 🎬 **Motion on scroll** | Built on the latest **framer-motion**: sections reveal with a fade/slide when they enter the viewport and cards stagger — all disabled for `prefers-reduced-motion`. |
 | 🧭 **SPA navigation** | Every internal link uses `next/link` — moving between pages never reloads the document; the top loader shows the client-side transition instead. |
 | ⏳ **Top loader** | `nextjs-toploader` shows a slim gradient progress bar at the top while navigating between pages — the “progress bar” you see is page-transition, not scroll progress. |
 | 📦 **Standalone** | Lives in its own folder with its own `package.json`; the Electron app never needs to build or ship it. |
-| 🪟 **Official OS logos** | Windows and Linux logos come from `react-icons/fa6` — they inherit the site's color in both themes. |
+| 🪟 **Official OS logos** | Windows, Linux and macOS logos come from `react-icons/fa6` — they inherit the site's color in both themes. |
 
 ---
 
@@ -54,12 +57,16 @@ web/
 │   ├── guide/[slug]/page.tsx # one page per guide section (/guide/install, /guide/devices, …) via generateStaticParams
 │   ├── privacy/page.tsx  # privacy policy (route: /privacy)
 │   ├── terms/page.tsx    # terms of service (route: /terms)
+│   ├── changelog/page.tsx # release notes (route: /changelog)
+│   ├── pricing/page.tsx  # license plans (route: /pricing)
+│   ├── api/updates/latest.json/route.ts # JSON feed the desktop app checks at startup
 │   └── globals.css       # Tailwind + the app's exact design tokens
 ├── components/
-│   ├── SiteHeader.tsx    # sticky header: all nav links with icons (features/pricing/screenshots/protocols/security/guide), theme, language, mobile menu
+│   ├── SiteHeader.tsx    # sticky header: only the top pages with icons (guide / changelog / pricing) + Download CTA, theme, language, mobile menu
 │   ├── Guide.tsx         # one guide section per page: sidebar with section links, callouts (tip/note/warning), shortcut table, real prev/next pagination
 │   ├── LegalPage.tsx     # shared bilingual layout for /privacy and /terms
-│   ├── Download.tsx      # per-OS download cards, terminal-styled Linux commands, version badge
+│   ├── Changelog.tsx     # bilingual release notes timeline (newest first)
+│   ├── Download.tsx      # full-width OS tabs (Windows/macOS/Linux): details, install steps and download button per platform
 │   ├── Pricing.tsx       # 3/6/12-month license plans + yearly discount
 │   ├── Hero.tsx          # headline + animated terminal mock (LTR in RTL) over PixelBlast
 │   ├── ui/PixelBlast.tsx # WebGL pixel-field effect (three + postprocessing), ripples on click
@@ -78,6 +85,7 @@ web/
 │   ├── lang.tsx          # language context (persisted, hydration-safe)
 │   ├── theme.tsx         # theme context (persisted, hydration-safe)
 │   ├── site.ts           # ⚙️ site config: version + download URLs
+│   ├── releases.ts       # 🗓 release history (single source for /changelog + the update feed)
 │   ├── guide.ts          # guide section order + href helpers (shared by page routes and the component)
 │   └── utils.ts          # cn() helper
 └── public/
@@ -89,20 +97,23 @@ web/
 
 ## ⚙️ Configuration (download links & version)
 
-The user-facing download buttons point at the **#download** section, which
-shows a **Windows** card (`.exe` installer with install steps) and a
-**Linux** card with two packages — `.deb` (Debian/Ubuntu) and **AppImage**
-(any distro) — each with its own install commands.
+The user-facing download buttons point at the **#download** section, a
+**full-width tab bar** with three tabs — **Windows** (`.exe` installer with
+install steps), **macOS** (`.dmg` with drag-to-Applications steps) and
+**Linux** (two packages: `.deb` for Debian/Ubuntu and **AppImage** for any
+distro, each with its own terminal-styled install commands). Pick your OS
+and its full details, install steps and download button appear.
 
 Set the real links — either edit the fallbacks in `lib/site.ts`, or (better)
 set environment variables in Vercel so the same build can be reused:
 
 | Env var | Purpose | Example |
 |---|---|---|
-| `NEXT_PUBLIC_APP_VERSION` | Version shown on the download cards | `1.0.0` |
-| `NEXT_PUBLIC_DOWNLOAD_URL_WINDOWS` | Windows installer (`.exe` / `.msi`) | `https://cdn.example.com/LinkOPS.Desktop.Setup.1.0.0.exe` |
-| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_DEB` | Linux `.deb` package | `https://cdn.example.com/linkops-desktop_1.0.0_amd64.deb` |
-| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_APPIMAGE` | Linux AppImage | `https://cdn.example.com/LinkOPS.Desktop-1.0.0.AppImage` |
+| `NEXT_PUBLIC_APP_VERSION` | Version shown on the download cards | `1.0.1` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_WINDOWS` | Windows installer (`.exe` / `.msi`) | `https://cdn.example.com/LinkOPS.Desktop.Setup.1.0.1.exe` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_DEB` | Linux `.deb` package | `https://cdn.example.com/linkops-desktop_1.0.1_amd64.deb` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_LINUX_APPIMAGE` | Linux AppImage | `https://cdn.example.com/LinkOPS.Desktop-1.0.1.AppImage` |
+| `NEXT_PUBLIC_DOWNLOAD_URL_MAC` | macOS `.dmg` installer | `https://cdn.example.com/LinkOPS.Desktop-1.0.1.dmg` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for Open Graph / Twitter cards | `https://linkops.example.com` |
 | `NEXT_PUBLIC_PURCHASE_URL` | Checkout link for the pricing “Buy” buttons | `https://checkout.example.com/buy` |
 | `NEXT_PUBLIC_CURRENCY` | Currency symbol in the English pricing section | `$` |
@@ -113,9 +124,9 @@ renders broken links. Pricing plans (3/6/12 months with a 33% discount on
 the yearly term) live in `lib/site.ts` as `PLANS` — edit prices there or
 override via env if you ever need to.
 
-## 💳 Pricing section
+## 💳 Pricing page (`/pricing`)
 
-`#pricing` shows three license plans (`lib/site.ts` → `PLANS`), with **dual
+The license plans live on their own page — `/pricing` — with **dual
 pricing**: the English UI shows USD, the Persian (فارسی) UI shows Toman
 automatically based on the active language:
 
@@ -143,6 +154,25 @@ settings, Ctrl+F find), terminal command blocks, and **prev/next** cards at
 the bottom of every section. All copy lives in `lib/dictionary.ts` under
 `guide.*` — add a `notes` array for callouts or a `table` object to render
 a table in any section.
+
+## 🚀 Changelog page + update feed
+
+`/changelog` renders the release history from `lib/releases.ts` (bilingual,
+newest first). The same data feeds **`/api/updates/latest.json`** — the JSON
+the desktop app polls at startup (see `UPDATE_MANIFEST_URL` in the app's
+`src/main/services/updateService.ts`):
+
+```json
+{
+  "version": "1.0.1",
+  "notes": "…",
+  "downloads": { "win": "…", "linux": "…", "darwin": "…" }
+}
+```
+
+To ship a new version: bump `APP_VERSION` in `lib/site.ts`, add the entry at
+the top of `RELEASES` in `lib/releases.ts`, and set the download links (env
+vars above). The site's static build regenerates the feed automatically.
 
 ## 📖 The guide (`/guide` + `/guide/<slug>`)
 
@@ -271,9 +301,11 @@ Manual smoke checklist:
 - [ ] Switch to فارسی — everything flips RTL, dates/digits render Persian.
 - [ ] Toggle Light / Dark / System — persists across reloads; System follows the OS.
 - [ ] Click any **Download** button — the page scrolls to the `#download` section.
-- [ ] Scroll to **Pricing** — 3 cards, the 12-month one highlighted with its discount.
-- [ ] Open the gallery tabs — each shows the matching real app screenshot.
-- [ ] Navigate between `/`, `/guide`, `/privacy`, `/terms` — the top loader bar appears during the transition.
+- [ ] Open `/pricing` — 3 cards, the 12-month one highlighted with its discount; flip to فارسی for Toman prices.
+- [ ] In `#download`, click the macOS / Linux tabs — each shows its own details, install steps and download button.
+- [ ] The header shows only Guide, Changelog, Pricing (+ Download CTA) on desktop and mobile.
+- [ ] Navigate between `/`, `/guide`, `/changelog`, `/pricing`, `/privacy`, `/terms` — the top loader bar appears during the transition.
+- [ ] Open `/changelog` in both languages — release notes render with RTL, newest first.
 - [ ] On `/guide`, scroll — the sidebar highlights the current section; callouts and the shortcuts table render in both languages.
 - [ ] Open `/privacy` and `/terms` in both languages — content flips with RTL.
 - [ ] From `/guide/install` click **Next** — `/guide/devices` loads without a full page reload (SPA).

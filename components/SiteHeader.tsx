@@ -2,31 +2,18 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import {
-  BadgeDollarSign,
-  BookOpen,
-  Download,
-  Images,
-  Menu,
-  Network,
-  ShieldCheck,
-  Sparkles,
-  X
-} from 'lucide-react'
+import { BookOpen, Download, Gem, Menu, Rocket, X } from 'lucide-react'
 import { useLang } from '@/lib/lang'
 import { DOWNLOAD_URL } from '@/lib/site'
 import { cn } from '@/lib/utils'
 import { LangToggle } from './LangToggle'
 import { ThemeToggle } from './ThemeToggle'
 
-/** Landing-page sections (anchor links) + the guide page, each with an icon. */
+/** Top-level pages: the guide, the changelog and the pricing page. */
 const NAV = [
-  { key: 'features', href: '/#features', icon: Sparkles },
-  { key: 'pricing', href: '/#pricing', icon: BadgeDollarSign },
-  { key: 'screenshots', href: '/#screenshots', icon: Images },
-  { key: 'protocols', href: '/#protocols', icon: Network },
-  { key: 'security', href: '/#security', icon: ShieldCheck },
-  { key: 'guide', href: '/guide', icon: BookOpen }
+  { key: 'guide', href: '/guide', icon: BookOpen },
+  { key: 'changelog', href: '/changelog', icon: Rocket },
+  { key: 'pricing', href: '/pricing', icon: Gem }
 ] as const
 
 type NavKey = (typeof NAV)[number]['key']

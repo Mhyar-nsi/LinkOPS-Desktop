@@ -8,7 +8,7 @@ import { ThemeProvider } from '@/lib/theme'
 import { dictionary } from '@/lib/dictionary'
 import './globals.css'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://linkops-desktop.vercel.app'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://linkops.mhyar.ir'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             prefer reduced motion, while everything else animates normally. */}
         <MotionConfig reducedMotion="user">
           {/* Top progress bar shown while navigating between pages. */}
-          <NextTopLoader color="#22d280" height={3} showSpinner={false} shadow="0 0 8px hsl(152 72% 48% / 0.6)" />
+          <NextTopLoader color="#22d280" height={2} showSpinner={true} shadow="0 0 8px hsl(152 72% 48% / 0.6)" />
           <ThemeProvider>
             <LangProvider>{children}</LangProvider>
           </ThemeProvider>

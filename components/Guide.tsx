@@ -223,7 +223,7 @@ export function Guide({ sectionId }: { sectionId: SectionId }): React.JSX.Elemen
               {next ? (
                 <Link
                   href={sectionHref(next)}
-                  className="group flex items-center gap-3 rounded-md border border-border bg-card p-4 text-end transition-colors hover:bg-accent"
+                  className="group flex items-center justify-end gap-3 rounded-md border border-border bg-card p-4 text-end transition-colors hover:bg-accent"
                 >
                   <span className="min-w-0">
                     <span className="block text-xs text-muted-foreground">{guide.nextSection}</span>

@@ -13,6 +13,7 @@ const en = {
     protocols: 'Protocols',
     security: 'Security',
     guide: 'Guide',
+    changelog: 'Changelog',
     cta: 'Download'
   },
   hero: {
@@ -174,6 +175,9 @@ const en = {
     rights: 'All rights reserved.'
   },
   pricing: {
+    metaTitle: 'Pricing — LinkOPS Desktop',
+    metaDescription:
+      'One license per machine. Choose a 3, 6 or 12-month plan — longer terms save more. Prices in USD (English) and Toman (Persian).',
     tag: '// licensing',
     title: 'Simple, fair pricing',
     lead: 'One license per machine. Choose the term that fits — longer terms save more.',
@@ -233,20 +237,21 @@ const en = {
         intro:
           'Pick your platform on the landing page. Windows uses an NSIS installer; Linux offers a .deb package for Debian/Ubuntu and an AppImage that runs on any distribution.',
         steps: [
-          'Windows: run LinkOPS.Desktop.Setup.1.0.0.exe, follow the wizard, then launch from the Start menu.',
+          'Windows: run LinkOPS.Desktop.Setup.1.0.1.exe, follow the wizard, then launch from the Start menu.',
           'Linux (.deb): install with apt and launch with the linkops-desktop command.',
           'Linux (AppImage): make it executable and run it directly — no installation needed.',
+          'macOS: open the .dmg and drag LinkOPS Desktop into the Applications folder.',
           'On first launch the app shows the activation screen. Paste the license key you received; until a valid key is entered, the app stays locked.',
           'Your license status (customer, expiry date) is shown in Settings → License. When fewer than 7 days remain, the app warns you.'
         ],
         terminal: [
           {
             title: '.deb — Debian / Ubuntu',
-            lines: ['sudo apt install ./linkops-desktop_1.0.0_amd64.deb', 'linkops-desktop']
+            lines: ['sudo apt install ./linkops-desktop_1.0.1_amd64.deb', 'linkops-desktop']
           },
           {
             title: 'AppImage — any distro',
-            lines: ['chmod +x LinkOPS.Desktop-1.0.0.AppImage', './LinkOPS.Desktop-1.0.0.AppImage']
+            lines: ['chmod +x LinkOPS.Desktop-1.0.1.AppImage', './LinkOPS.Desktop-1.0.1.AppImage']
           }
         ],
         notes: [
@@ -381,7 +386,7 @@ const en = {
   download: {
     tag: '// download',
     title: 'Download LinkOPS Desktop',
-    lead: 'Pick your platform and install in under a minute. Windows and Linux are supported.',
+    lead: 'Pick your platform and install in under a minute. Windows, Linux and macOS are supported.',
     version: 'Version {{version}}',
     help: 'Need help? Read the setup guide',
     windows: {
@@ -390,7 +395,7 @@ const en = {
       cta: 'Download installer',
       stepsTitle: 'Install',
       steps: [
-        'Run LinkOPS.Desktop.Setup.1.0.0.exe and follow the setup wizard',
+        'Run LinkOPS.Desktop.Setup.1.0.1.exe and follow the setup wizard',
         'Choose an install folder and finish the wizard',
         'Launch LinkOPS from the Start menu or the desktop shortcut'
       ]
@@ -404,7 +409,7 @@ const en = {
         cta: 'Download .deb',
         stepsTitle: 'Install',
         steps: [
-          'sudo apt install ./linkops-desktop_1.0.0_amd64.deb',
+          'sudo apt install ./linkops-desktop_1.0.1_amd64.deb',
           'linkops-desktop'
         ]
       },
@@ -414,12 +419,35 @@ const en = {
         cta: 'Download AppImage',
         stepsTitle: 'Run',
         steps: [
-          'chmod +x LinkOPS.Desktop-1.0.0.AppImage',
-          './LinkOPS.Desktop-1.0.0.AppImage'
+          'chmod +x LinkOPS.Desktop-1.0.1.AppImage',
+          './LinkOPS.Desktop-1.0.1.AppImage'
         ]
       }
     },
+    mac: {
+      name: 'macOS',
+      file: 'Installer (.dmg)',
+      cta: 'Download .dmg',
+      stepsTitle: 'Install',
+      steps: [
+        'Open the downloaded LinkOPS.Desktop-1.0.1.dmg',
+        'Drag LinkOPS Desktop into the Applications folder',
+        'Launch from Launchpad or the Applications folder'
+      ]
+    },
     note: 'Free to download — no account required.'
+  },
+  changelog: {
+    metaTitle: 'Changelog — LinkOPS Desktop',
+    metaDescription:
+      'Release notes for LinkOPS Desktop: what changed in each version, from the latest update back to the first release.',
+    tag: '// release notes',
+    title: 'What’s new in LinkOPS Desktop',
+    lead: 'Every update is a new version. Here is everything that shipped, newest first.',
+    latest: 'Latest',
+    previous: 'Previous',
+    downloadLatest: 'Download the latest version',
+    downloadHint: 'Windows · Linux · macOS installers'
   },
   legal: {
     updated: 'Last updated: August 2026',
@@ -498,6 +526,7 @@ const fa: typeof en = {
     protocols: 'پروتکل‌ها',
     security: 'امنیت',
     guide: 'آموزش',
+    changelog: 'بروزرسانی‌ها',
     cta: 'دانلود'
   },
   hero: {
@@ -660,6 +689,9 @@ const fa: typeof en = {
     rights: 'تمامی حقوق محفوظ است.'
   },
   pricing: {
+    metaTitle: 'پلن‌ها — لینک‌اپس دسکتاپ',
+    metaDescription:
+      'هر دستگاه یک لایسنس. پلن ۳، ۶ یا ۱۲ ماهه انتخاب کنید — هرچه طولانی‌تر، صرفه‌جویی بیشتر. قیمت‌ها در نسخه‌ی فارسی به تومان و در نسخه‌ی انگلیسی به دلار نمایش داده می‌شوند.',
     tag: '// پلن‌ها',
     title: 'قیمت‌گذاری ساده و منصفانه',
     lead: 'هر دستگاه یک لایسنس. مدت‌اشتراک را خودتان انتخاب کنید — هرچه طولانی‌تر، صرفه‌جویی بیشتر.',
@@ -719,20 +751,21 @@ const fa: typeof en = {
         intro:
           'سیستم‌عامل خود را در صفحه‌ی اصلی انتخاب کنید. ویندوز از نصب‌کننده‌ی NSIS استفاده می‌کند و لینوکس یک بسته‌ی .deb برای دبیان/اوبونتو و یک AppImage برای هر توزیعی دارد.',
         steps: [
-          'ویندوز: فایل LinkOPS.Desktop.Setup.1.0.0.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
+          'ویندوز: فایل LinkOPS.Desktop.Setup.1.0.1.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
           'لینوکس (.deb): با apt نصب کنید و با دستور linkops-desktop اجرا کنید.',
           'لینوکس (AppImage): فایل را قابل‌اجرا کنید و مستقیم اجرا کنید — نیازی به نصب نیست.',
+          'مک‌اواس: فایل .dmg را باز کنید و لینک‌اپس دسکتاپ را به پوشه‌ی Applications بکشید.',
           'در اولین اجرا، صفحه‌ی فعال‌سازی نمایش داده می‌شود. کلید لایسنس خود را وارد کنید؛ تا وارد کردن کلید معتبر، برنامه قفل می‌ماند.',
           'وضعیت لایسنس (نام مشتری و تاریخ انقضا) در تنظیمات → لایسنس قابل مشاهده است. وقتی کمتر از ۷ روز باقی بماند، برنامه هشدار می‌دهد.'
         ],
         terminal: [
           {
             title: '.deb — دبیان / اوبونتو',
-            lines: ['sudo apt install ./linkops-desktop_1.0.0_amd64.deb', 'linkops-desktop']
+            lines: ['sudo apt install ./linkops-desktop_1.0.1_amd64.deb', 'linkops-desktop']
           },
           {
             title: 'AppImage — هر توزیعی',
-            lines: ['chmod +x LinkOPS.Desktop-1.0.0.AppImage', './LinkOPS.Desktop-1.0.0.AppImage']
+            lines: ['chmod +x LinkOPS.Desktop-1.0.1.AppImage', './LinkOPS.Desktop-1.0.1.AppImage']
           }
         ],
         notes: [
@@ -867,7 +900,7 @@ const fa: typeof en = {
   download: {
     tag: '// دانلود',
     title: 'دانلود لینک‌اپس دسکتاپ',
-    lead: 'سیستم‌عامل خود را انتخاب کنید و در کمتر از یک دقیقه نصب کنید. ویندوز و لینوکس پشتیبانی می‌شوند.',
+    lead: 'سیستم‌عامل خود را انتخاب کنید و در کمتر از یک دقیقه نصب کنید. ویندوز، لینوکس و مک‌اواس پشتیبانی می‌شوند.',
     version: 'نسخه {{version}}',
     help: 'راهنما لازم دارید؟ آموزش نصب را ببینید',
     windows: {
@@ -876,7 +909,7 @@ const fa: typeof en = {
       cta: 'دانلود نصب‌کننده',
       stepsTitle: 'نصب',
       steps: [
-        'فایل LinkOPS.Desktop.Setup.1.0.0.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
+        'فایل LinkOPS.Desktop.Setup.1.0.1.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
         'پوشه‌ی نصب را انتخاب کنید و نصب را تمام کنید',
         'لینک‌اپس را از منوی استارت یا میانبر دسکتاپ اجرا کنید'
       ]
@@ -890,7 +923,7 @@ const fa: typeof en = {
         cta: 'دانلود .deb',
         stepsTitle: 'نصب',
         steps: [
-          'sudo apt install ./linkops-desktop_1.0.0_amd64.deb',
+          'sudo apt install ./linkops-desktop_1.0.1_amd64.deb',
           'linkops-desktop'
         ]
       },
@@ -900,12 +933,35 @@ const fa: typeof en = {
         cta: 'دانلود AppImage',
         stepsTitle: 'اجرا',
         steps: [
-          'chmod +x LinkOPS.Desktop-1.0.0.AppImage',
-          './LinkOPS.Desktop-1.0.0.AppImage'
+          'chmod +x LinkOPS.Desktop-1.0.1.AppImage',
+          './LinkOPS.Desktop-1.0.1.AppImage'
         ]
       }
     },
+    mac: {
+      name: 'مک‌اواس',
+      file: 'نصب‌کننده (.dmg)',
+      cta: 'دانلود .dmg',
+      stepsTitle: 'نصب',
+      steps: [
+        'فایل LinkOPS.Desktop-1.0.1.dmg دانلودشده را باز کنید',
+        'لینک‌اپس دسکتاپ را به پوشه‌ی Applications بکشید',
+        'از Launchpad یا پوشه‌ی Applications اجرا کنید'
+      ]
+    },
     note: 'دانلود رایگان — بدون نیاز به ثبت‌نام.'
+  },
+  changelog: {
+    metaTitle: 'بروزرسانی‌ها — لینک‌اپس دسکتاپ',
+    metaDescription:
+      'یادداشت‌های انتشار لینک‌اپس دسکتاپ: چه چیزهایی در هر نسخه تغییر کرده، از آخرین به‌روزرسانی تا نسخه‌ی اول.',
+    tag: '// یادداشت‌های انتشار',
+    title: 'تازه‌های لینک‌اپس دسکتاپ',
+    lead: 'هر به‌روزرسانی یک نسخه‌ی جدید است. همه‌ی آنچه منتشر شده، از جدید به قدیم.',
+    latest: 'جدیدترین',
+    previous: 'نسخه‌های قبلی',
+    downloadLatest: 'دانلود آخرین نسخه',
+    downloadHint: 'نصب‌کننده‌های ویندوز · لینوکس · مک'
   },
   legal: {
     updated: 'آخرین به‌روزرسانی: اوت ۲۰۲۶',
