@@ -26,6 +26,9 @@ export function Footer(): React.JSX.Element {
           <a href="#screenshots" className="transition-colors hover:text-foreground">
             {t.header.screenshots}
           </a>
+          <a href="/guide" className="transition-colors hover:text-foreground">
+            {t.header.guide}
+          </a>
           <a href="#security" className="transition-colors hover:text-foreground">
             {t.header.security}
           </a>

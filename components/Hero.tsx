@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowDown, Download, Lock, ShieldCheck, TerminalSquare } from 'lucide-react'
+import { ArrowDown, BookOpen, Download, Lock, ShieldCheck, TerminalSquare } from 'lucide-react'
 import PixelBlast from '@/components/ui/PixelBlast'
 import { useLang } from '@/lib/lang'
 import { DOWNLOAD_URL } from '@/lib/site'
@@ -65,11 +65,18 @@ export function Hero(): React.JSX.Element {
             </a>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="h-3.5 w-3.5 text-success" />
               {t.hero.note}
             </span>
+            <a
+              href="/guide"
+              className="inline-flex items-center gap-1.5 underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-muted-foreground"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              {t.hero.guideLink}
+            </a>
           </div>
         </div>
 
@@ -81,7 +88,9 @@ export function Hero(): React.JSX.Element {
             <span className="h-2.5 w-2.5 rounded-full bg-success/80" />
             <span className="ms-2 font-mono text-xs text-muted-foreground">{t.hero.terminalTitle}</span>
           </div>
-          <div className="flex items-start gap-3 px-4 py-4 sm:px-5 sm:py-5">
+          {/* dir=ltr: terminal content is English/technical and must not
+              mirror inside the Persian RTL layout. */}
+          <div dir="ltr" className="flex items-start gap-3 px-4 py-4 text-left sm:px-5 sm:py-5">
           <div className="hidden select-none flex-col items-center gap-2 font-mono text-[10px] leading-5 text-terminal-muted sm:flex">
             <Lock className="h-3 w-3" />
             <TerminalSquare className="h-3 w-3" />

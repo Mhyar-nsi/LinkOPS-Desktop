@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowUp, Download, KeyRound } from 'lucide-react'
+import { ArrowUp, BookOpen, Download, KeyRound } from 'lucide-react'
 import { useLang } from '@/lib/lang'
 import { DOWNLOAD_URL } from '@/lib/site'
 
@@ -24,6 +24,13 @@ export function Cta(): React.JSX.Element {
           >
             <Download className="h-4 w-4" />
             {t.cta.primary}
+          </a>
+          <a
+            href="/guide"
+            className="inline-flex h-10 items-center gap-2 rounded-md border border-border bg-card px-5 text-sm font-medium transition-colors hover:bg-accent"
+          >
+            <BookOpen className="h-4 w-4" />
+            {t.cta.guide}
           </a>
           <a
             href="#top"

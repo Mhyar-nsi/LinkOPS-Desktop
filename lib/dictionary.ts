@@ -12,6 +12,7 @@ const en = {
     screenshots: 'Screenshots',
     protocols: 'Protocols',
     security: 'Security',
+    guide: 'Guide',
     cta: 'Download'
   },
   hero: {
@@ -21,6 +22,7 @@ const en = {
     lead: 'LinkOPS Desktop manages switches, routers and firewalls over SSH and Telnet — with an interactive terminal, one-command batch runs across many devices, reusable command templates, and a complete audit trail.',
     ctaPrimary: 'Download',
     ctaSecondary: 'Explore features',
+    guideLink: 'Read the guide',
     note: 'Bilingual EN/FA with full RTL · dark & light themes',
     terminalTitle: 'linkops — live session',
     terminalLines: [
@@ -165,7 +167,8 @@ const en = {
     title: 'Ready to take control of your network?',
     lead: 'Download LinkOPS Desktop and start managing your devices today.',
     primary: 'Download the app',
-    secondary: 'Back to top'
+    secondary: 'Back to top',
+    guide: 'Read the guide'
   },
   footer: {
     rights: 'All rights reserved.'
@@ -192,11 +195,152 @@ const en = {
     },
     note: 'Prices shown in USD (English) and Toman (Persian). Need more seats or a custom term? Contact us.'
   },
+  guide: {
+    metaTitle: 'Guide — LinkOPS Desktop',
+    metaDescription:
+      'Step-by-step tutorial: install LinkOPS Desktop, add devices, connect over SSH and Telnet, run commands, batch runs and keep an audit trail.',
+    tag: '// guide',
+    title: 'How to use LinkOPS Desktop',
+    lead: 'A step-by-step walkthrough from the first install to running commands across your whole network.',
+    quickLinks: {
+      overview: 'Overview',
+      install: 'Install & license',
+      devices: 'Add devices',
+      connect: 'Connect & terminal',
+      commands: 'Run commands',
+      batch: 'Batch runs',
+      history: 'History & audit',
+      settings: 'Settings',
+      update: 'Updates'
+    },
+    sections: {
+      overview: {
+        title: 'Overview',
+        intro:
+          'LinkOPS Desktop is a network operations workstation. Instead of juggling PuTTY windows, spreadsheets and ad-hoc scripts, you get one place for every switch, router and firewall — over SSH or Telnet — with parallel command runs, reusable templates and a complete audit trail.',
+        steps: [
+          'Download and install the app for Windows or Linux, then activate it with your license key.',
+          'Add your devices once — name, host, credentials and protocol (SSH or Telnet).',
+          'Open live sessions, type commands in a real terminal, or run templates and batch commands across many devices at once.',
+          'Every execution is recorded in History, searchable and exportable.'
+        ]
+      },
+      install: {
+        title: 'Install & activate the license',
+        intro:
+          'Pick your platform on the landing page. Windows uses an NSIS installer; Linux offers a .deb package for Debian/Ubuntu and an AppImage that runs on any distribution.',
+        steps: [
+          'Windows: run LinkOPS.Desktop.Setup.1.0.0.exe, follow the wizard, then launch from the Start menu.',
+          'Linux (.deb): install with apt and launch with the linkops-desktop command.',
+          'Linux (AppImage): make it executable and run it directly — no installation needed.',
+          'On first launch the app shows the activation screen. Paste the license key you received; until a valid key is entered, the app stays locked.',
+          'Your license status (customer, expiry date) is shown in Settings → License. When fewer than 7 days remain, the app warns you.'
+        ],
+        terminal: [
+          {
+            title: '.deb — Debian / Ubuntu',
+            lines: ['sudo apt install ./linkops-desktop_1.0.0_amd64.deb', 'linkops-desktop']
+          },
+          {
+            title: 'AppImage — any distro',
+            lines: ['chmod +x LinkOPS.Desktop-1.0.0.AppImage', './LinkOPS.Desktop-1.0.0.AppImage']
+          }
+        ]
+      },
+      devices: {
+        title: 'Adding devices',
+        intro: 'The inventory is the heart of the app. Add each device once, and every session, template and batch run references it.',
+        steps: [
+          'Open Devices and click “Add device”.',
+          'Fill in the basics: name, host (IP or DNS), port (22 for SSH, 23 for Telnet) and username.',
+          'Choose the authentication: password or private key (stored encrypted in the OS keychain, with optional passphrase).',
+          'Pick the protocol — SSH or Telnet — and the device type (router, switch, server, firewall, access point, OLT…).',
+          'The device type matters: network gear runs commands through an interactive shell with prompt detection, exactly like typing by hand — so switches and routers “just work”.',
+          'Optional: tags, group, vendor/model/location keep a large fleet searchable and filterable.'
+        ]
+      },
+      connect: {
+        title: 'Connecting & the terminal',
+        intro:
+          'Sessions give you a real xterm.js terminal — ANSI colors, timestamps, live search, copy and log download — for both SSH and Telnet.',
+        steps: [
+          'Open Sessions and click “Connect to device”, then pick a device from the list.',
+          'The session opens a terminal; type commands exactly as you would in PuTTY or any SSH client.',
+          'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error).',
+          'Credentials come from the OS keychain automatically; nothing is stored in plain text.',
+          'Use the toolbar to search output, toggle timestamps, copy the buffer or download a .log file.'
+        ]
+      },
+      commands: {
+        title: 'Running commands',
+        intro:
+          'Stop retyping the same show commands. Store them as templates, bundle them into groups, and run them from any session or device with one click.',
+        steps: [
+          'Create templates in Commands: name, command, category, compatible device types and tags.',
+          'Bundle several templates into a command group for a sequential diagnostics routine (e.g. show version → show interfaces status → show log).',
+          'From any session use the “Run template” menu; from any device use the quick-run action.',
+          'On network gear the command is typed into the interactive shell and completion is detected from the prompt; --More-- paging is continued automatically, so long outputs never get stuck.',
+          'The live result streams into the terminal, and a copy lands in History with exit code and duration.'
+        ],
+        terminal: [
+          {
+            title: 'live session',
+            lines: ['$ show version', 'Cisco IOS XE Software, Version 17.9.4a', 'System restarted at 02:14:33 UTC Tue Aug 11 2026', 'SW1#']
+          }
+        ]
+      },
+      batch: {
+        title: 'Batch runs',
+        intro: 'Run one command across many live sessions in parallel and compare the results in one view.',
+        steps: [
+          'Select two or more sessions on the Sessions page.',
+          'Click “Run selected”, choose a template or type a custom command.',
+          'The app runs it on all selected devices and shows per-device output, exit code and duration.',
+          'You can stop a batch mid-run; whatever completed is kept in History.'
+        ]
+      },
+      history: {
+        title: 'History & audit trail',
+        intro: 'Every execution is recorded automatically — who ran what, on which device, when, and what came back.',
+        steps: [
+          'Open History to browse executions: command, device, trigger, duration, exit code and full output.',
+          'Search and filter by device or command; export to CSV for compliance or reporting.',
+          'The Logs page keeps application-level diagnostics for troubleshooting.',
+          'From a session you can also download the terminal buffer as a .log file.'
+        ]
+      },
+      settings: {
+        title: 'Settings & shortcuts',
+        intro: 'Tune the app to your workflow — appearance, language, SSH behavior and more.',
+        steps: [
+          'Appearance: theme (light / dark / system) and UI language (English or فارسی with full RTL and Persian digits).',
+          'SSH: connection timeout and keep-alive interval for long-running sessions.',
+          'Terminal: font size, timestamps, auto-scroll.',
+          'Data: import/export devices from CSV, manage logs.',
+          'License: view your license status and expiry date.',
+          'Keyboard shortcuts are listed in Settings — including the command palette (Ctrl+K) for quick actions like switching themes.'
+        ]
+      },
+      update: {
+        title: 'Updating the app',
+        intro: 'New versions are delivered from the web — the app checks the release feed and tells you when an update is available.',
+        steps: [
+          'On startup the app checks for updates automatically and shows a notification if a new version exists.',
+          'Open Settings → Updates to check manually and download the installer.',
+          'Run the new installer over the old version — your license and data are preserved.'
+        ]
+      }
+    },
+    backHome: 'Back to the landing page',
+    downloadCta: 'Download the app',
+    nextSection: 'Next'
+  },
   download: {
     tag: '// download',
     title: 'Download LinkOPS Desktop',
     lead: 'Pick your platform and install in under a minute. Windows and Linux are supported.',
     version: 'Version {{version}}',
+    help: 'Need help? Read the setup guide',
     windows: {
       name: 'Windows',
       file: 'Installer (.exe)',
@@ -248,6 +392,7 @@ const fa: typeof en = {
     screenshots: 'تصاویر',
     protocols: 'پروتکل‌ها',
     security: 'امنیت',
+    guide: 'آموزش',
     cta: 'دانلود'
   },
   hero: {
@@ -257,6 +402,7 @@ const fa: typeof en = {
     lead: 'لینک‌اپس دسکتاپ سوئیچ‌ها، روترها و فایروال‌ها را از راه دور و از طریق SSH و Telnet مدیریت می‌کند — با ترمینال تعاملی، اجرای هم‌زمان یک دستور روی چندین دستگاه، قالب‌های دستور قابل‌استفاده‌ی مجدد و گزارش‌گیری کامل از همه‌ی عملیات.',
     ctaPrimary: 'دانلود',
     ctaSecondary: 'مشاهده‌ی امکانات',
+    guideLink: 'مطالعه‌ی راهنما',
     note: 'رابط دوزبانه EN/FA با RTL کامل · تم روشن و تیره',
     terminalTitle: 'linkops — نشست زنده',
     terminalLines: [
@@ -402,7 +548,8 @@ const fa: typeof en = {
     title: 'آماده‌اید کنترل شبکه‌ی خود را به دست بگیرید؟',
     lead: 'لینک‌اپس دسکتاپ را دانلود کنید و مدیریت دستگاه‌هایتان را از همین امروز شروع کنید.',
     primary: 'دانلود برنامه',
-    secondary: 'بازگشت به بالا'
+    secondary: 'بازگشت به بالا',
+    guide: 'مطالعه‌ی راهنما'
   },
   footer: {
     rights: 'تمامی حقوق محفوظ است.'
@@ -429,11 +576,152 @@ const fa: typeof en = {
     },
     note: 'قیمت‌ها در نسخه‌ی فارسی به تومان و در نسخه‌ی انگلیسی به دلار نمایش داده می‌شوند. تعداد بیشتر یا دوره‌ی سفارشی؟ با ما تماس بگیرید.'
   },
+  guide: {
+    metaTitle: 'راهنما — لینک‌اپس دسکتاپ',
+    metaDescription:
+      'آموزش قدم‌به‌قدم: نصب لینک‌اپس دسکتاپ، افزودن دستگاه، اتصال از طریق SSH و Telnet، اجرای دستورها، اجرای گروهی و گزارش‌گیری کامل.',
+    tag: '// راهنما',
+    title: 'چطور از لینک‌اپس دسکتاپ استفاده کنیم',
+    lead: 'راهنمای گام‌به‌گام از نصب اولیه تا اجرای دستور روی تمام شبکه.',
+    quickLinks: {
+      overview: 'آشنایی',
+      install: 'نصب و لایسنس',
+      devices: 'افزودن دستگاه',
+      connect: 'اتصال و ترمینال',
+      commands: 'اجرای دستور',
+      batch: 'اجرای گروهی',
+      history: 'تاریخچه و گزارش',
+      settings: 'تنظیمات',
+      update: 'به‌روزرسانی'
+    },
+    sections: {
+      overview: {
+        title: 'آشنایی',
+        intro:
+          'لینک‌اپس دسکتاپ یک ایستگاه کاری برای عملیات شبکه است. به‌جای چند پنجره‌ی PuTTY، فایل‌های اکسل و اسکریپت‌های پراکنده، همه‌ی سوئیچ‌ها، روترها و فایروال‌ها — از طریق SSH یا Telnet — از یک‌جا در دسترس شماست: اجرای هم‌زمان دستورها، قالب‌های آماده و گزارش کامل از هر عملیات.',
+        steps: [
+          'برنامه را برای ویندوز یا لینوکس نصب و با کلید لایسنس خود فعال کنید.',
+          'دستگاه‌ها را یک‌بار اضافه کنید: نام، آدرس، اعتبارنامه و پروتکل (SSH یا Telnet).',
+          'نشست‌های زنده باز کنید، در یک ترمینال واقعی دستور بزنید یا قالب‌ها و اجرای گروهی را روی چند دستگاه هم‌زمان اجرا کنید.',
+          'هر اجرا به‌صورت خودکار در تاریخچه ذخیره می‌شود؛ قابل جستجو و خروجی‌گیری.'
+        ]
+      },
+      install: {
+        title: 'نصب و فعال‌سازی لایسنس',
+        intro:
+          'سیستم‌عامل خود را در صفحه‌ی اصلی انتخاب کنید. ویندوز از نصب‌کننده‌ی NSIS استفاده می‌کند و لینوکس یک بسته‌ی .deb برای دبیان/اوبونتو و یک AppImage برای هر توزیعی دارد.',
+        steps: [
+          'ویندوز: فایل LinkOPS.Desktop.Setup.1.0.0.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
+          'لینوکس (.deb): با apt نصب کنید و با دستور linkops-desktop اجرا کنید.',
+          'لینوکس (AppImage): فایل را قابل‌اجرا کنید و مستقیم اجرا کنید — نیازی به نصب نیست.',
+          'در اولین اجرا، صفحه‌ی فعال‌سازی نمایش داده می‌شود. کلید لایسنس خود را وارد کنید؛ تا وارد کردن کلید معتبر، برنامه قفل می‌ماند.',
+          'وضعیت لایسنس (نام مشتری و تاریخ انقضا) در تنظیمات → لایسنس قابل مشاهده است. وقتی کمتر از ۷ روز باقی بماند، برنامه هشدار می‌دهد.'
+        ],
+        terminal: [
+          {
+            title: '.deb — دبیان / اوبونتو',
+            lines: ['sudo apt install ./linkops-desktop_1.0.0_amd64.deb', 'linkops-desktop']
+          },
+          {
+            title: 'AppImage — هر توزیعی',
+            lines: ['chmod +x LinkOPS.Desktop-1.0.0.AppImage', './LinkOPS.Desktop-1.0.0.AppImage']
+          }
+        ]
+      },
+      devices: {
+        title: 'افزودن دستگاه',
+        intro: 'فهرست دستگاه‌ها قلب برنامه است. هر دستگاه را یک‌بار اضافه کنید و همه‌ی نشست‌ها، قالب‌ها و اجراهای گروهی به آن ارجاع می‌دهند.',
+        steps: [
+          'به صفحه‌ی دستگاه‌ها بروید و «افزودن دستگاه» را بزنید.',
+          'مشخصات پایه را پر کنید: نام، آدرس (IP یا DNS)، پورت (۲۲ برای SSH و ۲۳ برای Telnet) و نام کاربری.',
+          'روش احراز هویت را انتخاب کنید: رمز عبور یا کلید خصوصی (که رمزنگاری‌شده در گاوصندوق سیستم‌عامل ذخیره می‌شود، با پشتیبانی از عبارت عبور).',
+          'پروتکل — SSH یا Telnet — و نوع دستگاه (روتر، سوئیچ، سرور، فایروال، اکسس‌پوینت، OLT و…) را انتخاب کنید.',
+          'نوع دستگاه مهم است: تجهیزات شبکه دستورها را از طریق شل تعاملی با تشخیص پرامپت اجرا می‌کنند، دقیقاً مثل تایپ دستی — برای همین سوئیچ‌ها و روترها بدون دردسر کار می‌کنند.',
+          'اختیاری: برچسب‌ها، گروه، سازنده/مدل/موقعیت، ناوگان بزرگ را قابل جستجو و فیلتر می‌کند.'
+        ]
+      },
+      connect: {
+        title: 'اتصال و ترمینال',
+        intro:
+          'نشست‌ها یک ترمینال واقعی xterm.js در اختیارتان می‌گذارند — رنگ ANSI، ثبت زمان، جستجوی زنده، کپی و دانلود لاگ — هم برای SSH و هم Telnet.',
+        steps: [
+          'صفحه‌ی نشست‌ها را باز کنید و «اتصال به دستگاه» را بزنید، سپس دستگاه را از فهرست انتخاب کنید.',
+          'نشست با یک ترمینال باز می‌شود؛ دقیقاً مثل PuTTY یا هر کلاینت SSH دستور بزنید.',
+          'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا).',
+          'اعتبارنامه‌ها به‌صورت خودکار از گاوصندوق سیستم‌عامل خوانده می‌شوند و هیچ‌چیز به‌صورت متن ساده ذخیره نمی‌شود.',
+          'از نوار ابزار برای جستجوی خروجی، ثبت زمان، کپی بافر یا دانلود فایل .log استفاده کنید.'
+        ]
+      },
+      commands: {
+        title: 'اجرای دستورها',
+        intro:
+          'دیگر لازم نیست دستورهای show را هر بار از نو تایپ کنید. آن‌ها را به‌صورت قالب ذخیره کنید، در گروه‌ها بچینید و با یک کلیک از هر نشست یا دستگاهی اجرا کنید.',
+        steps: [
+          'در صفحه‌ی دستورات، قالب بسازید: نام، دستور، دسته‌بندی، انواع دستگاه سازگار و برچسب.',
+          'چند قالب را در یک گروه برای یک روال عیب‌یابی ترتیبی بچینید (مثلاً show version ← show interfaces status ← show log).',
+          'از هر نشست از منوی «اجرای قالب» و از هر دستگاه از عمل اجرای سریع استفاده کنید.',
+          'روی تجهیزات شبکه، دستور در شل تعاملی تایپ می‌شود و پایان‌یافتن آن از روی پرامپت تشخیص داده می‌شود؛ صفحه‌بندی --More-- هم خودکار ادامه می‌یابد تا خروجی‌های طولانی گیر نکنند.',
+          'نتیجه به‌صورت زنده در ترمینال نمایش داده می‌شود و نسخه‌ای از آن با کد خروج و مدت اجرا در تاریخچه ذخیره می‌شود.'
+        ],
+        terminal: [
+          {
+            title: 'نشست زنده',
+            lines: ['$ show version', 'Cisco IOS XE Software, Version 17.9.4a', 'System restarted at 02:14:33 UTC Tue Aug 11 2026', 'SW1#']
+          }
+        ]
+      },
+      batch: {
+        title: 'اجرای گروهی',
+        intro: 'یک دستور را هم‌زمان روی چند نشست زنده اجرا کنید و نتیجه‌ها را در یک نما مقایسه کنید.',
+        steps: [
+          'در صفحه‌ی نشست‌ها، دو یا چند نشست را انتخاب کنید.',
+          '«اجرای انتخاب‌شده‌ها» را بزنید و یک قالب را انتخاب کنید یا دستور دلخواه بنویسید.',
+          'برنامه دستور را روی همه‌ی دستگاه‌های انتخاب‌شده اجرا می‌کند و خروجی، کد خروج و مدت هرکدام را نشان می‌دهد.',
+          'می‌توانید اجرا را در میانه متوقف کنید؛ هرچه تمام شده باشد در تاریخچه می‌ماند.'
+        ]
+      },
+      history: {
+        title: 'تاریخچه و گزارش',
+        intro: 'هر اجرا به‌صورت خودکار ثبت می‌شود — چه کسی، چه دستوری، روی کدام دستگاه، کی، و چه نتیجه‌ای برگشت.',
+        steps: [
+          'تاریخچه را باز کنید تا اجراها را ببینید: دستور، دستگاه، نوع اجرا، مدت، کد خروج و خروجی کامل.',
+          'بر اساس دستگاه یا دستور جستجو و فیلتر کنید؛ برای انطباق یا گزارش‌گیری به CSV خروجی بگیرید.',
+          'صفحه‌ی لاگ‌ها، گزارش‌های سطح برنامه را برای عیب‌یابی نگه می‌دارد.',
+          'از داخل نشست هم می‌توانید بافر ترمینال را به‌صورت فایل .log دانلود کنید.'
+        ]
+      },
+      settings: {
+        title: 'تنظیمات و میانبرها',
+        intro: 'برنامه را با روش کار خودتان هماهنگ کنید — ظاهر، زبان، رفتار SSH و موارد دیگر.',
+        steps: [
+          'ظاهر: تم (روشن / تیره / سیستم) و زبان رابط (انگلیسی یا فارسی با RTL کامل و ارقام فارسی).',
+          'SSH: زمان‌سنج اتصال و فاصله‌ی keep-alive برای نشست‌های طولانی.',
+          'ترمینال: اندازه‌ی فونت، ثبت زمان، اسکرول خودکار.',
+          'داده‌ها: ورود/خروجی دستگاه‌ها از CSV و مدیریت لاگ‌ها.',
+          'لایسنس: مشاهده‌ی وضعیت و تاریخ انقضا.',
+          'میانبرهای صفحه‌کلید در تنظیمات لیست شده‌اند — از جمله پالت فرمان (Ctrl+K) برای کارهای سریع مثل تغییر تم.'
+        ]
+      },
+      update: {
+        title: 'به‌روزرسانی برنامه',
+        intro: 'نسخه‌های جدید از وب ارائه می‌شوند — برنامه فید انتشار را بررسی می‌کند و وقتی نسخه‌ی جدیدی باشد به شما اطلاع می‌دهد.',
+        steps: [
+          'برنامه هنگام راه‌اندازی به‌صورت خودکار به‌روزرسانی را بررسی و در صورت وجود نسخه‌ی جدید اعلان می‌دهد.',
+          'برای بررسی دستی و دانلود نصب‌کننده به تنظیمات → به‌روزرسانی‌ها بروید.',
+          'نصب‌کننده‌ی جدید را روی نسخه‌ی قبلی اجرا کنید — لایسنس و داده‌های شما حفظ می‌شوند.'
+        ]
+      }
+    },
+    backHome: 'بازگشت به صفحه‌ی اصلی',
+    downloadCta: 'دانلود برنامه',
+    nextSection: 'بعدی'
+  },
   download: {
     tag: '// دانلود',
     title: 'دانلود لینک‌اپس دسکتاپ',
     lead: 'سیستم‌عامل خود را انتخاب کنید و در کمتر از یک دقیقه نصب کنید. ویندوز و لینوکس پشتیبانی می‌شوند.',
     version: 'نسخه {{version}}',
+    help: 'راهنما لازم دارید؟ آموزش نصب را ببینید',
     windows: {
       name: 'ویندوز',
       file: 'نصب‌کننده (.exe)',

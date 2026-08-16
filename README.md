@@ -22,6 +22,8 @@ screenshots captured from the app itself.
 | 🌐 **EN ⇄ فارسی with full RTL** | Every string is hand-written in both languages; `dir="rtl"` flips the whole layout instantly, no hydration flash. |
 | 🌗 **Light / Dark / System themes** | Zero-flash inline script in `<head>`, persisted to `localStorage`, follows OS preference in System mode. |
 | 📸 **Real screenshots** | Gallery tabs mirror the app's sidebar and show PNGs captured from the running desktop app (see below). |
+| 📖 **Full guide page** | `/guide` is a step-by-step bilingual tutorial — install, license, devices, terminal, commands, batch runs and more, with terminal-styled command blocks. |
+| 💻 **Terminal-style details** | Every terminal/command block (hero mock, Linux install commands, guide) is forced `dir="ltr"` so it never mirrors inside the Persian RTL layout, with a copy button. |
 | ⚡ **Static by default** | `output: static`-style App Router pages prerender to plain HTML — fast, cacheable, no server needed. |
 | 📦 **Standalone** | Lives in its own folder with its own `package.json`; the Electron app never needs to build or ship it. |
 | 🪟 **Official OS logos** | Windows and Linux logos come from `react-icons/fa6` — they inherit the site's color in both themes. |
@@ -44,31 +46,34 @@ npm run lint       # eslint
 web/
 ├── app/
 │   ├── layout.tsx        # <html> shell, metadata, no-FOUC theme/lang script
-│   ├── page.tsx          # the single landing page
+│   ├── page.tsx          # the landing page
+│   ├── guide/page.tsx    # the full tutorial page (route: /guide)
 │   └── globals.css       # Tailwind + the app's exact design tokens
 ├── components/
-│   ├── SiteHeader.tsx    # sticky header: nav, theme, language, mobile menu
-│   ├── Download.tsx      # per-OS download cards + version badge (FaWindows / FaLinux logos)
+│   ├── SiteHeader.tsx    # sticky header: nav (incl. Guide), theme, language, mobile menu
+│   ├── Guide.tsx         # bilingual tutorial: sticky section nav, numbered steps, terminal blocks
+│   ├── Download.tsx      # per-OS download cards, terminal-styled Linux commands, version badge
 │   ├── Pricing.tsx       # 3/6/12-month license plans + yearly discount
-│   ├── Hero.tsx          # headline + animated terminal mock over an interactive PixelBlast background
+│   ├── Hero.tsx          # headline + animated terminal mock (LTR in RTL) over PixelBlast
 │   ├── ui/PixelBlast.tsx # WebGL pixel-field effect (three + postprocessing), ripples on click
+│   ├── ui/TerminalShell.tsx # reusable LTR terminal block with $ prompts + copy button
 │   ├── Features.tsx      # capability grid
-│   ├── Screenshots.tsx   # tabbed gallery of real app screenshots
+│   ├── Screenshots.tsx   # tabbed gallery (instant switch, loading state, both themes preloaded)
 │   ├── Protocols.tsx     # SSH vs Telnet comparison
 │   ├── Security.tsx      # security highlights
-│   ├── Cta.tsx           # closing call-to-action
-│   ├── Footer.tsx        # footer
+│   ├── Cta.tsx           # closing call-to-action (+ guide link)
+│   ├── Footer.tsx        # footer (+ guide link)
 │   ├── ThemeToggle.tsx   # light / dark / system
 │   └── LangToggle.tsx    # EN / فارسی
 ├── lib/
-│   ├── dictionary.ts     # the full EN + FA copy (hand-written, natural)
+│   ├── dictionary.ts     # the full EN + FA copy (hand-written, natural) incl. the guide section
 │   ├── lang.tsx          # language context (persisted, hydration-safe)
 │   ├── theme.tsx         # theme context (persisted, hydration-safe)
 │   ├── site.ts           # ⚙️ site config: version + download URLs
 │   └── utils.ts          # cn() helper
 └── public/
     ├── logo.png                # the app icon (favicon + header/footer)
-    └── screenshots/*.png       # real captures from the desktop app
+    └── screenshots/*.png       # real captures from the desktop app (dark + -light pairs)
 ```
 
 ---
@@ -162,9 +167,27 @@ dashboard.png  devices.png  device-detail.png  sessions.png  batch-runs.png
 commands.png   command-groups.png  history.png  logs.png  settings.png
 ```
 
-Screenshots are always captured with the **dark theme and English UI** so the
-gallery matches the site's default presentation, and each run starts from a
-fresh database — no accumulating demo data.
+### 🌗 Light & dark pairs
+
+Every page is captured **twice** — once with the app's **dark theme**
+(default filenames) and once with the **light theme** (`-light` suffix):
+
+```
+dashboard.png        dashboard-light.png
+sessions.png         sessions-light.png
+settings.png         settings-light.png
+…
+```
+
+The capture script switches the running app to the light theme live
+(via a `window.__linkopsSetTheme` hook) and re-walks every page, so both
+versions show the exact same content. The site's `Screenshots` gallery picks
+the matching file from the resolved site theme — dark shots in dark mode,
+light shots in light mode (and in System mode it follows the OS). The
+renderer hook is harmless outside captures and only flips the app theme.
+
+Both passes use the **English UI** so the gallery is deterministic, and each
+run starts from a fresh database — no accumulating demo data.
 
 ---
 

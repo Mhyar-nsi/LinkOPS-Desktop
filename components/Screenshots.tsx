@@ -1,8 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import { LayoutDashboard, MonitorPlay, FolderKanban, History, Settings2, Cable, ListChecks, Boxes } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import {
+  LayoutDashboard,
+  Loader2,
+  MonitorPlay,
+  FolderKanban,
+  History,
+  Settings2,
+  Cable,
+  ListChecks,
+  Boxes
+} from 'lucide-react'
 import { useLang } from '@/lib/lang'
+import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/utils'
 
 type TabKey = 'dashboard' | 'devices' | 'terminal' | 'batchRuns' | 'commands' | 'groups' | 'history' | 'settings'
@@ -29,9 +40,42 @@ const SHOT_FILES: Record<TabKey, string> = {
   settings: 'settings.png'
 }
 
+/** The light variant of a shot file. */
+function lightFile(file: string): string {
+  return file.replace(/\.png$/, '-light.png')
+}
+
 export function Screenshots(): React.JSX.Element {
   const { t } = useLang()
+  const { resolved } = useTheme()
   const [active, setActive] = useState<TabKey>('dashboard')
+  const [loaded, setLoaded] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  const file = resolved === 'light' ? lightFile(SHOT_FILES[active]) : SHOT_FILES[active]
+  const src = `/screenshots/${file}`
+
+  // Preload every shot in both themes once — tab switches then feel instant.
+  useEffect(() => {
+    for (const { key } of TABS) {
+      for (const f of [SHOT_FILES[key], lightFile(SHOT_FILES[key])]) {
+        const img = new Image()
+        img.src = `/screenshots/${f}`
+      }
+    }
+  }, [])
+
+  // Switch the tab immediately; show the loader until the new image is ready.
+  // Never get stuck on the spinner: on first load/reload the image can be
+  // fully loaded (SSR parse, HTTP/memory cache) before React attaches onLoad,
+  // so the load event is missed. Detect that and mark it loaded right away.
+  useEffect(() => {
+    setLoaded(false)
+    const img = imgRef.current
+    if (img && img.complete && img.naturalWidth > 0) {
+      setLoaded(true)
+    }
+  }, [src])
 
   return (
     <section id="screenshots" className="border-t border-border">
@@ -64,16 +108,29 @@ export function Screenshots(): React.JSX.Element {
           </div>
 
           <figure className="p-3">
-            <div className="overflow-hidden rounded-md border border-border bg-background">
-              {/* Screenshots are static site assets — plain img is fine. */}
+            <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-background">
+              {/* Static assets: dark shots are the default files, light shots
+                  carry a -light suffix — pick per resolved theme. The tab
+                  switches instantly; the loader overlays until the image is
+                  decoded (preloaded on mount, so usually instant). */}
               <img
-                src={`/screenshots/${SHOT_FILES[active]}`}
+                key={src}
+                ref={imgRef}
+                src={src}
                 alt={t.screenshots.tabs[active]}
                 width={1440}
                 height={900}
-                className="block w-full"
-                loading={active === 'dashboard' ? 'eager' : 'lazy'}
+                onLoad={() => setLoaded(true)}
+                className={cn(
+                  'block h-full w-full object-contain transition-opacity duration-200',
+                  loaded ? 'opacity-100' : 'opacity-0'
+                )}
               />
+              {!loaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted/30">
+                  <Loader2 className="h-7 w-7 animate-spin text-muted-foreground" />
+                </div>
+              )}
             </div>
             <figcaption className="mt-3 px-1 pb-1 text-center text-sm text-muted-foreground">
               {t.screenshots.captions[active]}

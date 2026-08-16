@@ -8,12 +8,14 @@ import { cn } from '@/lib/utils'
 import { LangToggle } from './LangToggle'
 import { ThemeToggle } from './ThemeToggle'
 
+// Section links point at the landing page root so they also work from /guide.
 const NAV_IDS = [
-  { id: 'features', key: 'features' as const },
-  { id: 'pricing', key: 'pricing' as const },
-  { id: 'screenshots', key: 'screenshots' as const },
-  { id: 'protocols', key: 'protocols' as const },
-  { id: 'security', key: 'security' as const }
+  { id: 'features', key: 'features' as const, href: '/#features' },
+  { id: 'pricing', key: 'pricing' as const, href: '/#pricing' },
+  { id: 'screenshots', key: 'screenshots' as const, href: '/#screenshots' },
+  { id: 'protocols', key: 'protocols' as const, href: '/#protocols' },
+  { id: 'security', key: 'security' as const, href: '/#security' },
+  { id: 'guide', key: 'guide' as const, href: '/guide' }
 ]
 
 export function SiteHeader(): React.JSX.Element {
@@ -34,7 +36,7 @@ export function SiteHeader(): React.JSX.Element {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-5 text-sm text-muted-foreground md:flex">
           {NAV_IDS.map((item) => (
-            <a key={item.id} href={`#${item.id}`} className="transition-colors hover:text-foreground">
+            <a key={item.id} href={item.href} className="transition-colors hover:text-foreground">
               {t.header[item.key]}
             </a>
           ))}
@@ -73,7 +75,7 @@ export function SiteHeader(): React.JSX.Element {
             {NAV_IDS.map((item) => (
               <a
                 key={item.id}
-                href={`#${item.id}`}
+                href={item.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
