@@ -6,6 +6,7 @@ import '@fontsource-variable/jetbrains-mono'
 import { LangProvider } from '@/lib/lang'
 import { ThemeProvider } from '@/lib/theme'
 import { dictionary } from '@/lib/dictionary'
+import { Analytics } from "@vercel/analytics/next"
 import './globals.css'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://linkops.mhyar.ir'
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <script dangerouslySetInnerHTML={{ __html: noFoucScript }} />
       </head>
       <body className="font-sans">
+        <Analytics />
         {/* reducedMotion="user" keeps scroll/load animations off for users who
             prefer reduced motion, while everything else animates normally. */}
         <MotionConfig reducedMotion="user">

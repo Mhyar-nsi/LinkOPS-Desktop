@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
     "@fontsource-variable/vazirmatn": "^5.2.5",
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "^13.1.0",
     "lucide-react": "^0.469.0",
