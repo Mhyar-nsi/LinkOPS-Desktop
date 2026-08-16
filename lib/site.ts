@@ -16,7 +16,7 @@
  */
 
 /** App version badge shown on the download cards. */
-export const APP_VERSION: string = process.env.NEXT_PUBLIC_APP_VERSION ?? '1.0.1'
+export const APP_VERSION: string = process.env.NEXT_PUBLIC_APP_VERSION ?? '1.1.0'
 
 export interface OsDownload {
   /** Direct link to the installer for this OS ('' until configured). */
@@ -92,24 +92,24 @@ export const DOWNLOADS = {
   windows: {
     url:
       process.env.NEXT_PUBLIC_DOWNLOAD_URL_WINDOWS ??
-      'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.0.1/LinkOPS.Desktop.Setup.1.0.1.exe'
+      'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.1.0/LinkOPS.Desktop.Setup.1.1.0.exe'
   },
   linux: {
     deb: {
       url:
         process.env.NEXT_PUBLIC_DOWNLOAD_URL_LINUX_DEB ??
-        'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.0.1/linkops-desktop_1.0.1_amd64.deb'
+        'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.1.0/linkops-desktop_1.1.0_amd64.deb'
     },
     appImage: {
       url:
         process.env.NEXT_PUBLIC_DOWNLOAD_URL_LINUX_APPIMAGE ??
-        'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.0.1/LinkOPS.Desktop-1.0.1.AppImage'
+        'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.1.0/LinkOPS.Desktop-1.1.0.AppImage'
     }
   },
   mac: {
     url:
       process.env.NEXT_PUBLIC_DOWNLOAD_URL_MAC ??
-      'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.0.1/LinkOPS.Desktop-1.0.1.dmg'
+      'https://github.com/Mhyar-nsi/LinkOPS-Desktop/releases/download/v1.1.0/LinkOPS.Desktop-1.1.0.dmg'
   }
 } as const
 

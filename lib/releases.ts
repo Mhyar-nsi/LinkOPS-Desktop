@@ -15,6 +15,30 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: '1.1.0',
+    date: '2026-08-16',
+    notes: {
+      en: [
+        'Three new color palettes — Sunset (warm coral), Aurora (teal & violet) and Graphite (monochrome) — on top of the existing Classic, Ocean, Forest and Midnight looks. Pick one in Settings → Appearance.',
+        'Keyboard shortcuts reference dialog (Ctrl/⌘ + / or the keyboard button in the top bar).',
+        'Reconnect a dropped session with one click — from the session page or the sessions list — reusing the same session.',
+        'Terminal toolbar: live font size controls and a clear-output button.',
+        'Devices page shows “Open terminal” for devices with a live session; the dashboard device grid shows live connection dots.',
+        'Session list now shows the protocol (SSH/Telnet); the command palette can open or disconnect any active session.',
+        'Switch management hardening: vendor-aware paging disable, automatic enable, confirm auto-answer, CLI error detection and Ctrl+C recovery on timeout (SSH + Telnet).'
+      ],
+      fa: [
+        'سه پالت رنگی جدید — غروب (مرجانی گرم)، شفق (فیروزه‌ای و بنفش) و گرافیت (تک‌رنگ) — به‌علاوه پالت‌های قبلی کلاسیک، اقیانوس، جنگل و نیمه‌شب. از تنظیمات ← ظاهر انتخاب کنید.',
+        'پنجره راهنمای میانبرهای صفحه‌کلید (Ctrl/⌘ + / یا دکمه صفحه‌کلید در نوار بالا).',
+        'اتصال مجدد نشست قطع‌شده با یک کلیک — از صفحه نشست یا فهرست نشست‌ها — با همان شناسه نشست.',
+        'نوار ابزار ترمینال: کنترل زنده اندازه فونت و دکمه پاک کردن خروجی.',
+        'صفحه دستگاه‌ها برای دستگاه‌های دارای نشست زنده «باز کردن ترمینال» نشان می‌دهد؛ شبکه دستگاه‌ها در داشبورد نقطه وضعیت زنده دارد.',
+        'فهرست نشست‌ها پروتکل (SSH/Telnet) را نشان می‌دهد؛ پالت فرمان می‌تواند هر نشست فعال را باز یا قطع کند.',
+        'تقویت مدیریت سوئیچ: غیرفعال‌سازی paging آگاه از سازنده، ارتقای خودکار سطح دسترسی، پاسخ خودکار به تأییدیه‌ها، تشخیص خطای CLI و بازیابی با Ctrl+C در حالت تایماوت (SSH و Telnet).'
+      ]
+    }
+  },
+  {
     version: '1.0.1',
     date: '2026-08-16',
     notes: {
