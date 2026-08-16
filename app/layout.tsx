@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             prefer reduced motion, while everything else animates normally. */}
         <MotionConfig reducedMotion="user">
           {/* Top progress bar shown while navigating between pages. */}
-          <NextTopLoader color="#22d280" height={2} showSpinner={true} shadow="0 0 8px hsl(152 72% 48% / 0.6)" />
+          <NextTopLoader color="var(--top-loader-color)" height={2} showSpinner={false} shadow="0 0 8px hsl(152 72% 48% / 0.6)" />
           <ThemeProvider>
             <LangProvider>{children}</LangProvider>
           </ThemeProvider>

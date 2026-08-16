@@ -39,6 +39,7 @@
   --terminal-muted: 240 6% 52%;
   --terminal-accent: 152 72% 48%;
   --radius: 0.5rem;
+  --top-loader-color: #000000;
 }
 
 .dark {
@@ -76,6 +77,7 @@
   --terminal-muted: 240 6% 52%;
   --terminal-accent: 152 72% 48%;
   --radius: 0.5rem;
+  --top-loader-color: #ffffff;
 }
 
 @layer base {
@@ -96,19 +98,16 @@
 
   /* Subtle ambient gradients — per theme so light mode stays clean. */
   body {
-    background-image: radial-gradient(
-        ellipse 80% 50% at 50% -10%,
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%,
         hsl(240 6% 96%),
-        transparent
-      ),
+        transparent),
       radial-gradient(ellipse 60% 40% at 90% 20%, hsl(152 62% 40% / 0.06), transparent);
   }
+
   .dark body {
-    background-image: radial-gradient(
-        ellipse 80% 50% at 50% -10%,
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%,
         hsl(240 8% 12% / 0.9),
-        transparent
-      ),
+        transparent),
       radial-gradient(ellipse 60% 40% at 90% 20%, hsl(152 60% 30% / 0.08), transparent);
   }
 
@@ -120,15 +119,18 @@
     width: 10px;
     height: 10px;
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
+
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--border));
     border-radius: 5px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
+
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--muted-foreground) / 0.4);
     border: 2px solid transparent;
@@ -137,6 +139,7 @@
 }
 
 @layer components {
+
   /* Section label like a comment in the app's terminal */
   .mono-tag {
     @apply font-mono text-xs tracking-wide text-muted-foreground;
