@@ -21,7 +21,7 @@ export default function GuidePage(): React.JSX.Element {
     <div className="min-h-screen">
       <SiteHeader />
       <main>
-        <Guide />
+        <Guide sectionId="overview" />
       </main>
       <Footer />
     </div>

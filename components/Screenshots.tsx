@@ -12,6 +12,7 @@ import {
   ListChecks,
   Boxes
 } from 'lucide-react'
+import { Reveal } from '@/components/ui/Reveal'
 import { useLang } from '@/lib/lang'
 import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/utils'
@@ -80,13 +81,14 @@ export function Screenshots(): React.JSX.Element {
   return (
     <section id="screenshots" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="mono-tag">{t.screenshots.tag}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{t.screenshots.title}</h2>
           <p className="mt-4 text-muted-foreground">{t.screenshots.lead}</p>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 overflow-hidden rounded-lg border border-border bg-card">
+        <Reveal delay={0.1} className="mt-10">
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
           {/* Tab bar — mirrors the app's sidebar nav */}
           <div className="flex items-center gap-1 overflow-x-auto border-b border-border bg-sidebar p-2">
             {TABS.map(({ key, icon: Icon }) => (
@@ -137,6 +139,7 @@ export function Screenshots(): React.JSX.Element {
             </figcaption>
           </figure>
         </div>
+        </Reveal>
       </div>
     </section>
   )

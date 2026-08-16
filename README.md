@@ -22,9 +22,12 @@ screenshots captured from the app itself.
 | 🌐 **EN ⇄ فارسی with full RTL** | Every string is hand-written in both languages; `dir="rtl"` flips the whole layout instantly, no hydration flash. |
 | 🌗 **Light / Dark / System themes** | Zero-flash inline script in `<head>`, persisted to `localStorage`, follows OS preference in System mode. |
 | 📸 **Real screenshots** | Gallery tabs mirror the app's sidebar and show PNGs captured from the running desktop app (see below). |
-| 📖 **Full guide page** | `/guide` is a step-by-step bilingual tutorial — install, license, devices, terminal, commands, batch runs and more, with terminal-styled command blocks. |
+| 📖 **Paginated guide** | The tutorial is split into 9 pages (`/guide`, `/guide/install`, `/guide/devices`, …) with real prev/next pagination — each section is its own URL, navigated client-side. |
 | 💻 **Terminal-style details** | Every terminal/command block (hero mock, Linux install commands, guide) is forced `dir="ltr"` so it never mirrors inside the Persian RTL layout, with a copy button. |
 | ⚡ **Static by default** | `output: static`-style App Router pages prerender to plain HTML — fast, cacheable, no server needed. |
+| 🎬 **Motion on scroll** | Built on the latest **framer-motion**: sections reveal with a fade/slide when they enter the viewport and cards stagger — all disabled for `prefers-reduced-motion`. |
+| 🧭 **SPA navigation** | Every internal link uses `next/link` — moving between pages never reloads the document; the top loader shows the client-side transition instead. |
+| ⏳ **Top loader** | `nextjs-toploader` shows a slim gradient progress bar at the top while navigating between pages — the “progress bar” you see is page-transition, not scroll progress. |
 | 📦 **Standalone** | Lives in its own folder with its own `package.json`; the Electron app never needs to build or ship it. |
 | 🪟 **Official OS logos** | Windows and Linux logos come from `react-icons/fa6` — they inherit the site's color in both themes. |
 
@@ -45,31 +48,37 @@ npm run lint       # eslint
 ```
 web/
 ├── app/
-│   ├── layout.tsx        # <html> shell, metadata, no-FOUC theme/lang script
+│   ├── layout.tsx        # <html> shell, metadata, no-FOUC theme/lang script, NextTopLoader
 │   ├── page.tsx          # the landing page
-│   ├── guide/page.tsx    # the full tutorial page (route: /guide)
+│   ├── guide/page.tsx    # guide overview (route: /guide)
+│   ├── guide/[slug]/page.tsx # one page per guide section (/guide/install, /guide/devices, …) via generateStaticParams
+│   ├── privacy/page.tsx  # privacy policy (route: /privacy)
+│   ├── terms/page.tsx    # terms of service (route: /terms)
 │   └── globals.css       # Tailwind + the app's exact design tokens
 ├── components/
-│   ├── SiteHeader.tsx    # sticky header: nav (incl. Guide), theme, language, mobile menu
-│   ├── Guide.tsx         # bilingual tutorial: sticky section nav, numbered steps, terminal blocks
+│   ├── SiteHeader.tsx    # sticky header: all nav links with icons (features/pricing/screenshots/protocols/security/guide), theme, language, mobile menu
+│   ├── Guide.tsx         # one guide section per page: sidebar with section links, callouts (tip/note/warning), shortcut table, real prev/next pagination
+│   ├── LegalPage.tsx     # shared bilingual layout for /privacy and /terms
 │   ├── Download.tsx      # per-OS download cards, terminal-styled Linux commands, version badge
 │   ├── Pricing.tsx       # 3/6/12-month license plans + yearly discount
 │   ├── Hero.tsx          # headline + animated terminal mock (LTR in RTL) over PixelBlast
 │   ├── ui/PixelBlast.tsx # WebGL pixel-field effect (three + postprocessing), ripples on click
 │   ├── ui/TerminalShell.tsx # reusable LTR terminal block with $ prompts + copy button
+│   ├── ui/Reveal.tsx      # framer-motion scroll-reveal wrapper (fade/slide + stagger)
 │   ├── Features.tsx      # capability grid
 │   ├── Screenshots.tsx   # tabbed gallery (instant switch, loading state, both themes preloaded)
 │   ├── Protocols.tsx     # SSH vs Telnet comparison
 │   ├── Security.tsx      # security highlights
 │   ├── Cta.tsx           # closing call-to-action (+ guide link)
-│   ├── Footer.tsx        # footer (+ guide link)
+│   ├── Footer.tsx        # footer: guide + privacy + terms links
 │   ├── ThemeToggle.tsx   # light / dark / system
 │   └── LangToggle.tsx    # EN / فارسی
 ├── lib/
-│   ├── dictionary.ts     # the full EN + FA copy (hand-written, natural) incl. the guide section
+│   ├── dictionary.ts     # the full EN + FA copy (hand-written, natural) incl. guide + legal sections
 │   ├── lang.tsx          # language context (persisted, hydration-safe)
 │   ├── theme.tsx         # theme context (persisted, hydration-safe)
 │   ├── site.ts           # ⚙️ site config: version + download URLs
+│   ├── guide.ts          # guide section order + href helpers (shared by page routes and the component)
 │   └── utils.ts          # cn() helper
 └── public/
     ├── logo.png                # the app icon (favicon + header/footer)
@@ -124,7 +133,37 @@ up. The install steps shown on the cards (Windows wizard,
 `lib/dictionary.ts` — update them together with the version if filenames
 change.
 
----
+## 📖 The guide page (`/guide`)
+
+The tutorial is styled like the Next.js docs: a **sticky sidebar** with
+**scrollspy** (the current section is highlighted as you scroll), numbered
+sections, **callout boxes** (نکته / یادداشت / هشدار — tip / note / warning),
+a **keyboard-shortcuts table** (Ctrl+K palette, Ctrl+N new device, Ctrl+,
+settings, Ctrl+F find), terminal command blocks, and **prev/next** cards at
+the bottom of every section. All copy lives in `lib/dictionary.ts` under
+`guide.*` — add a `notes` array for callouts or a `table` object to render
+a table in any section.
+
+## 📖 The guide (`/guide` + `/guide/<slug>`)
+
+The tutorial is **paginated** — every section is its own page (`/guide`,
+`/guide/install`, `/guide/devices`, `/guide/connect`, `/guide/commands`,
+`/guide/batch`, `/guide/history`, `/guide/settings`, `/guide/update`), built
+statically via `generateStaticParams`. Each page has:
+
+- a sticky **sidebar** listing all sections (each linking to its own page,
+  the current one highlighted),
+- numbered steps, **callout boxes** (نکته / یادداشت / هشدار — tip / note /
+  warning), terminal command blocks and the **keyboard-shortcuts table**,
+- **prev / next** cards that navigate to the adjacent section pages.
+
+Content lives in `lib/dictionary.ts` under `guide.*`; section order and the
+href helpers are in `lib/guide.ts`. Every link (sidebar, prev/next, header,
+footer, CTAs) uses `next/link`, so moving between pages is a client-side
+SPA transition with the top loader — never a full document reload.
+- **`/privacy`** and **`/terms`** — bilingual legal pages powered by the
+  shared `LegalPage` component (copy under `legal.*` in the dictionary);
+  linked from the footer.
 
 ## 🧠 Architecture notes
 
@@ -234,6 +273,11 @@ Manual smoke checklist:
 - [ ] Click any **Download** button — the page scrolls to the `#download` section.
 - [ ] Scroll to **Pricing** — 3 cards, the 12-month one highlighted with its discount.
 - [ ] Open the gallery tabs — each shows the matching real app screenshot.
+- [ ] Navigate between `/`, `/guide`, `/privacy`, `/terms` — the top loader bar appears during the transition.
+- [ ] On `/guide`, scroll — the sidebar highlights the current section; callouts and the shortcuts table render in both languages.
+- [ ] Open `/privacy` and `/terms` in both languages — content flips with RTL.
+- [ ] From `/guide/install` click **Next** — `/guide/devices` loads without a full page reload (SPA).
+- [ ] Click the header **Download** from any page — it lands on `#download` on the home page.
 
 ---
 

@@ -1,7 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import { BookOpen, Check, Download as DownloadIcon, MousePointerClick, Terminal, Wrench } from 'lucide-react'
 import { FaWindows, FaLinux } from 'react-icons/fa6'
+import { Reveal } from '@/components/ui/Reveal'
 import { useLang } from '@/lib/lang'
 import { DOWNLOADS, APP_VERSION } from '@/lib/site'
 import { cn } from '@/lib/utils'
@@ -37,7 +39,7 @@ export function Download(): React.JSX.Element {
   return (
     <section id="download" className="border-t border-border bg-sidebar/40">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="mono-tag">{t.download.tag}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{t.download.title}</h2>
           <p className="mt-4 text-muted-foreground">{t.download.lead}</p>
@@ -45,9 +47,9 @@ export function Download(): React.JSX.Element {
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
             {t.download.version.replace('{{version}}', APP_VERSION)}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-5 lg:grid-cols-2">
+        <Reveal delay={0.1} className="mx-auto mt-12 grid max-w-4xl items-start gap-5 lg:grid-cols-2">
           {/* ── Windows ─────────────────────────────────────────────── */}
           <div className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition-colors hover:border-ring/50">
             <div className="flex items-center gap-3">
@@ -166,16 +168,16 @@ export function Download(): React.JSX.Element {
               <span>{t.download.note}</span>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-8 flex flex-col items-center gap-3 text-center">
-          <a
-            href="/guide"
+          <Link
+            href="/guide/install"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
           >
             <BookOpen className="h-4 w-4" />
             {t.download.help}
-          </a>
+          </Link>
         </div>
       </div>
     </section>

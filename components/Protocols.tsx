@@ -1,6 +1,7 @@
 'use client'
 
 import { Check, Lock, RadioTower } from 'lucide-react'
+import { Reveal } from '@/components/ui/Reveal'
 import { useLang } from '@/lib/lang'
 
 export function Protocols(): React.JSX.Element {
@@ -9,14 +10,15 @@ export function Protocols(): React.JSX.Element {
   return (
     <section id="protocols" className="border-t border-border bg-sidebar/40">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="mono-tag">{t.protocols.tag}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{t.protocols.title}</h2>
           <p className="mt-4 text-muted-foreground">{t.protocols.lead}</p>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <div className="rounded-lg border border-border bg-card p-6">
+          <Reveal delay={0.1} className="h-full">
+          <div className="h-full rounded-lg border border-border bg-card p-6">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-md bg-success/10 text-success">
                 <Lock className="h-5 w-5" />
@@ -32,8 +34,10 @@ export function Protocols(): React.JSX.Element {
               ))}
             </ul>
           </div>
+          </Reveal>
 
-          <div className="rounded-lg border border-border bg-card p-6">
+          <Reveal delay={0.2} className="h-full">
+          <div className="h-full rounded-lg border border-border bg-card p-6">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-md bg-info/10 text-info">
                 <RadioTower className="h-5 w-5" />
@@ -49,6 +53,7 @@ export function Protocols(): React.JSX.Element {
               ))}
             </ul>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>

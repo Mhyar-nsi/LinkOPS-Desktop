@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from 'next'
+import { MotionConfig } from 'framer-motion'
+import NextTopLoader from 'nextjs-toploader'
 import '@fontsource-variable/vazirmatn'
 import '@fontsource-variable/jetbrains-mono'
 import { LangProvider } from '@/lib/lang'
@@ -68,9 +70,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <script dangerouslySetInnerHTML={{ __html: noFoucScript }} />
       </head>
       <body className="font-sans">
-        <ThemeProvider>
-          <LangProvider>{children}</LangProvider>
-        </ThemeProvider>
+        {/* reducedMotion="user" keeps scroll/load animations off for users who
+            prefer reduced motion, while everything else animates normally. */}
+        <MotionConfig reducedMotion="user">
+          {/* Top progress bar shown while navigating between pages. */}
+          <NextTopLoader color="#22d280" height={3} showSpinner={false} shadow="0 0 8px hsl(152 72% 48% / 0.6)" />
+          <ThemeProvider>
+            <LangProvider>{children}</LangProvider>
+          </ThemeProvider>
+        </MotionConfig>
       </body>
     </html>
   )

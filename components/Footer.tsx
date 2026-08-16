@@ -1,10 +1,11 @@
 'use client'
 
+import Link from 'next/link'
 import { Activity } from 'lucide-react'
 import { useLang } from '@/lib/lang'
 
 export function Footer(): React.JSX.Element {
-  const { t } = useLang()
+  const { t, lang } = useLang()
 
   return (
     <footer className="border-t border-border">
@@ -19,19 +20,16 @@ export function Footer(): React.JSX.Element {
         <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} LinkOPS. {t.footer.rights}
         </p>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <a href="#features" className="transition-colors hover:text-foreground">
-            {t.header.features}
-          </a>
-          <a href="#screenshots" className="transition-colors hover:text-foreground">
-            {t.header.screenshots}
-          </a>
-          <a href="/guide" className="transition-colors hover:text-foreground">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+          <Link href="/guide" className="transition-colors hover:text-foreground">
             {t.header.guide}
-          </a>
-          <a href="#security" className="transition-colors hover:text-foreground">
-            {t.header.security}
-          </a>
+          </Link>
+          <Link href="/privacy" className="transition-colors hover:text-foreground">
+            {lang === 'fa' ? 'حریم خصوصی' : 'Privacy'}
+          </Link>
+          <Link href="/terms" className="transition-colors hover:text-foreground">
+            {lang === 'fa' ? 'شرایط استفاده' : 'Terms'}
+          </Link>
           <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
         </div>
       </div>

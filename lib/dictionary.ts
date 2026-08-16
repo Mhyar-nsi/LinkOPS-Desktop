@@ -223,6 +223,9 @@ const en = {
           'Add your devices once — name, host, credentials and protocol (SSH or Telnet).',
           'Open live sessions, type commands in a real terminal, or run templates and batch commands across many devices at once.',
           'Every execution is recorded in History, searchable and exportable.'
+        ],
+        notes: [
+          { type: 'note', text: 'LinkOPS Desktop is fully offline: no accounts, no telemetry and no cloud dependency — everything runs on your own machine.' }
         ]
       },
       install: {
@@ -245,6 +248,10 @@ const en = {
             title: 'AppImage — any distro',
             lines: ['chmod +x LinkOPS.Desktop-1.0.0.AppImage', './LinkOPS.Desktop-1.0.0.AppImage']
           }
+        ],
+        notes: [
+          { type: 'warning', text: 'Each license is tied to the machine it was activated on (a hardware fingerprint). To move to another machine, create a license for that machine.' },
+          { type: 'tip', text: 'Your license details — customer name and expiry date — are always visible in Settings → License, and the app warns you when fewer than 7 days remain.' }
         ]
       },
       devices: {
@@ -257,6 +264,10 @@ const en = {
           'Pick the protocol — SSH or Telnet — and the device type (router, switch, server, firewall, access point, OLT…).',
           'The device type matters: network gear runs commands through an interactive shell with prompt detection, exactly like typing by hand — so switches and routers “just work”.',
           'Optional: tags, group, vendor/model/location keep a large fleet searchable and filterable.'
+        ],
+        notes: [
+          { type: 'tip', text: 'Pick the device type carefully: network gear (switch, router, OLT, firewall…) runs commands through an interactive shell with prompt detection — exactly like typing by hand — while servers use the fast exec channel.' },
+          { type: 'note', text: 'Passwords and private keys are encrypted with the operating system keychain (DPAPI / libsecret) and never stored in plain text.' }
         ]
       },
       connect: {
@@ -269,6 +280,10 @@ const en = {
           'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error).',
           'Credentials come from the OS keychain automatically; nothing is stored in plain text.',
           'Use the toolbar to search output, toggle timestamps, copy the buffer or download a .log file.'
+        ],
+        notes: [
+          { type: 'tip', text: 'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error).' },
+          { type: 'note', text: 'Press Ctrl+F inside a terminal to search its output instantly.' }
         ]
       },
       commands: {
@@ -287,6 +302,9 @@ const en = {
             title: 'live session',
             lines: ['$ show version', 'Cisco IOS XE Software, Version 17.9.4a', 'System restarted at 02:14:33 UTC Tue Aug 11 2026', 'SW1#']
           }
+        ],
+        notes: [
+          { type: 'tip', text: 'Long outputs never get stuck: --More-- paging is continued automatically, and the command is considered done when the shell prompt returns.' }
         ]
       },
       batch: {
@@ -297,6 +315,9 @@ const en = {
           'Click “Run selected”, choose a template or type a custom command.',
           'The app runs it on all selected devices and shows per-device output, exit code and duration.',
           'You can stop a batch mid-run; whatever completed is kept in History.'
+        ],
+        notes: [
+          { type: 'note', text: 'A batch needs live sessions — connect to the devices first, then select them on the Sessions page.' }
         ]
       },
       history: {
@@ -307,6 +328,9 @@ const en = {
           'Search and filter by device or command; export to CSV for compliance or reporting.',
           'The Logs page keeps application-level diagnostics for troubleshooting.',
           'From a session you can also download the terminal buffer as a .log file.'
+        ],
+        notes: [
+          { type: 'tip', text: 'Export any filtered view to CSV for compliance or reporting.' }
         ]
       },
       settings: {
@@ -319,7 +343,21 @@ const en = {
           'Data: import/export devices from CSV, manage logs.',
           'License: view your license status and expiry date.',
           'Keyboard shortcuts are listed in Settings — including the command palette (Ctrl+K) for quick actions like switching themes.'
-        ]
+        ],
+        notes: [
+          { type: 'tip', text: 'The command palette (Ctrl+K) is the fastest way to jump anywhere: switch themes, open settings, connect to a device or run a template.' }
+        ],
+        table: {
+          title: 'Keyboard shortcuts',
+          headers: ['Action', 'Shortcut'],
+          rows: [
+            ['Open the command palette', 'Ctrl+K'],
+            ['Open Settings', 'Ctrl+,'],
+            ['Open Settings (alternate)', 'Ctrl+Shift+P'],
+            ['Add a new device', 'Ctrl+N'],
+            ['Search inside the terminal', 'Ctrl+F']
+          ]
+        }
       },
       update: {
         title: 'Updating the app',
@@ -328,12 +366,17 @@ const en = {
           'On startup the app checks for updates automatically and shows a notification if a new version exists.',
           'Open Settings → Updates to check manually and download the installer.',
           'Run the new installer over the old version — your license and data are preserved.'
+        ],
+        notes: [
+          { type: 'note', text: 'Updates are delivered from the web. The app checks the release feed on startup and notifies you when a new version is available.' }
         ]
       }
     },
     backHome: 'Back to the landing page',
     downloadCta: 'Download the app',
-    nextSection: 'Next'
+    prevSection: 'Previous',
+    nextSection: 'Next',
+    callouts: { tip: 'Tip', note: 'Note', warning: 'Warning' }
   },
   download: {
     tag: '// download',
@@ -377,6 +420,68 @@ const en = {
       }
     },
     note: 'Free to download — no account required.'
+  },
+  legal: {
+    updated: 'Last updated: August 2026',
+    backHome: 'Back to the landing page',
+    privacyTitle: 'Privacy Policy',
+    privacyLead:
+      'The short version: LinkOPS Desktop is fully offline. It collects nothing, sends nothing, and your credentials stay on your machine.',
+    privacyBlocks: [
+      {
+        heading: 'Local & offline by design',
+        paragraphs: [
+          'LinkOPS Desktop runs entirely on your computer. There are no accounts, no analytics, no telemetry and no cloud services — nothing you do in the app leaves your machine.',
+          'This website is equally light: it only stores your theme and language preference in your browser (localStorage) and sets no tracking cookies.'
+        ]
+      },
+      {
+        heading: 'Credentials',
+        paragraphs: [
+          'Device passwords and private keys are encrypted with your operating system keychain (DPAPI on Windows, libsecret on Linux) and are never stored in plain text or sent anywhere.'
+        ]
+      },
+      {
+        heading: 'License activation',
+        paragraphs: [
+          'Activating a license sends only the license key and a hardware fingerprint so the app can validate it. Your license status is stored locally on your machine.'
+        ]
+      }
+    ],
+    termsTitle: 'Terms of Service',
+    termsLead: 'By downloading or using LinkOPS Desktop you agree to these terms.',
+    termsBlocks: [
+      {
+        heading: 'License & payment',
+        paragraphs: [
+          'One license is required per machine. Licenses are sold for a fixed term (3, 6 or 12 months) and are tied to the machine they were activated on. A valid license is required to use the application.'
+        ]
+      },
+      {
+        heading: 'Acceptable use',
+        paragraphs: [
+          'You may use the application to manage equipment you own or are authorized to administer. You are responsible for every command you run against your network devices.'
+        ]
+      },
+      {
+        heading: 'No warranty',
+        paragraphs: [
+          'The software is provided “as is”, without warranty of any kind. We are not liable for any damage, data loss or service interruption caused by its use.'
+        ]
+      },
+      {
+        heading: 'Updates',
+        paragraphs: [
+          'The application may check for updates from the web and download new installers. Installing updates is optional but recommended.'
+        ]
+      },
+      {
+        heading: 'Contact',
+        paragraphs: [
+          'Questions about privacy or these terms? Reach out through the project repository or the contact channel provided with your license.'
+        ]
+      }
+    ]
   }
 }
 
@@ -604,6 +709,9 @@ const fa: typeof en = {
           'دستگاه‌ها را یک‌بار اضافه کنید: نام، آدرس، اعتبارنامه و پروتکل (SSH یا Telnet).',
           'نشست‌های زنده باز کنید، در یک ترمینال واقعی دستور بزنید یا قالب‌ها و اجرای گروهی را روی چند دستگاه هم‌زمان اجرا کنید.',
           'هر اجرا به‌صورت خودکار در تاریخچه ذخیره می‌شود؛ قابل جستجو و خروجی‌گیری.'
+        ],
+        notes: [
+          { type: 'note', text: 'لینک‌اپس دسکتاپ کاملاً آفلاین است: بدون حساب کاربری، بدون تلهمتری و بدون وابستگی به ابر — همه‌چیز روی خود رایانه اجرا می‌شود.' }
         ]
       },
       install: {
@@ -626,6 +734,10 @@ const fa: typeof en = {
             title: 'AppImage — هر توزیعی',
             lines: ['chmod +x LinkOPS.Desktop-1.0.0.AppImage', './LinkOPS.Desktop-1.0.0.AppImage']
           }
+        ],
+        notes: [
+          { type: 'warning', text: 'هر لایسنس به همان دستگاهی که روی آن فعال شده (اثرانگشت سخت‌افزار) وابسته است. برای انتقال به دستگاه دیگر باید برای آن دستگاه لایسنس جدید بسازید.' },
+          { type: 'tip', text: 'جزئیات لایسنس — نام مشتری و تاریخ انقضا — همیشه در تنظیمات ← لایسنس قابل مشاهده است و وقتی کمتر از ۷ روز باقی بماند برنامه هشدار می‌دهد.' }
         ]
       },
       devices: {
@@ -638,6 +750,10 @@ const fa: typeof en = {
           'پروتکل — SSH یا Telnet — و نوع دستگاه (روتر، سوئیچ، سرور، فایروال، اکسس‌پوینت، OLT و…) را انتخاب کنید.',
           'نوع دستگاه مهم است: تجهیزات شبکه دستورها را از طریق شل تعاملی با تشخیص پرامپت اجرا می‌کنند، دقیقاً مثل تایپ دستی — برای همین سوئیچ‌ها و روترها بدون دردسر کار می‌کنند.',
           'اختیاری: برچسب‌ها، گروه، سازنده/مدل/موقعیت، ناوگان بزرگ را قابل جستجو و فیلتر می‌کند.'
+        ],
+        notes: [
+          { type: 'tip', text: 'نوع دستگاه را با دقت انتخاب کنید: تجهیزات شبکه (سوئیچ، روتر، OLT، فایروال…) دستورها را از طریق شل تعاملی با تشخیص پرامپت اجرا می‌کنند — دقیقاً مثل تایپ دستی — در حالی که سرورها از کانال سریع exec استفاده می‌کنند.' },
+          { type: 'note', text: 'رمزها و کلیدهای خصوصی با گاوصندوق سیستم‌عامل (DPAPI / libsecret) رمزنگاری می‌شوند و هرگز به‌صورت متن ساده ذخیره نمی‌شوند.' }
         ]
       },
       connect: {
@@ -650,6 +766,10 @@ const fa: typeof en = {
           'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا).',
           'اعتبارنامه‌ها به‌صورت خودکار از گاوصندوق سیستم‌عامل خوانده می‌شوند و هیچ‌چیز به‌صورت متن ساده ذخیره نمی‌شود.',
           'از نوار ابزار برای جستجوی خروجی، ثبت زمان، کپی بافر یا دانلود فایل .log استفاده کنید.'
+        ],
+        notes: [
+          { type: 'tip', text: 'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا).' },
+          { type: 'note', text: 'داخل ترمینال Ctrl+F را بزنید تا خروجی آنی جستجو شود.' }
         ]
       },
       commands: {
@@ -668,6 +788,9 @@ const fa: typeof en = {
             title: 'نشست زنده',
             lines: ['$ show version', 'Cisco IOS XE Software, Version 17.9.4a', 'System restarted at 02:14:33 UTC Tue Aug 11 2026', 'SW1#']
           }
+        ],
+        notes: [
+          { type: 'tip', text: 'خروجی‌های طولانی هرگز گیر نمی‌کنند: صفحه‌بندی --More-- خودکار ادامه می‌یابد و دستور وقتی پرامپت شل برگردد تمام‌شده در نظر گرفته می‌شود.' }
         ]
       },
       batch: {
@@ -678,6 +801,9 @@ const fa: typeof en = {
           '«اجرای انتخاب‌شده‌ها» را بزنید و یک قالب را انتخاب کنید یا دستور دلخواه بنویسید.',
           'برنامه دستور را روی همه‌ی دستگاه‌های انتخاب‌شده اجرا می‌کند و خروجی، کد خروج و مدت هرکدام را نشان می‌دهد.',
           'می‌توانید اجرا را در میانه متوقف کنید؛ هرچه تمام شده باشد در تاریخچه می‌ماند.'
+        ],
+        notes: [
+          { type: 'note', text: 'اجرای گروهی به نشست‌های زنده نیاز دارد — اول به دستگاه‌ها متصل شوید، بعد آن‌ها را در صفحه‌ی نشست‌ها انتخاب کنید.' }
         ]
       },
       history: {
@@ -688,6 +814,9 @@ const fa: typeof en = {
           'بر اساس دستگاه یا دستور جستجو و فیلتر کنید؛ برای انطباق یا گزارش‌گیری به CSV خروجی بگیرید.',
           'صفحه‌ی لاگ‌ها، گزارش‌های سطح برنامه را برای عیب‌یابی نگه می‌دارد.',
           'از داخل نشست هم می‌توانید بافر ترمینال را به‌صورت فایل .log دانلود کنید.'
+        ],
+        notes: [
+          { type: 'tip', text: 'هر نمای فیلترشده را برای انطباق یا گزارش‌گیری به CSV خروجی بگیرید.' }
         ]
       },
       settings: {
@@ -700,7 +829,21 @@ const fa: typeof en = {
           'داده‌ها: ورود/خروجی دستگاه‌ها از CSV و مدیریت لاگ‌ها.',
           'لایسنس: مشاهده‌ی وضعیت و تاریخ انقضا.',
           'میانبرهای صفحه‌کلید در تنظیمات لیست شده‌اند — از جمله پالت فرمان (Ctrl+K) برای کارهای سریع مثل تغییر تم.'
-        ]
+        ],
+        notes: [
+          { type: 'tip', text: 'پالت فرمان (Ctrl+K) سریع‌ترین راه برای پرش به هر جاست: تغییر تم، باز کردن تنظیمات، اتصال به دستگاه یا اجرای قالب.' }
+        ],
+        table: {
+          title: 'میانبرهای صفحه‌کلید',
+          headers: ['عمل', 'میانبر'],
+          rows: [
+            ['باز کردن پالت فرمان', 'Ctrl+K'],
+            ['باز کردن تنظیمات', 'Ctrl+,'],
+            ['باز کردن تنظیمات (جایگزین)', 'Ctrl+Shift+P'],
+            ['افزودن دستگاه جدید', 'Ctrl+N'],
+            ['جستجو در ترمینال', 'Ctrl+F']
+          ]
+        }
       },
       update: {
         title: 'به‌روزرسانی برنامه',
@@ -709,12 +852,17 @@ const fa: typeof en = {
           'برنامه هنگام راه‌اندازی به‌صورت خودکار به‌روزرسانی را بررسی و در صورت وجود نسخه‌ی جدید اعلان می‌دهد.',
           'برای بررسی دستی و دانلود نصب‌کننده به تنظیمات → به‌روزرسانی‌ها بروید.',
           'نصب‌کننده‌ی جدید را روی نسخه‌ی قبلی اجرا کنید — لایسنس و داده‌های شما حفظ می‌شوند.'
+        ],
+        notes: [
+          { type: 'note', text: 'به‌روزرسانی‌ها از وب ارائه می‌شوند. برنامه هنگام راه‌اندازی فید انتشار را بررسی و در صورت وجود نسخه‌ی جدید اطلاع می‌دهد.' }
         ]
       }
     },
     backHome: 'بازگشت به صفحه‌ی اصلی',
     downloadCta: 'دانلود برنامه',
-    nextSection: 'بعدی'
+    prevSection: 'قبلی',
+    nextSection: 'بعدی',
+    callouts: { tip: 'نکته', note: 'یادداشت', warning: 'هشدار' }
   },
   download: {
     tag: '// دانلود',
@@ -758,6 +906,68 @@ const fa: typeof en = {
       }
     },
     note: 'دانلود رایگان — بدون نیاز به ثبت‌نام.'
+  },
+  legal: {
+    updated: 'آخرین به‌روزرسانی: اوت ۲۰۲۶',
+    backHome: 'بازگشت به صفحه‌ی اصلی',
+    privacyTitle: 'حریم خصوصی',
+    privacyLead:
+      'خلاصه‌ی کوتاه: لینک‌اپس دسکتاپ کاملاً آفلاین است. هیچ داده‌ای جمع‌آوری نمی‌کند، هیچ داده‌ای نمی‌فرستد و اعتبارنامه‌های شما روی خود دستگاه‌تان می‌مانند.',
+    privacyBlocks: [
+      {
+        heading: 'محلی و آفلاین از پایه',
+        paragraphs: [
+          'لینک‌اپس دسکتاپ کاملاً روی رایانه‌ی شما اجرا می‌شود. هیچ حساب کاربری، هیچ تحلیل آماری، هیچ تلهمتری و هیچ سرویس ابری وجود ندارد — هر کاری که در برنامه انجام دهید از دستگاه شما بیرون نمی‌رود.',
+          'این وب‌سایت هم به همین اندازه سبک است: فقط تم و زبان شما را در مرورگر (localStorage) ذخیره می‌کند و هیچ کوکی رهگیری ندارد.'
+        ]
+      },
+      {
+        heading: 'اعتبارنامه‌ها',
+        paragraphs: [
+          'رمزها و کلیدهای خصوصی دستگاه‌ها با گاوصندوق سیستم‌عامل شما (DPAPI در ویندوز و libsecret در لینوکس) رمزنگاری می‌شوند و هرگز به‌صورت متن ساده ذخیره یا ارسال نمی‌شوند.'
+        ]
+      },
+      {
+        heading: 'فعال‌سازی لایسنس',
+        paragraphs: [
+          'برای فعال‌سازی لایسنس فقط کلید لایسنس و اثرانگشت سخت‌افزار ارسال می‌شود تا برنامه بتواند آن را تأیید کند. وضعیت لایسنس شما به‌صورت محلی روی دستگاهتان ذخیره می‌شود.'
+        ]
+      }
+    ],
+    termsTitle: 'شرایط استفاده',
+    termsLead: 'با دانلود یا استفاده از لینک‌اپس دسکتاپ، این شرایط را می‌پذیرید.',
+    termsBlocks: [
+      {
+        heading: 'لایسنس و پرداخت',
+        paragraphs: [
+          'برای هر دستگاه یک لایسنس لازم است. لایسنس‌ها برای مدت مشخص (۳، ۶ یا ۱۲ ماه) فروخته می‌شوند و به دستگاهی که روی آن فعال شده‌اند وابسته‌اند. برای استفاده از برنامه، لایسنس معتبر لازم است.'
+        ]
+      },
+      {
+        heading: 'استفاده‌ی مجاز',
+        paragraphs: [
+          'شما مجازید از برنامه برای مدیریت تجهیزاتی استفاده کنید که مالک آن‌ها هستید یا مجوز مدیریتشان را دارید. مسئولیت هر دستوری که روی دستگاه‌های شبکه اجرا می‌کنید با خود شماست.'
+        ]
+      },
+      {
+        heading: 'بدون ضمانت',
+        paragraphs: [
+          'نرم‌افزار «همان‌طور که هست» ارائه می‌شود، بدون هرگونه ضمانت. ما در قبال هیچ خسارت، از دست رفتن داده یا قطعی سرویس ناشی از استفاده‌ی آن مسئول نیستیم.'
+        ]
+      },
+      {
+        heading: 'به‌روزرسانی‌ها',
+        paragraphs: [
+          'برنامه ممکن است به‌روزرسانی‌ها را از وب بررسی و نصب‌کننده‌ی جدید را دانلود کند. نصب به‌روزرسانی اختیاری است اما توصیه می‌شود.'
+        ]
+      },
+      {
+        heading: 'تماس',
+        paragraphs: [
+          'پرسشی درباره‌ی حریم خصوصی یا این شرایط دارید؟ از طریق مخزن پروژه یا کانال ارتباطی همراه لایسنس خود با ما تماس بگیرید.'
+        ]
+      }
+    ]
   }
 }
 

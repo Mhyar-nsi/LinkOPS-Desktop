@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { BadgeCheck, Sparkles } from 'lucide-react'
+import { Reveal } from '@/components/ui/Reveal'
 import { useLang } from '@/lib/lang'
 import { CURRENCY, CURRENCY_FA, PLANS, PURCHASE_URL, DOWNLOAD_URL } from '@/lib/site'
 import { cn } from '@/lib/utils'
@@ -22,14 +24,14 @@ export function Pricing(): React.JSX.Element {
   return (
     <section id="pricing" className="border-t border-border bg-sidebar/40">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="mono-tag">{t.pricing.tag}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{t.pricing.title}</h2>
           <p className="mt-4 text-muted-foreground">{t.pricing.lead}</p>
-        </div>
+        </Reveal>
 
         <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-3">
-          {PLANS.map((plan) => {
+          {PLANS.map((plan, planIndex) => {
             const perMonth = fa ? plan.priceToman / plan.months : plan.price / plan.months
             const price = fa ? plan.priceToman : plan.price
             const compareAt = fa ? plan.compareAtToman : plan.compareAt
@@ -37,10 +39,10 @@ export function Pricing(): React.JSX.Element {
               ? `${fmtToman(Math.round(perMonth / 10_000) * 10_000)} ${CURRENCY_FA}`
               : `${CURRENCY}${fmt(Math.round(perMonth * 100) / 100)}`
             return (
+              <Reveal key={plan.id} delay={planIndex * 0.1} className="h-full">
               <div
-                key={plan.id}
                 className={cn(
-                  'relative flex flex-col rounded-lg border bg-card p-6 transition-colors',
+                  'relative flex h-full flex-col rounded-lg border bg-card p-6 transition-colors',
                   plan.featured
                     ? 'border-primary/60 shadow-lg shadow-primary/5'
                     : 'border-border hover:border-ring/50'
@@ -110,9 +112,8 @@ export function Pricing(): React.JSX.Element {
                   ))}
                 </ul>
 
-                <a
+                <Link
                   href={PURCHASE_URL || DOWNLOAD_URL}
-                  download={PURCHASE_URL ? true : undefined}
                   className={cn(
                     'mt-6 inline-flex h-9 items-center justify-center rounded-md text-sm font-medium transition-colors',
                     plan.featured
@@ -121,8 +122,9 @@ export function Pricing(): React.JSX.Element {
                   )}
                 >
                   {t.pricing.buy.replace('{{name}}', t.pricing.plans[plan.id].name)}
-                </a>
+                </Link>
               </div>
+              </Reveal>
             )
           })}
         </div>

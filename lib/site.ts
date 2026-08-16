@@ -108,7 +108,8 @@ export const DOWNLOADS = {
 } as const
 
 /**
- * Every primary "Download" button across the site anchors to the #download
- * section, where the visitor picks their OS.
+ * Every primary "Download" button goes to the #download section on the
+ * landing page — from any page (Next.js Link handles the cross-page
+ * navigation + hash scroll).
  */
-export const DOWNLOAD_URL = '#download'
+export const DOWNLOAD_URL = '/#download'
