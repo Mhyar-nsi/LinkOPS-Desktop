@@ -5,8 +5,9 @@ import { Footer } from '@/components/Footer'
 import { dictionary } from '@/lib/dictionary'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — LinkOPS Desktop',
+  title: 'Privacy Policy',
   description: dictionary.en.legal.privacyLead,
+  alternates: { canonical: '/privacy' },
   openGraph: {
     title: 'Privacy Policy — LinkOPS Desktop',
     description: dictionary.en.legal.privacyLead,

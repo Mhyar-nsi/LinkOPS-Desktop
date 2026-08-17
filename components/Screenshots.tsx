@@ -122,6 +122,9 @@ export function Screenshots(): React.JSX.Element {
                 alt={t.screenshots.tabs[active]}
                 width={1440}
                 height={900}
+                loading="eager"
+                decoding="async"
+                fetchPriority="low"
                 onLoad={() => setLoaded(true)}
                 className={cn(
                   'block h-full w-full object-contain transition-opacity duration-200',

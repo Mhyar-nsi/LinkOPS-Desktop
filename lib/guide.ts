@@ -7,11 +7,14 @@ export const SECTION_ORDER = [
   'overview',
   'install',
   'devices',
+  'users',
   'connect',
   'commands',
   'batch',
+  'backups',
   'history',
   'settings',
+  'lock',
   'update'
 ] as const
 

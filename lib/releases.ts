@@ -19,21 +19,29 @@ export const RELEASES: Release[] = [
     date: '2026-08-16',
     notes: {
       en: [
-        'Three new color palettes — Sunset (warm coral), Aurora (teal & violet) and Graphite (monochrome) — on top of the existing Classic, Ocean, Forest and Midnight looks. Pick one in Settings → Appearance.',
+        'Seven color palettes — Classic, Ocean, Forest, Midnight, Sunset, Aurora and Graphite — each with its own light and dark theme. Pick one in Settings → Appearance.',
+        'App lock: set a password in Settings → Security and the app asks for it on every launch. Lock anytime with the top-bar button or Ctrl/⌘ + Shift + L. The lock screen was redesigned with an animated mesh background, springy entry and a shake on a wrong password.',
+        'Shared credentials (Users): store a username/password or private key once and reference it from any device — update in one place, used everywhere. Device forms can use a saved user instead of retyping secrets.',
+        'Config backups: scheduled snapshots of device configurations (vendor-aware commands), version history with line-level diff, dedup of unchanged configs and manual “run now”.',
+        'Redesigned license activation screen with the machine fingerprint and a one-click copy button.',
+        'License expiry warning: the app shows the expiry date and alerts you when fewer than 7 days remain.',
+        'Reconnect a dropped session with one click — from the session page or the sessions list — reusing the same session id; sessions with auto-reconnect enabled come back on their own with backoff.',
+        'Terminal toolbar: live font-size stepper and a clear-output button alongside search, timestamps, copy and log download.',
         'Keyboard shortcuts reference dialog (Ctrl/⌘ + / or the keyboard button in the top bar).',
-        'Reconnect a dropped session with one click — from the session page or the sessions list — reusing the same session.',
-        'Terminal toolbar: live font size controls and a clear-output button.',
-        'Devices page shows “Open terminal” for devices with a live session; the dashboard device grid shows live connection dots.',
-        'Session list now shows the protocol (SSH/Telnet); the command palette can open or disconnect any active session.',
-        'Switch management hardening: vendor-aware paging disable, automatic enable, confirm auto-answer, CLI error detection and Ctrl+C recovery on timeout (SSH + Telnet).'
+        'Devices page shows “Open terminal” for devices with a live session; the dashboard device grid shows live connection dots; the session list shows the protocol (SSH/Telnet).',
+        'Switch management hardening: vendor-aware paging disable, automatic privilege escalation, confirm auto-answer, CLI error detection and Ctrl+C recovery on timeout (SSH + Telnet).'
       ],
       fa: [
-        'سه پالت رنگی جدید — غروب (مرجانی گرم)، شفق (فیروزه‌ای و بنفش) و گرافیت (تک‌رنگ) — به‌علاوه پالت‌های قبلی کلاسیک، اقیانوس، جنگل و نیمه‌شب. از تنظیمات ← ظاهر انتخاب کنید.',
+        'هفت پالت رنگی — کلاسیک، اقیانوس، جنگل، نیمه‌شب، غروب، شفق و گرافیت — هرکدام با تم روشن و تیره‌ی مخصوص خود. از تنظیمات ← ظاهر انتخاب کنید.',
+        'قفل برنامه: در تنظیمات ← امنیت رمز بگذارید و برنامه در هر اجرا رمز می‌خواهد. هر لحظه با دکمه‌ی نوار بالا یا Ctrl/⌘ + Shift + L قفل کنید. صفحه قفل بازطراحی شد: پس‌زمینه‌ی متحرک، ورود فنری و لرزش هنگام رمز اشتباه.',
+        'اعتبارنامه‌های مشترک (کاربران): نام کاربری/رمز یا کلید خصوصی را یک‌بار ذخیره و از هر دستگاهی به آن ارجاع دهید — یک‌جا تغییر دهید، همه‌جا اعمال می‌شود. فرم دستگاه هم می‌تواند از کاربر ذخیره‌شده استفاده کند.',
+        'پشتیبان‌گیری کانفیگ: snapshot زمان‌بندی‌شده از کانفیگ دستگاه‌ها (با دستور آگاه از سازنده)، تاریخچه نسخه با diff خط‌به‌خط، حذف کانفیگ‌های بدون تغییر و «اجرای همین حالا» به‌صورت دستی.',
+        'بازطراحی صفحه فعال‌سازی لایسنس با نمایش اثرانگشت دستگاه و دکمه کپی یک‌کلیکه.',
+        'هشدار انقضای لایسنس: برنامه تاریخ انقضا را نشان می‌دهد و وقتی کمتر از ۷ روز باقی بماند هشدار می‌دهد.',
+        'اتصال مجدد نشست قطع‌شده با یک کلیک — از صفحه نشست یا فهرست نشست‌ها — با همان شناسه نشست؛ نشست‌هایی که اتصال مجدد خودکار دارند خودشان با backoff برمی‌گردند.',
+        'نوار ابزار ترمینال: استپر اندازه فونت و دکمه پاک کردن خروجی در کنار جستجو، ثبت زمان، کپی و دانلود لاگ.',
         'پنجره راهنمای میانبرهای صفحه‌کلید (Ctrl/⌘ + / یا دکمه صفحه‌کلید در نوار بالا).',
-        'اتصال مجدد نشست قطع‌شده با یک کلیک — از صفحه نشست یا فهرست نشست‌ها — با همان شناسه نشست.',
-        'نوار ابزار ترمینال: کنترل زنده اندازه فونت و دکمه پاک کردن خروجی.',
-        'صفحه دستگاه‌ها برای دستگاه‌های دارای نشست زنده «باز کردن ترمینال» نشان می‌دهد؛ شبکه دستگاه‌ها در داشبورد نقطه وضعیت زنده دارد.',
-        'فهرست نشست‌ها پروتکل (SSH/Telnet) را نشان می‌دهد؛ پالت فرمان می‌تواند هر نشست فعال را باز یا قطع کند.',
+        'صفحه دستگاه‌ها برای دستگاه‌های دارای نشست زنده «باز کردن ترمینال» نشان می‌دهد؛ شبکه دستگاه‌ها در داشبورد نقطه وضعیت زنده دارد و فهرست نشست‌ها پروتکل (SSH/Telnet) را نشان می‌دهد.',
         'تقویت مدیریت سوئیچ: غیرفعال‌سازی paging آگاه از سازنده، ارتقای خودکار سطح دسترسی، پاسخ خودکار به تأییدیه‌ها، تشخیص خطای CLI و بازیابی با Ctrl+C در حالت تایماوت (SSH و Telnet).'
       ]
     }

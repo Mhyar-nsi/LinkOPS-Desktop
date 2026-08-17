@@ -5,8 +5,9 @@ import { Footer } from '@/components/Footer'
 import { dictionary } from '@/lib/dictionary'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — LinkOPS Desktop',
+  title: 'Terms of Service',
   description: dictionary.en.legal.termsLead,
+  alternates: { canonical: '/terms' },
   openGraph: {
     title: 'Terms of Service — LinkOPS Desktop',
     description: dictionary.en.legal.termsLead,

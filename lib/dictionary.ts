@@ -210,11 +210,14 @@ const en = {
       overview: 'Overview',
       install: 'Install & license',
       devices: 'Add devices',
+      users: 'Shared credentials',
       connect: 'Connect & terminal',
       commands: 'Run commands',
       batch: 'Batch runs',
+      backups: 'Config backups',
       history: 'History & audit',
       settings: 'Settings',
+      lock: 'App lock',
       update: 'Updates'
     },
     sections: {
@@ -268,11 +271,28 @@ const en = {
           'Choose the authentication: password or private key (stored encrypted in the OS keychain, with optional passphrase).',
           'Pick the protocol — SSH or Telnet — and the device type (router, switch, server, firewall, access point, OLT…).',
           'The device type matters: network gear runs commands through an interactive shell with prompt detection, exactly like typing by hand — so switches and routers “just work”.',
+          'To reuse credentials stored in Users, switch the authentication to “Saved user” — the username and secret come from the profile, so you never retype them.',
           'Optional: tags, group, vendor/model/location keep a large fleet searchable and filterable.'
         ],
         notes: [
           { type: 'tip', text: 'Pick the device type carefully: network gear (switch, router, OLT, firewall…) runs commands through an interactive shell with prompt detection — exactly like typing by hand — while servers use the fast exec channel.' },
           { type: 'note', text: 'Passwords and private keys are encrypted with the operating system keychain (DPAPI / libsecret) and never stored in plain text.' }
+        ]
+      },
+      users: {
+        title: 'Shared credentials (Users)',
+        intro:
+          'Most fleets reuse the same username and password across many devices. Store each credential set once in Users and reference it from any device — change it in one place, and every device that uses it picks up the new secret automatically.',
+        steps: [
+          'Open Users and click “Add user”.',
+          'Give the profile a label (e.g. “Access switch admin”), the username and the password — or paste a private key with an optional passphrase.',
+          'In the device editor, choose “Saved user” instead of typing credentials manually. The username comes from the profile, so it is not asked again in the device form.',
+          'Update the profile once and every device that references it uses the new credentials.',
+          'When you delete a profile, the devices that used it fall back to manual credentials — nothing breaks, but they need new secrets.'
+        ],
+        notes: [
+          { type: 'note', text: 'Profiles are stored encrypted with the OS keychain, exactly like per-device credentials, and are never returned to the UI.' },
+          { type: 'tip', text: 'Name profiles after the role or access level (e.g. “netops-admin”, “backup-ro”) so it is obvious what each device will use.' }
         ]
       },
       connect: {
@@ -282,13 +302,15 @@ const en = {
         steps: [
           'Open Sessions and click “Connect to device”, then pick a device from the list.',
           'The session opens a terminal; type commands exactly as you would in PuTTY or any SSH client.',
-          'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error).',
-          'Credentials come from the OS keychain automatically; nothing is stored in plain text.',
-          'Use the toolbar to search output, toggle timestamps, copy the buffer or download a .log file.'
+          'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge (SSH / Telnet).',
+          'When auto-reconnect is enabled for a device, a dropped session reconnects automatically with backoff — the terminal and its history stay alive.',
+          'If a session is stuck on error/reconnecting, hit the Reconnect button on the session page or in the session list — it reconnects with the same session id.',
+          'Use the toolbar to search output, toggle timestamps, change the font size, clear the buffer, copy it or download a .log file.',
+          'Credentials come from the OS keychain automatically; nothing is stored in plain text.'
         ],
         notes: [
-          { type: 'tip', text: 'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error).' },
-          { type: 'note', text: 'Press Ctrl+F inside a terminal to search its output instantly.' }
+          { type: 'tip', text: 'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge (SSH / Telnet).' },
+          { type: 'note', text: 'Press Ctrl+F inside a terminal to search its output instantly, and use ↑ / ↓ to recall commands you typed earlier.' }
         ]
       },
       commands: {
@@ -300,6 +322,8 @@ const en = {
           'Bundle several templates into a command group for a sequential diagnostics routine (e.g. show version → show interfaces status → show log).',
           'From any session use the “Run template” menu; from any device use the quick-run action.',
           'On network gear the command is typed into the interactive shell and completion is detected from the prompt; --More-- paging is continued automatically, so long outputs never get stuck.',
+          'Before the first automated command on a switch or router, the app prepares the shell like Netmiko: disables CLI paging for the vendor, escalates from user EXEC (SW1>) to privileged mode (SW1#) when the device supports it, and answers interactive confirmations (“Destination filename”, “[confirm]”, “[y/n]”) automatically.',
+          'CLI errors are caught early: “% Invalid input” or “% Access denied” fail the run with the device’s own message instead of silently succeeding with junk.',
           'The live result streams into the terminal, and a copy lands in History with exit code and duration.'
         ],
         terminal: [
@@ -309,7 +333,9 @@ const en = {
           }
         ],
         notes: [
-          { type: 'tip', text: 'Long outputs never get stuck: --More-- paging is continued automatically, and the command is considered done when the shell prompt returns.' }
+          { type: 'tip', text: 'Long outputs never get stuck: --More-- paging is continued automatically, and the command is considered done when the shell prompt returns.' },
+          { type: 'note', text: 'If a command times out, the app interrupts it (Ctrl+C) so the next command is never typed into a broken prompt — the shell is recovered for you.' },
+          { type: 'warning', text: 'Command groups run strictly sequentially on network gear — each command waits for the previous one to finish, so a “conf t” followed by an interface command works exactly as typed.' }
         ]
       },
       batch: {
@@ -322,7 +348,24 @@ const en = {
           'You can stop a batch mid-run; whatever completed is kept in History.'
         ],
         notes: [
-          { type: 'note', text: 'A batch needs live sessions — connect to the devices first, then select them on the Sessions page.' }
+          { type: 'note', text: 'A batch needs live sessions — connect to the devices first, then select them on the Sessions page.' },
+          { type: 'tip', text: 'Sessions dropped mid-run are reconnected through the device’s saved credentials, so a batch survives a flaky link.' }
+        ]
+      },
+      backups: {
+        title: 'Config backups',
+        intro:
+          'A device configuration is its source of truth. LinkOPS snapshots each device on a schedule, keeps a version history, and shows a line-level diff between any two snapshots — so a bad change is always visible and recoverable.',
+        steps: [
+          'Open Config Backups in the sidebar.',
+          'Enable “Automatic config backup” in the device editor. The global interval and retention live in Settings → Config backup (default: every 24 hours, keep the latest 30 per device).',
+          'The backup command is chosen automatically from the vendor — Cisco “show running-config”, Huawei “display current-configuration”, Juniper “show configuration”, MikroTik “/export” and more.',
+          'Click “Run now” to snapshot a device on demand. Unchanged configurations are skipped (dedup), so quiet devices do not fill the history.',
+          'Select two snapshots to see a line-level diff (+ added / − removed), and copy or download any snapshot.'
+        ],
+        notes: [
+          { type: 'tip', text: 'Backups are persisted in the database — a run survives the app being closed mid-backup.' },
+          { type: 'warning', text: 'Restore is a manual step: compare the diff, then apply the configuration with your normal change process. LinkOPS never pushes configs to devices.' }
         ]
       },
       history: {
@@ -342,27 +385,47 @@ const en = {
         title: 'Settings & shortcuts',
         intro: 'Tune the app to your workflow — appearance, language, SSH behavior and more.',
         steps: [
-          'Appearance: theme (light / dark / system) and UI language (English or فارسی with full RTL and Persian digits).',
+          'Appearance: theme (light / dark / system) and one of seven color palettes — Classic, Ocean, Forest, Midnight, Sunset, Aurora or Graphite.',
+          'Language: English or فارسی with full RTL and Persian digits — a Persian OS locale is detected on first launch.',
           'SSH: connection timeout and keep-alive interval for long-running sessions.',
-          'Terminal: font size, timestamps, auto-scroll.',
+          'Terminal: default font size, timestamps, auto-scroll.',
+          'Security: set (or remove) the app-lock password here.',
           'Data: import/export devices from CSV, manage logs.',
-          'License: view your license status and expiry date.',
-          'Keyboard shortcuts are listed in Settings — including the command palette (Ctrl+K) for quick actions like switching themes.'
+          'License: view your license status, expiry date and machine fingerprint.',
+          'Keyboard shortcuts are listed in Settings — open the shortcuts dialog with Ctrl/⌘+/ or use the command palette (Ctrl+K) for quick actions.'
         ],
         notes: [
-          { type: 'tip', text: 'The command palette (Ctrl+K) is the fastest way to jump anywhere: switch themes, open settings, connect to a device or run a template.' }
+          { type: 'tip', text: 'The command palette (Ctrl+K) is the fastest way to jump anywhere: switch palettes, open settings, connect to a device or run a template.' }
         ],
         table: {
           title: 'Keyboard shortcuts',
           headers: ['Action', 'Shortcut'],
           rows: [
-            ['Open the command palette', 'Ctrl+K'],
-            ['Open Settings', 'Ctrl+,'],
-            ['Open Settings (alternate)', 'Ctrl+Shift+P'],
-            ['Add a new device', 'Ctrl+N'],
-            ['Search inside the terminal', 'Ctrl+F']
+            ['Open the command palette', 'Ctrl/⌘+K'],
+            ['Open the shortcuts reference', 'Ctrl/⌘+/'],
+            ['Open Settings', 'Ctrl/⌘+,'],
+            ['Open Settings (alternate)', 'Ctrl/⌘+Shift+P'],
+            ['Add a new device', 'Ctrl/⌘+N'],
+            ['Search inside the terminal', 'Ctrl/⌘+F'],
+            ['Lock the app', 'Ctrl/⌘+Shift+L']
           ]
         }
+      },
+      lock: {
+        title: 'App lock',
+        intro:
+          'Protect the whole application with a password. Set it once in Settings → Security and the app asks for it on every launch — and you can lock it at any time with one click or Ctrl/⌘+Shift+L.',
+        steps: [
+          'Open Settings → Security and set a lock password.',
+          'From now on the app starts locked and asks for the password before showing any device, session or setting.',
+          'Lock on demand with the lock button in the top bar or Ctrl/⌘+Shift+L.',
+          'Unlock by entering the password; a wrong password shakes the screen so you know it failed.',
+          'Remove the lock by clearing the password in Settings → Security.'
+        ],
+        notes: [
+          { type: 'warning', text: 'The password is never stored — only a salted scrypt hash. If you forget it, the lock can only be removed by resetting the app data.' },
+          { type: 'tip', text: 'Locking hides everything behind a clean animated screen — useful before stepping away from a shared workstation.' }
+        ]
       },
       update: {
         title: 'Updating the app',
@@ -724,11 +787,14 @@ const fa: typeof en = {
       overview: 'آشنایی',
       install: 'نصب و لایسنس',
       devices: 'افزودن دستگاه',
+      users: 'اعتبارنامه‌های مشترک',
       connect: 'اتصال و ترمینال',
       commands: 'اجرای دستور',
       batch: 'اجرای گروهی',
+      backups: 'پشتیبان‌گیری کانفیگ',
       history: 'تاریخچه و گزارش',
       settings: 'تنظیمات',
+      lock: 'قفل برنامه',
       update: 'به‌روزرسانی'
     },
     sections: {
@@ -782,11 +848,28 @@ const fa: typeof en = {
           'روش احراز هویت را انتخاب کنید: رمز عبور یا کلید خصوصی (که رمزنگاری‌شده در گاوصندوق سیستم‌عامل ذخیره می‌شود، با پشتیبانی از عبارت عبور).',
           'پروتکل — SSH یا Telnet — و نوع دستگاه (روتر، سوئیچ، سرور، فایروال، اکسس‌پوینت، OLT و…) را انتخاب کنید.',
           'نوع دستگاه مهم است: تجهیزات شبکه دستورها را از طریق شل تعاملی با تشخیص پرامپت اجرا می‌کنند، دقیقاً مثل تایپ دستی — برای همین سوئیچ‌ها و روترها بدون دردسر کار می‌کنند.',
+          'برای استفاده‌ی مجدد از اعتبارنامه‌های ذخیره‌شده در بخش کاربران، روش احراز هویت را روی «کاربر ذخیره‌شده» بگذارید — نام کاربری و رمز از همان پروفایل خوانده می‌شود و دیگر آن‌ها را دوباره تایپ نمی‌کنید.',
           'اختیاری: برچسب‌ها، گروه، سازنده/مدل/موقعیت، ناوگان بزرگ را قابل جستجو و فیلتر می‌کند.'
         ],
         notes: [
           { type: 'tip', text: 'نوع دستگاه را با دقت انتخاب کنید: تجهیزات شبکه (سوئیچ، روتر، OLT، فایروال…) دستورها را از طریق شل تعاملی با تشخیص پرامپت اجرا می‌کنند — دقیقاً مثل تایپ دستی — در حالی که سرورها از کانال سریع exec استفاده می‌کنند.' },
           { type: 'note', text: 'رمزها و کلیدهای خصوصی با گاوصندوق سیستم‌عامل (DPAPI / libsecret) رمزنگاری می‌شوند و هرگز به‌صورت متن ساده ذخیره نمی‌شوند.' }
+        ]
+      },
+      users: {
+        title: 'اعتبارنامه‌های مشترک (کاربران)',
+        intro:
+          'بیشتر ناوگان‌ها روی چندین دستگاه از یک نام کاربری و رمز استفاده می‌کنند. هر مجموعه اعتبارنامه را یک‌بار در بخش کاربران ذخیره کنید و از هر دستگاهی به آن ارجاع بدهید — یک‌جا تغییرش دهید و همه‌ی دستگاه‌هایی که از آن استفاده می‌کنند خودکار رمز جدید را می‌گیرند.',
+        steps: [
+          'بخش کاربران را باز کنید و «افزودن کاربر» را بزنید.',
+          'به پروفایل یک برچسب بدهید (مثلاً «ادمین سوئیچ‌های اکسس»)، نام کاربری و رمز عبور را وارد کنید — یا کلید خصوصی را با عبارت عبور اختیاری بچسبانید.',
+          'در فرم دستگاه، به‌جای تایپ دستی اعتبارنامه، حالت «کاربر ذخیره‌شده» را انتخاب کنید. نام کاربری از همان پروفایل می‌آید و دیگر در فرم دستگاه پرسیده نمی‌شود.',
+          'پروفایل را یک‌بار به‌روزرسانی کنید؛ همه‌ی دستگاه‌هایی که به آن ارجاع می‌دهند از اعتبارنامه‌ی جدید استفاده می‌کنند.',
+          'وقتی پروفایل را حذف کنید، دستگاه‌هایی که از آن استفاده می‌کردند به حالت دستی برمی‌گردند — چیزی خراب نمی‌شود، فقط باید اعتبارنامه‌ی جدید بدهید.'
+        ],
+        notes: [
+          { type: 'note', text: 'پروفایل‌ها دقیقاً مثل اعتبارنامه‌های هر دستگاه با گاوصندوق سیستم‌عامل رمزنگاری می‌شوند و هرگز به رابط کاربری برنمی‌گردند.' },
+          { type: 'tip', text: 'پروفایل‌ها را بر اساس نقش یا سطح دسترسی نام‌گذاری کنید (مثلاً «netops-admin»، «backup-ro») تا مشخص باشد هر دستگاه از چه حسابی استفاده می‌کند.' }
         ]
       },
       connect: {
@@ -796,13 +879,15 @@ const fa: typeof en = {
         steps: [
           'صفحه‌ی نشست‌ها را باز کنید و «اتصال به دستگاه» را بزنید، سپس دستگاه را از فهرست انتخاب کنید.',
           'نشست با یک ترمینال باز می‌شود؛ دقیقاً مثل PuTTY یا هر کلاینت SSH دستور بزنید.',
-          'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا).',
-          'اعتبارنامه‌ها به‌صورت خودکار از گاوصندوق سیستم‌عامل خوانده می‌شوند و هیچ‌چیز به‌صورت متن ساده ذخیره نمی‌شود.',
-          'از نوار ابزار برای جستجوی خروجی، ثبت زمان، کپی بافر یا دانلود فایل .log استفاده کنید.'
+          'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل (SSH / Telnet).',
+          'وقتی برای دستگاه اتصال مجدد خودکار فعال باشد، نشست قطع‌شده با backoff خودکار دوباره وصل می‌شود — ترمینال و تاریخچه‌اش زنده می‌مانند.',
+          'اگر نشستی روی حالت خطا/در حال اتصال مجدد گیر کرد، دکمه‌ی «اتصال مجدد» را در صفحه‌ی نشست یا فهرست نشست‌ها بزنید — با همان شناسه‌ی نشست دوباره وصل می‌شود.',
+          'از نوار ابزار برای جستجوی خروجی، ثبت زمان، تغییر اندازه‌ی فونت، پاک کردن بافر، کپی یا دانلود فایل .log استفاده کنید.',
+          'اعتبارنامه‌ها به‌صورت خودکار از گاوصندوق سیستم‌عامل خوانده می‌شوند و هیچ‌چیز به‌صورت متن ساده ذخیره نمی‌شود.'
         ],
         notes: [
-          { type: 'tip', text: 'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا).' },
-          { type: 'note', text: 'داخل ترمینال Ctrl+F را بزنید تا خروجی آنی جستجو شود.' }
+          { type: 'tip', text: 'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل (SSH / Telnet).' },
+          { type: 'note', text: 'داخل ترمینال Ctrl+F را بزنید تا خروجی آنی جستجو شود و با ↑ / ↓ دستورهای قبلی را مرور کنید.' }
         ]
       },
       commands: {
@@ -814,6 +899,8 @@ const fa: typeof en = {
           'چند قالب را در یک گروه برای یک روال عیب‌یابی ترتیبی بچینید (مثلاً show version ← show interfaces status ← show log).',
           'از هر نشست از منوی «اجرای قالب» و از هر دستگاه از عمل اجرای سریع استفاده کنید.',
           'روی تجهیزات شبکه، دستور در شل تعاملی تایپ می‌شود و پایان‌یافتن آن از روی پرامپت تشخیص داده می‌شود؛ صفحه‌بندی --More-- هم خودکار ادامه می‌یابد تا خروجی‌های طولانی گیر نکنند.',
+          'قبل از اولین دستور خودکار روی سوئیچ یا روتر، برنامه شل را مثل Netmiko آماده می‌کند: صفحه‌بندی CLI را برای سازنده غیرفعال می‌کند، از حالت کاربری (SW1>) به حالت ممتاز (SW1#) ارتقا می‌دهد و به تأییدیه‌های تعاملی («Destination filename»، «[confirm]»، «[y/n]») خودکار پاسخ می‌دهد.',
+          'خطاهای CLI زود تشخیص داده می‌شوند: «% Invalid input» یا «% Access denied» اجرا را با پیام خود دستگاه ناموفق می‌کنند، نه اینکه بی‌صدا با خروجی ناقص «موفق» شمرده شود.',
           'نتیجه به‌صورت زنده در ترمینال نمایش داده می‌شود و نسخه‌ای از آن با کد خروج و مدت اجرا در تاریخچه ذخیره می‌شود.'
         ],
         terminal: [
@@ -823,7 +910,9 @@ const fa: typeof en = {
           }
         ],
         notes: [
-          { type: 'tip', text: 'خروجی‌های طولانی هرگز گیر نمی‌کنند: صفحه‌بندی --More-- خودکار ادامه می‌یابد و دستور وقتی پرامپت شل برگردد تمام‌شده در نظر گرفته می‌شود.' }
+          { type: 'tip', text: 'خروجی‌های طولانی هرگز گیر نمی‌کنند: صفحه‌بندی --More-- خودکار ادامه می‌یابد و دستور وقتی پرامپت شل برگردد تمام‌شده در نظر گرفته می‌شود.' },
+          { type: 'note', text: 'اگر دستوری timeout شود، برنامه آن را قطع می‌کند (Ctrl+C) تا دستور بعدی هرگز روی پرامپت خراب تایپ نشود — شل برایتان بازیابی می‌شود.' },
+          { type: 'warning', text: 'گروه‌های دستور روی تجهیزات شبکه به‌صورت کاملاً ترتیبی اجرا می‌شوند — هر دستور منتظر پایان قبلی می‌ماند، پس «conf t» و دستور interface بعد از آن دقیقاً مثل تایپ دستی کار می‌کند.' }
         ]
       },
       batch: {
@@ -836,7 +925,24 @@ const fa: typeof en = {
           'می‌توانید اجرا را در میانه متوقف کنید؛ هرچه تمام شده باشد در تاریخچه می‌ماند.'
         ],
         notes: [
-          { type: 'note', text: 'اجرای گروهی به نشست‌های زنده نیاز دارد — اول به دستگاه‌ها متصل شوید، بعد آن‌ها را در صفحه‌ی نشست‌ها انتخاب کنید.' }
+          { type: 'note', text: 'اجرای گروهی به نشست‌های زنده نیاز دارد — اول به دستگاه‌ها متصل شوید، بعد آن‌ها را در صفحه‌ی نشست‌ها انتخاب کنید.' },
+          { type: 'tip', text: 'نشست‌هایی که وسط اجرا قطع شوند با اعتبارنامه‌ی ذخیره‌شده‌ی دستگاه دوباره وصل می‌شوند؛ پس اجرای گروهی از یک لینک ناپایدار هم جان سالم به در می‌برد.' }
+        ]
+      },
+      backups: {
+        title: 'پشتیبان‌گیری کانفیگ',
+        intro:
+          'کانفیگ هر دستگاه، حقیقت اصلی آن است. لینک‌اپس از هر دستگاه در زمان‌بندی مشخص snapshot می‌گیرد، تاریخچه‌ی نسخه‌ها را نگه می‌دارد و بین هر دو snapshot تفاوت خط‌به‌خط نشان می‌دهد — تا هر تغییر خرابی همیشه دیده و قابل بازیابی باشد.',
+        steps: [
+          'از نوار کناری، «پشتیبان‌گیری کانفیگ» را باز کنید.',
+          'در فرم دستگاه، «پشتیبان‌گیری خودکار کانفیگ» را فعال کنید. فاصله و سقف نگه‌داری در تنظیمات ← پشتیبان‌گیری کانفیگ است (پیش‌فرض: هر ۲۴ ساعت، نگه‌داشتن ۳۰ نسخه‌ی آخر).',
+          'دستور پشتیبان‌گیری خودکار بر اساس سازنده انتخاب می‌شود — سیسکو «show running-config»، هوآوی «display current-configuration»، جونیپر «show configuration»، میکروتیک «/export» و…',
+          'با «اجرا همین حالا» می‌توانید درخواستی snapshot بگیرید. کانفیگ‌های بدون تغییر ذخیره نمی‌شوند (dedup) تا دستگاه‌های ساکت تاریخچه را پر نکنند.',
+          'دو snapshot را انتخاب کنید تا تفاوت خط‌به‌خط (+ اضافه‌شده / − حذف‌شده) را ببینید؛ هر snapshot را کپی یا دانلود کنید.'
+        ],
+        notes: [
+          { type: 'tip', text: 'پشتیبان‌ها در دیتابیس ذخیره می‌شوند — اگر وسط پشتیبان‌گیری برنامه بسته شود، اجرا از بین نمی‌رود.' },
+          { type: 'warning', text: 'بازیابی یک قدم دستی است: تفاوت را مقایسه کنید و کانفیگ را با روند تغییرات عادی‌تان اعمال کنید. لینک‌اپس هیچ‌وقت کانفیگ را به دستگاه push نمی‌کند.' }
         ]
       },
       history: {
@@ -856,27 +962,47 @@ const fa: typeof en = {
         title: 'تنظیمات و میانبرها',
         intro: 'برنامه را با روش کار خودتان هماهنگ کنید — ظاهر، زبان، رفتار SSH و موارد دیگر.',
         steps: [
-          'ظاهر: تم (روشن / تیره / سیستم) و زبان رابط (انگلیسی یا فارسی با RTL کامل و ارقام فارسی).',
+          'ظاهر: تم (روشن / تیره / سیستم) و یکی از هفت پالت رنگی — کلاسیک، اقیانوس، جنگل، نیمه‌شب، غروب، شفق یا گرافیت.',
+          'زبان: انگلیسی یا فارسی با RTL کامل و ارقام فارسی — در اولین اجرا زبان فارسی سیستم‌عامل به‌صورت خودکار تشخیص داده می‌شود.',
           'SSH: زمان‌سنج اتصال و فاصله‌ی keep-alive برای نشست‌های طولانی.',
-          'ترمینال: اندازه‌ی فونت، ثبت زمان، اسکرول خودکار.',
+          'ترمینال: اندازه‌ی فونت پیش‌فرض، ثبت زمان، اسکرول خودکار.',
+          'امنیت: تنظیم (یا حذف) رمز قفل برنامه.',
           'داده‌ها: ورود/خروجی دستگاه‌ها از CSV و مدیریت لاگ‌ها.',
-          'لایسنس: مشاهده‌ی وضعیت و تاریخ انقضا.',
-          'میانبرهای صفحه‌کلید در تنظیمات لیست شده‌اند — از جمله پالت فرمان (Ctrl+K) برای کارهای سریع مثل تغییر تم.'
+          'لایسنس: مشاهده‌ی وضعیت، تاریخ انقضا و اثرانگشت دستگاه.',
+          'میانبرهای صفحه‌کلید در تنظیمات لیست شده‌اند — با Ctrl/⌘+/ پنجره‌ی میانبرها را باز کنید یا از پالت فرمان (Ctrl+K) برای کارهای سریع استفاده کنید.'
         ],
         notes: [
-          { type: 'tip', text: 'پالت فرمان (Ctrl+K) سریع‌ترین راه برای پرش به هر جاست: تغییر تم، باز کردن تنظیمات، اتصال به دستگاه یا اجرای قالب.' }
+          { type: 'tip', text: 'پالت فرمان (Ctrl+K) سریع‌ترین راه برای پرش به هر جاست: تغییر پالت، باز کردن تنظیمات، اتصال به دستگاه یا اجرای قالب.' }
         ],
         table: {
           title: 'میانبرهای صفحه‌کلید',
           headers: ['عمل', 'میانبر'],
           rows: [
-            ['باز کردن پالت فرمان', 'Ctrl+K'],
-            ['باز کردن تنظیمات', 'Ctrl+,'],
-            ['باز کردن تنظیمات (جایگزین)', 'Ctrl+Shift+P'],
-            ['افزودن دستگاه جدید', 'Ctrl+N'],
-            ['جستجو در ترمینال', 'Ctrl+F']
+            ['باز کردن پالت فرمان', 'Ctrl/⌘+K'],
+            ['باز کردن راهنمای میانبرها', 'Ctrl/⌘+/'],
+            ['باز کردن تنظیمات', 'Ctrl/⌘+,'],
+            ['باز کردن تنظیمات (جایگزین)', 'Ctrl/⌘+Shift+P'],
+            ['افزودن دستگاه جدید', 'Ctrl/⌘+N'],
+            ['جستجو در ترمینال', 'Ctrl/⌘+F'],
+            ['قفل کردن برنامه', 'Ctrl/⌘+Shift+L']
           ]
         }
+      },
+      lock: {
+        title: 'قفل برنامه',
+        intro:
+          'کل برنامه را با یک رمز عبور محافظت کنید. یک‌بار در تنظیمات ← امنیت رمز بگذارید و از آن به بعد برنامه در هر اجرا رمز می‌خواهد — و هر لحظه با یک کلیک یا Ctrl/⌘+Shift+L می‌توانید قفلش کنید.',
+        steps: [
+          'تنظیمات ← امنیت را باز کنید و یک رمز قفل بگذارید.',
+          'از این به بعد برنامه قفل‌شده شروع می‌شود و قبل از نمایش هر دستگاه، نشست یا تنظیماتی رمز می‌خواهد.',
+          'هر وقت خواستید با دکمه‌ی قفل در نوار بالا یا Ctrl/⌘+Shift+L قفل کنید.',
+          'با وارد کردن رمز باز می‌شود؛ رمز اشتباه باعث لرزش صفحه می‌شود تا بدانید ناموفق بوده.',
+          'با پاک کردن رمز در تنظیمات ← امنیت، قفل را بردارید.'
+        ],
+        notes: [
+          { type: 'warning', text: 'رمز هرگز ذخیره نمی‌شود — فقط hash اسکریپت با نمک ذخیره می‌شود. اگر فراموشش کنید، تنها راه حذف قفل، بازنشانی داده‌های برنامه است.' },
+          { type: 'tip', text: 'قفل کردن همه‌چیز را پشت یک صفحه‌ی متحرک تمیز پنهان می‌کند — برای وقتی که از یک سیستم مشترک کنار می‌روید عالی است.' }
+        ]
       },
       update: {
         title: 'به‌روزرسانی برنامه',

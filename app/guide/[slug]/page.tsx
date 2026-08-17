@@ -21,8 +21,9 @@ export async function generateMetadata({
   }
   const section = dictionary.en.guide.sections[slug as SectionId]
   return {
-    title: `${section.title} — LinkOPS Desktop`,
+    title: section.title,
     description: section.intro,
+    alternates: { canonical: `/guide/${slug}` },
     openGraph: {
       title: `${section.title} — LinkOPS Desktop`,
       description: section.intro,

@@ -5,8 +5,9 @@ import { Footer } from '@/components/Footer'
 import { dictionary } from '@/lib/dictionary'
 
 export const metadata: Metadata = {
-  title: dictionary.en.guide.metaTitle,
+  title: 'Guide',
   description: dictionary.en.guide.metaDescription,
+  alternates: { canonical: '/guide' },
   openGraph: {
     title: dictionary.en.guide.metaTitle,
     description: dictionary.en.guide.metaDescription,

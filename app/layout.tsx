@@ -9,11 +9,14 @@ import { dictionary } from '@/lib/dictionary'
 import { Analytics } from "@vercel/analytics/next"
 import './globals.css'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://linkops.mhyar.ir'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://linkops.ir'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: dictionary.en.meta.title,
+  title: {
+    default: dictionary.en.meta.title,
+    template: '%s — LinkOPS Desktop'
+  },
   description: dictionary.en.meta.description,
   applicationName: 'LinkOPS Desktop',
   keywords: [
@@ -24,13 +27,18 @@ export const metadata: Metadata = {
     'terminal',
     'router management',
     'switch management',
-    'SSH client'
+    'SSH client',
+    'network automation',
+    'CLI',
+    'network engineer'
   ],
   openGraph: {
     title: dictionary.en.meta.title,
     description: dictionary.en.meta.description,
     type: 'website',
     siteName: 'LinkOPS Desktop',
+    url: SITE_URL,
+    locale: 'en_US',
     images: [{ url: '/screenshots/dashboard.png', width: 1440, height: 900, alt: 'LinkOPS Desktop dashboard' }]
   },
   twitter: {
@@ -40,15 +48,44 @@ export const metadata: Metadata = {
     images: ['/screenshots/dashboard.png']
   },
   icons: {
-    icon: '/logo.png'
+    icon: '/logo.png',
+    apple: '/logo.png'
+  },
+  appleWebApp: {
+    capable: true,
+    title: 'LinkOPS Desktop',
+    statusBarStyle: 'default'
+  },
+  formatDetection: {
+    telephone: false
   }
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0a0a0e',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0e' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' }
+  ],
   width: 'device-width',
   initialScale: 1
 }
+
+/** Structured data for search engines: the desktop app itself is the product. */
+const softwareJsonLd = `{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LinkOPS Desktop",
+  "applicationCategory": "NetworkApplication",
+  "operatingSystem": "Windows, Linux, macOS",
+  "description": "Manage switches, routers and firewalls over SSH and Telnet from one terminal — with batch runs, command templates and a full audit trail.",
+  "offers": {
+    "@type": "Offer",
+    "price": "14.99",
+    "priceCurrency": "USD",
+    "description": "License plans from 3 to 12 months"
+  },
+  "featureList": "SSH, Telnet, xterm terminal, batch runs, command templates, config backups, app lock, bilingual EN/FA"
+}`
 
 /** Apply the saved theme + language before paint to avoid a flash of the wrong theme/language. */
 const noFoucScript = `(function () {
@@ -69,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFoucScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: softwareJsonLd }} />
       </head>
       <body className="font-sans">
         <Analytics />
