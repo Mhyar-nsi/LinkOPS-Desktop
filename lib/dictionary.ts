@@ -240,7 +240,7 @@ const en = {
         intro:
           'Pick your platform on the landing page. Windows uses an NSIS installer; Linux offers a .deb package for Debian/Ubuntu and an AppImage that runs on any distribution.',
         steps: [
-          'Windows: run LinkOPS.Desktop.Setup.1.1.0.exe, follow the wizard, then launch from the Start menu.',
+          'Windows: run LinkOPS.Desktop.Setup.1.1.1.exe, follow the wizard, then launch from the Start menu.',
           'Linux (.deb): install with apt and launch with the linkops-desktop command.',
           'Linux (AppImage): make it executable and run it directly — no installation needed.',
           'macOS: open the .dmg and drag LinkOPS Desktop into the Applications folder.',
@@ -250,11 +250,11 @@ const en = {
         terminal: [
           {
             title: '.deb — Debian / Ubuntu',
-            lines: ['sudo apt install ./linkops-desktop_1.1.0_amd64.deb', 'linkops-desktop']
+            lines: ['sudo apt install ./linkops-desktop_1.1.1_amd64.deb', 'linkops-desktop']
           },
           {
             title: 'AppImage — any distro',
-            lines: ['chmod +x LinkOPS.Desktop-1.1.0.AppImage', './LinkOPS.Desktop-1.1.0.AppImage']
+            lines: ['chmod +x LinkOPS.Desktop-1.1.1.AppImage', './LinkOPS.Desktop-1.1.1.AppImage']
           }
         ],
         notes: [
@@ -458,7 +458,7 @@ const en = {
       cta: 'Download installer',
       stepsTitle: 'Install',
       steps: [
-        'Run LinkOPS.Desktop.Setup.1.1.0.exe and follow the setup wizard',
+        'Run LinkOPS.Desktop.Setup.1.1.1.exe and follow the setup wizard',
         'Choose an install folder and finish the wizard',
         'Launch LinkOPS from the Start menu or the desktop shortcut'
       ]
@@ -472,7 +472,7 @@ const en = {
         cta: 'Download .deb',
         stepsTitle: 'Install',
         steps: [
-          'sudo apt install ./linkops-desktop_1.1.0_amd64.deb',
+          'sudo apt install ./linkops-desktop_1.1.1_amd64.deb',
           'linkops-desktop'
         ]
       },
@@ -482,8 +482,8 @@ const en = {
         cta: 'Download AppImage',
         stepsTitle: 'Run',
         steps: [
-          'chmod +x LinkOPS.Desktop-1.1.0.AppImage',
-          './LinkOPS.Desktop-1.1.0.AppImage'
+          'chmod +x LinkOPS.Desktop-1.1.1.AppImage',
+          './LinkOPS.Desktop-1.1.1.AppImage'
         ]
       }
     },
@@ -493,7 +493,7 @@ const en = {
       cta: 'Download .dmg',
       stepsTitle: 'Install',
       steps: [
-        'Open the downloaded LinkOPS.Desktop-1.1.0.dmg',
+        'Open the downloaded LinkOPS.Desktop-1.1.1.dmg',
         'Drag LinkOPS Desktop into the Applications folder',
         'Launch from Launchpad or the Applications folder'
       ]
@@ -817,7 +817,7 @@ const fa: typeof en = {
         intro:
           'سیستم‌عامل خود را در صفحه‌ی اصلی انتخاب کنید. ویندوز از نصب‌کننده‌ی NSIS استفاده می‌کند و لینوکس یک بسته‌ی .deb برای دبیان/اوبونتو و یک AppImage برای هر توزیعی دارد.',
         steps: [
-          'ویندوز: فایل LinkOPS.Desktop.Setup.1.1.0.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
+          'ویندوز: فایل LinkOPS.Desktop.Setup.1.1.1.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
           'لینوکس (.deb): با apt نصب کنید و با دستور linkops-desktop اجرا کنید.',
           'لینوکس (AppImage): فایل را قابل‌اجرا کنید و مستقیم اجرا کنید — نیازی به نصب نیست.',
           'مک‌اواس: فایل .dmg را باز کنید و لینک‌اپس دسکتاپ را به پوشه‌ی Applications بکشید.',
@@ -827,11 +827,11 @@ const fa: typeof en = {
         terminal: [
           {
             title: '.deb — دبیان / اوبونتو',
-            lines: ['sudo apt install ./linkops-desktop_1.1.0_amd64.deb', 'linkops-desktop']
+            lines: ['sudo apt install ./linkops-desktop_1.1.1_amd64.deb', 'linkops-desktop']
           },
           {
             title: 'AppImage — هر توزیعی',
-            lines: ['chmod +x LinkOPS.Desktop-1.1.0.AppImage', './LinkOPS.Desktop-1.1.0.AppImage']
+            lines: ['chmod +x LinkOPS.Desktop-1.1.1.AppImage', './LinkOPS.Desktop-1.1.1.AppImage']
           }
         ],
         notes: [
@@ -1035,7 +1035,7 @@ const fa: typeof en = {
       cta: 'دانلود نصب‌کننده',
       stepsTitle: 'نصب',
       steps: [
-        'فایل LinkOPS.Desktop.Setup.1.1.0.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
+        'فایل LinkOPS.Desktop.Setup.1.1.1.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
         'پوشه‌ی نصب را انتخاب کنید و نصب را تمام کنید',
         'لینک‌اپس را از منوی استارت یا میانبر دسکتاپ اجرا کنید'
       ]
@@ -1049,7 +1049,7 @@ const fa: typeof en = {
         cta: 'دانلود .deb',
         stepsTitle: 'نصب',
         steps: [
-          'sudo apt install ./linkops-desktop_1.1.0_amd64.deb',
+          'sudo apt install ./linkops-desktop_1.1.1_amd64.deb',
           'linkops-desktop'
         ]
       },
@@ -1059,8 +1059,8 @@ const fa: typeof en = {
         cta: 'دانلود AppImage',
         stepsTitle: 'اجرا',
         steps: [
-          'chmod +x LinkOPS.Desktop-1.1.0.AppImage',
-          './LinkOPS.Desktop-1.1.0.AppImage'
+          'chmod +x LinkOPS.Desktop-1.1.1.AppImage',
+          './LinkOPS.Desktop-1.1.1.AppImage'
         ]
       }
     },
@@ -1070,7 +1070,7 @@ const fa: typeof en = {
       cta: 'دانلود .dmg',
       stepsTitle: 'نصب',
       steps: [
-        'فایل LinkOPS.Desktop-1.1.0.dmg دانلودشده را باز کنید',
+        'فایل LinkOPS.Desktop-1.1.1.dmg دانلودشده را باز کنید',
         'لینک‌اپس دسکتاپ را به پوشه‌ی Applications بکشید',
         'از Launchpad یا پوشه‌ی Applications اجرا کنید'
       ]

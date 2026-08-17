@@ -15,6 +15,26 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: '1.1.1',
+    date: '2026-08-17',
+    notes: {
+      en: [
+        'New Debug page: one-click diagnostics — environment info (Electron/Chromium/Node, platform, DB path & size), health checks for the database, settings, update feed and license, plus copy or export a full JSON report for support.',
+        'Running a command group on a session now shows live progress — “2/5” in the session header and the terminal status bar, with the name of the command currently executing.',
+        'Smart Stop for groups: pressing Stop interrupts the command currently running and skips all queued commands — the session stays open.',
+        'Batch Runs gained a Group mode: pick a command group and every selected session runs all of its commands strictly in order, with per-device × per-command results in the log.',
+        'Run command groups from anywhere a single command can run — session terminal, command palette, devices page and the batch dialog.'
+      ],
+      fa: [
+        'صفحه دیباگ جدید: تشخیص یک‌کلیکه — اطلاعات محیط (الکترون/کرومیوم/نود، پلتفرم، مسیر و حجم دیتابیس)، بررسی سلامت دیتابیس، تنظیمات، فید بروزرسانی و لایسنس، و کپی یا خروجی گرفتن گزارش کامل JSON برای پشتیبانی.',
+        'اجرای گروه دستور روی نشست حالا پیشرفت زنده نشان می‌دهد — «۲/۵» در هدر نشست و نوار وضعیت ترمینال، همراه با نام دستوری که در حال اجراست.',
+        'توقف هوشمند گروه: با زدن Stop، دستور در حال اجرا قطع و همه دستورهای صف‌شده رد می‌شوند — نشست باز می‌ماند.',
+        'اجرای گروهی (Batch Runs) حالت گروه گرفت: یک گروه دستور انتخاب کنید و هر نشست انتخاب‌شده همه دستورهای آن را به‌صورت کاملاً ترتیبی اجرا می‌کند، با نتیجه مجزا برای هر دستگاه × دستور در گزارش.',
+        'گروه‌های دستور را از هر جایی که یک دستور تکی اجرا می‌شود اجرا کنید — ترمینال نشست، پالت فرمان، صفحه دستگاه‌ها و دیالوگ اجرای گروهی.'
+      ]
+    }
+  },
+  {
     version: '1.1.0',
     date: '2026-08-16',
     notes: {
