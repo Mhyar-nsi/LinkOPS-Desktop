@@ -2,9 +2,9 @@ export type Lang = 'en' | 'fa'
 
 const en = {
   meta: {
-    title: 'LinkOPS Desktop — Manage your network over SSH & Telnet',
+    title: 'LinkOPS Desktop — Manage your network from one app',
     description:
-      'A bilingual desktop platform for network operations: manage switches, routers and firewalls over SSH and Telnet with a real terminal, batch runs, command templates and a full audit trail.'
+      'A desktop app for network engineers: connect to switches, routers, firewalls and servers, run commands in a real terminal, use batch runs and command templates, and keep a complete history of everything you do.'
   },
   header: {
     features: 'Features',
@@ -17,14 +17,14 @@ const en = {
     cta: 'Download'
   },
   hero: {
-    tag: 'network operations platform',
+    tag: 'network management app',
     titleLine1: 'Your whole network,',
-    titleAccent: 'one terminal.',
-    lead: 'LinkOPS Desktop is a complete network operations workstation. Manage switches, routers, firewalls and servers over SSH, Telnet, Rlogin and Raw TCP — with a real xterm terminal, one-command batch runs across hundreds of devices, reusable command templates, colored device categories, scheduled config backups and a full audit trail.',
+    titleAccent: 'in one app.',
+    lead: 'LinkOPS Desktop brings all of your network into one place. Connect to switches, routers, firewalls and servers over SSH, Telnet, Rlogin or Raw TCP — open a real terminal, run one command across many devices at once, reuse your favorite command templates, organize devices with colored categories, keep scheduled config backups and always know what was run, where and when.',
     ctaPrimary: 'Download',
     ctaSecondary: 'Explore features',
     guideLink: 'Read the guide',
-    note: 'Bilingual EN/FA with full RTL · dark & light themes',
+    note: 'English & فارسی · dark and light themes',
     terminalTitle: 'linkops — live session',
     terminalLines: [
       'Connected to router-edge-01 (netops@192.168.10.1:22)',
@@ -36,71 +36,71 @@ const en = {
       'Gi1/0/2   access  connected   up   a-100 10/100/1000BaseTX',
       '$ █'
     ],
-    badges: ['SSH', 'Telnet', 'Rlogin', 'Raw TCP', 'xterm terminal', 'Batch runs']
+    badges: ['SSH', 'Telnet', 'Rlogin', 'Raw TCP', 'Real terminal', 'Batch runs']
   },
   features: {
     tag: '// capabilities',
     title: 'Everything you need to run your network, in one place',
-    lead: 'Built by network engineers for network engineers — no more bouncing between terminal windows and spreadsheets.',
+    lead: 'Everything you need to manage your network, in one place — no more jumping between tools.',
     items: [
       {
-        title: 'Four protocols, MobaXterm-style',
-        desc: 'SSH, Telnet, Rlogin and Raw TCP — pick the right one per device. Rlogin and Raw need no credentials, and every protocol shares the same prompt-smart execution engine.',
+        title: 'Four ways to connect',
+        desc: 'SSH, Telnet, Rlogin and Raw TCP — pick the right one for each device. Rlogin and Raw need no credentials, and commands run the same way on all four.',
         tag: 'protocols'
       },
       {
         title: 'Device inventory & categories',
-        desc: 'Search, filter, sort and organize every device into colored categories with icons — switches of one region, routers of another. Tags, vendors, models and locations keep a fleet of hundreds manageable.',
+        desc: 'Keep every device in one list, organized into colored categories with icons — switches of one region, routers of another. Search, filter and sort your whole fleet in seconds.',
         tag: 'devices'
       },
       {
         title: 'Real terminal',
-        desc: 'A full xterm.js terminal with ANSI color, live search, timestamps, copy and download. SSH and Telnet sessions side by side.',
+        desc: 'A full terminal with colored output, live search, timestamps, copy and download. Keep SSH and Telnet sessions open side by side.',
         tag: 'sessions'
       },
       {
         title: 'Server desktop mode',
-        desc: 'Connect to a Linux server over SSH and manage it in a friendly graphical desktop — file manager, processes, services, packages, logs and network overview, no dry shell needed.',
+        desc: 'Connect to a Linux server over SSH and manage it in a friendly graphical view — files, processes, services, packages, logs and network at a glance.',
         tag: 'server'
       },
       {
         title: 'Batch runs',
-        desc: 'Run one command across many live sessions in parallel with per-device output, exit codes and mid-run cancellation.',
+        desc: 'Run one command across many live sessions at the same time, with the output of every device side by side — and stop mid-run whenever you want.',
         tag: 'batch'
       },
       {
         title: 'Command templates & groups',
-        desc: 'Reusable commands and sequential profiles. Quick-run from any device, or execute a whole diagnostics group at once.',
+        desc: 'Save the commands you use all the time and reuse them with one click, or bundle several into a sequence that runs in order.',
         tag: 'commands'
       },
       {
         title: 'Config backups',
-        desc: 'Scheduled snapshots of device configurations with a version history and line-level diffs — a bad change is always visible and recoverable.',
+        desc: 'Scheduled snapshots of device configurations with a version history and a side-by-side diff — a bad change is always visible and easy to spot.',
         tag: 'backups'
       },
       {
-        title: 'Full audit trail',
-        desc: 'Every execution is recorded — command, device, user, timing, exit code and output. History and logs are searchable and exportable.',
+        title: 'Complete history',
+        desc: 'Every command you run is recorded — what, where, when, and what came back. Search and export it whenever you need.',
         tag: 'history'
       },
       {
-        title: 'Bilingual, right-to-left',
-        desc: 'A complete فارسی interface with RTL layout, Persian calendar and digits — plus English. Switch instantly from Settings.',
+        title: 'English & فارسی',
+        desc: 'A complete فارسی interface with right-to-left layout and Persian digits — plus English. Switch instantly from Settings.',
         tag: 'i18n'
       },
       {
         title: 'Security first',
-        desc: 'All connections run in the main process, the renderer is sandboxed, IPC is validated with Zod, and credentials are encrypted with the OS keychain.',
+        desc: 'Passwords and keys are encrypted and stored by your operating system, and every command is validated before it runs.',
         tag: 'security'
       },
       {
         title: 'Light & dark themes',
-        desc: 'Seven color palettes — each with a polished dark theme and a light one, plus a complete Persian interface with full RTL and locale-aware dates and digits.',
+        desc: 'Seven color palettes, each with a polished dark and light theme — pick the look that fits you.',
         tag: 'themes'
       },
       {
         title: 'App lock & shared users',
-        desc: 'Protect the whole app with a password, and store shared credentials once — update in one place, used by every device.',
+        desc: 'Protect the whole app with a password, and store shared credentials once — update them in one place, and every device picks up the change.',
         tag: 'security'
       }
     ]
@@ -128,76 +128,76 @@ const en = {
       categories:
         'Colored categories with icons — group switches of one region, routers of another, and filter the whole fleet by one click.',
       terminal:
-        'An interactive xterm.js session with ANSI colors, timestamps, live search and command templates at hand.',
+        'An interactive terminal with colored output, timestamps, live search and command templates at hand.',
       batchRuns:
-        'One command across multiple live sessions in parallel, with per-device results, exit codes and a downloadable log.',
+        'One command across multiple live sessions at once, with per-device results and a downloadable log.',
       commands:
         'Reusable command templates with categories, compatible device types and tags — plus command groups for sequential runs.',
       groups:
-        'Sequential command profiles: bundle show commands into a one-click diagnostics routine.',
+        'Sequential command profiles: bundle your usual commands into a one-click routine.',
       history:
-        'The full audit trail — every command, device, trigger, duration, exit code and output, searchable and exportable.',
+        'The complete log — every command, device, trigger, duration, exit code and output, searchable and exportable.',
       settings:
-        'Appearance, seven color palettes, language, SSH defaults, terminal behavior, logging, import/export and shortcuts.'
+        'Appearance, seven color palettes, language, connection defaults, terminal behavior, logging, import/export and shortcuts.'
     }
   },
   protocols: {
     tag: '// connectivity',
-    title: 'Four protocols. One workflow.',
-    lead: 'Modern and legacy equipment in one inventory. Pick the protocol per device — the app handles the rest with the same prompt-smart engine.',
+    title: 'Connect the way your equipment needs',
+    lead: 'Modern and older equipment in one inventory. Pick the protocol per device — the app handles the rest, and commands behave the same on all four.',
     ssh: {
       title: 'SSH',
       points: [
-        'Encrypted transport with legacy cipher/kex support for older gear',
-        'Password and private-key authentication, passphrases supported',
-        'Fast per-command channels with exit codes for servers',
-        'Keep-alive to hold long sessions'
+        'Secure, encrypted connections — works with older equipment too',
+        'Password or private-key login, passphrases supported',
+        'Fast per-command execution with reliable results for servers',
+        'Keeps long sessions alive'
       ]
     },
     telnet: {
       title: 'Telnet',
       points: [
         'For equipment that predates SSH',
-        'Automatic login — the app answers Username/Password prompts',
-        'Full IAC option negotiation and prompt detection',
-        'Command output captured until the shell prompt returns, with --More-- paging handled'
+        'Automatic login — the app answers the login prompts for you',
+        'Handles the connection and detects prompts automatically',
+        'Collects output until the prompt returns, and skips --More-- pages for you'
       ]
     },
     rlogin: {
       title: 'Rlogin',
       points: [
-        'RFC 1282 handshake with NUL acknowledgement',
+        'Simple connection for trusted hosts',
         'No password needed — the trusted-host model',
-        'Same prompt detection and interactive shell as Telnet',
+        'Same prompt detection and interactive terminal as Telnet',
         'Default port 513, fully configurable'
       ]
     },
     raw: {
       title: 'Raw TCP',
       points: [
-        'Plain socket for console servers and serial-to-TCP adapters',
-        'Connect the moment the port opens — no auth handshake',
-        'Banner and prompt capture with a short settle window',
-        'Same command engine as every other protocol'
+        'Plain socket for console servers and serial-to-network adapters',
+        'Connects the moment the port opens — no login handshake',
+        'Banner and prompt detected automatically',
+        'Same command handling as every other protocol'
       ]
     }
   },
   security: {
     tag: '// security',
-    title: 'Engineered to be safe on your network',
-    lead: 'The app talks to production gear — it is built accordingly.',
+    title: 'Built to be safe on your network',
+    lead: 'The app talks to real equipment — it is built accordingly.',
     items: [
       {
-        title: 'Sandboxed renderer',
-        desc: 'contextIsolation on, nodeIntegration off, sandbox on. The UI is a thin client over a typed preload bridge.'
+        title: 'Interface is isolated',
+        desc: 'The interface runs separately from the engine that talks to your devices, so it can never reach your system directly.'
       },
       {
-        title: 'Validated IPC',
-        desc: 'Every main-process handler validates its input with a Zod schema — nothing from the UI is trusted blindly.'
+        title: 'Everything is validated',
+        desc: 'Every request and command is checked before it is executed — nothing is trusted blindly.'
       },
       {
-        title: 'OS keychain credentials',
-        desc: 'Passwords and keys are encrypted with the operating system vault (DPAPI / Keychain / libsecret) and never returned to the UI.'
+        title: 'Credentials stay encrypted',
+        desc: 'Passwords and keys are encrypted and stored by your operating system, and they are never shown back to the interface.'
       },
       {
         title: 'Fully offline',
@@ -231,8 +231,8 @@ const en = {
     save: 'Save {{pct}}%',
     buy: 'Get {{name}}',
     includes: [
-      'Full app access — SSH & Telnet',
-      'Batch runs, templates & audit trail',
+      'Full app access — all protocols',
+      'Batch runs, templates & complete history',
       'Free updates during the term',
       'Email support'
     ],
@@ -271,10 +271,10 @@ const en = {
       overview: {
         title: 'Overview',
         intro:
-          'LinkOPS Desktop is a network operations workstation. Instead of juggling PuTTY windows, spreadsheets and ad-hoc scripts, you get one place for every switch, router and firewall — over SSH or Telnet — with parallel command runs, reusable templates and a complete audit trail.',
+          'LinkOPS Desktop is a desktop app that brings your whole network into one place. Every switch, router, firewall and server — over SSH, Telnet, Rlogin or Raw TCP — is managed from a single window: real terminal sessions, one-command batch runs across many devices, reusable command templates, scheduled config backups and a complete history of everything you do.',
         steps: [
           'Download and install the app for Windows or Linux, then activate it with your license key.',
-          'Add your devices once — name, host, credentials and protocol (SSH or Telnet).',
+          'Add your devices once — name, host, credentials and protocol.',
           'Open live sessions, type commands in a real terminal, or run templates and batch commands across many devices at once.',
           'Every execution is recorded in History, searchable and exportable.'
         ],
@@ -285,7 +285,7 @@ const en = {
       install: {
         title: 'Install & activate the license',
         intro:
-          'Pick your platform on the landing page. Windows uses an NSIS installer; Linux offers a .deb package for Debian/Ubuntu and an AppImage that runs on any distribution.',
+          'Pick your platform on the landing page. Windows uses an installer; Linux offers a .deb package for Debian/Ubuntu and an AppImage that runs on any distribution.',
         steps: [
           'Windows: run LinkOPS.Desktop.Setup.2.0.0.exe, follow the wizard, then launch from the Start menu.',
           'Linux (.deb): install with apt and launch with the linkops-desktop command.',
@@ -323,7 +323,7 @@ const en = {
         ],
         notes: [
           { type: 'tip', text: 'Pick the device type carefully: network gear (switch, router, OLT, firewall…) runs commands through an interactive shell with prompt detection — exactly like typing by hand — while servers use the fast exec channel.' },
-          { type: 'note', text: 'Passwords and private keys are encrypted with the operating system keychain (DPAPI / libsecret) and never stored in plain text.' }
+          { type: 'note', text: 'Passwords and private keys are encrypted and stored securely by your operating system — never in plain text.' }
         ]
       },
       users: {
@@ -363,10 +363,10 @@ const en = {
           'Every device gets a protocol. SSH for anything modern, Telnet for legacy gear, Rlogin for trusted hosts and Raw TCP for console servers and serial-to-network adapters. Whichever you pick, commands run through the same prompt-smart engine.',
         steps: [
           'In the device editor, pick the protocol: SSH (22), Telnet (23), Rlogin (513) or Raw TCP (23 by default) — the default port fills in automatically and stays editable.',
-          'Rlogin and Raw TCP need no credentials: Rlogin follows the RFC 1282 handshake (the app sends the NUL acknowledgement) and Raw connects the moment the port opens.',
-          'For Rlogin a username is still required — it is sent in the handshake so the host can authorize you.',
+          'Rlogin and Raw TCP need no credentials: Rlogin connects through the trusted-host model and Raw connects the moment the port opens.',
+          'For Rlogin a username is still required — it is sent so the host can authorize you.',
           'The protocol badge on each device row and session card tells you which one is in use.',
-          'Everything else — vendor init, paging off, privilege escalation, auto-answering confirmations — works identically on all four protocols.'
+          'Everything else — preparing the device, turning off output paging, raising privileges, answering confirmations — works the same on all four protocols.'
         ],
         notes: [
           { type: 'tip', text: 'Console servers and serial adapters usually speak Raw TCP — connect to their port and you get the device console directly.' },
@@ -376,15 +376,15 @@ const en = {
       connect: {
         title: 'Connecting & the terminal',
         intro:
-          'Sessions give you a real xterm.js terminal — ANSI colors, timestamps, live search, copy and log download — for SSH, Telnet, Rlogin and Raw.',
+          'Sessions give you a real terminal — colored output, timestamps, live search, copy and log download — for SSH, Telnet, Rlogin and Raw.',
         steps: [
           'Open Sessions and click “Connect to device”, then pick a device from the list.',
-          'The session opens a terminal; type commands exactly as you would in PuTTY or any SSH client.',
+          'The session opens a terminal — type commands exactly as you would in any SSH client.',
           'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge.',
-          'When auto-reconnect is enabled for a device, a dropped session reconnects automatically with backoff — the terminal and its history stay alive.',
+          'When auto-reconnect is enabled for a device, a dropped session reconnects automatically — the terminal and its history stay alive.',
           'If a session is stuck on error/reconnecting, hit the Reconnect button on the session page or in the session list — it reconnects with the same session id.',
           'Use the toolbar to search output, toggle timestamps, change the font size, clear the buffer, copy it or download a .log file.',
-          'Credentials come from the OS keychain automatically; nothing is stored in plain text.'
+          'Credentials are filled in automatically from the encrypted store; nothing is kept in plain text.'
         ],
         notes: [
           { type: 'tip', text: 'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge.' },
@@ -400,7 +400,7 @@ const en = {
           'Bundle several templates into a command group for a sequential diagnostics routine (e.g. show version → show interfaces status → show log).',
           'From any session use the “Run template” menu; from any device use the quick-run action.',
           'On network gear the command is typed into the interactive shell and completion is detected from the prompt; --More-- paging is continued automatically, so long outputs never get stuck.',
-          'Before the first automated command on a switch or router, the app prepares the shell like Netmiko: disables CLI paging for the vendor, escalates from user EXEC (SW1>) to privileged mode (SW1#) when the device supports it, and answers interactive confirmations (“Destination filename”, “[confirm]”, “[y/n]”) automatically.',
+          'Before the first automated command on a switch or router, the app prepares the device for you: it turns off output paging, raises the privilege level when the device supports it, and answers confirmation prompts automatically — so a “conf t” group runs exactly as if you had typed it by hand.',
           'CLI errors are caught early: “% Invalid input” or “% Access denied” fail the run with the device’s own message instead of silently succeeding with junk.',
           'The live result streams into the terminal, and a copy lands in History with exit code and duration.'
         ],
@@ -438,14 +438,14 @@ const en = {
           'Connect to a Linux server as usual (SSH, device type “server”), then click the “Desktop” button in the session header.',
           'Overview: CPU/memory/disk usage and the basic system facts at a glance.',
           'Files: browse and download files over SFTP — the file manager works on the same live connection.',
-          'Processes & services: list running processes and systemd services, search and inspect them.',
+          'Processes & services: list running processes and services, search and inspect them.',
           'Packages: see installed packages and the package manager in use (apt / dnf / apk / pacman).',
           'Logs: tail recent lines of system logs with a search box, and switch log files from a dropdown.',
           'Network: interfaces, addresses and routing — a quick health picture of the server.',
           'The terminal is still one click away from the session page whenever you need it.'
         ],
         notes: [
-          { type: 'note', text: 'Server desktop reads over the same SSH connection — nothing extra to install on the server, everything works with a plain sshd.' },
+          { type: 'note', text: 'Server desktop reads over the same SSH connection — nothing extra to install on the server, everything works with a standard SSH server.' },
           { type: 'tip', text: 'Use desktop mode for day-to-day administration and keep the terminal for one-off commands — both share the same live session.' }
         ]
       },
@@ -520,7 +520,7 @@ const en = {
           'Remove the lock by clearing the password in Settings → Security.'
         ],
         notes: [
-          { type: 'warning', text: 'The password is never stored — only a salted scrypt hash. If you forget it, the lock can only be removed by resetting the app data.' },
+          { type: 'warning', text: 'The password is never stored — only a secure hash of it. If you forget it, the lock can only be removed by resetting the app data.' },
           { type: 'tip', text: 'Locking hides everything behind a clean animated screen — useful before stepping away from a shared workstation.' }
         ]
       },
@@ -626,7 +626,7 @@ const en = {
       {
         heading: 'Credentials',
         paragraphs: [
-          'Device passwords and private keys are encrypted with your operating system keychain (DPAPI on Windows, libsecret on Linux) and are never stored in plain text or sent anywhere.'
+          'Device passwords and private keys are encrypted and stored securely by your operating system and are never kept in plain text or sent anywhere.'
         ]
       },
       {
@@ -675,9 +675,9 @@ const en = {
 
 const fa: typeof en = {
   meta: {
-    title: 'لینک‌اپس دسکتاپ — مدیریت شبکه از طریق SSH و Telnet',
+    title: 'لینک‌اپس دسکتاپ — مدیریت شبکه از یک برنامه',
     description:
-      'پلتفرم دسکتاپ دوزبانه برای مدیریت شبکه: مدیریت سوئیچ‌ها، روترها و فایروال‌ها از طریق SSH و Telnet با ترمینال واقعی، اجرای گروهی، قالب‌های دستور و گزارش‌گیری کامل.'
+      'برنامه دسکتاپ برای مهندسان شبکه: اتصال به سوئیچ‌ها، روترها، فایروال‌ها و سرورها، اجرای دستور در ترمینال واقعی، اجرای گروهی و قالب‌های دستور، همراه با تاریخچه کامل همه‌ی عملیات.'
   },
   header: {
     features: 'امکانات',
@@ -690,14 +690,14 @@ const fa: typeof en = {
     cta: 'دانلود'
   },
   hero: {
-    tag: 'پلتفرم مدیریت شبکه',
+    tag: 'برنامه مدیریت شبکه',
     titleLine1: 'تمام شبکه‌ی شما،',
-    titleAccent: 'در یک ترمینال.',
-    lead: 'لینک‌اپس دسکتاپ یک ایستگاه کاری کامل برای عملیات شبکه است. سوئیچ‌ها، روترها، فایروال‌ها و سرورها را از طریق SSH، Telnet، Rlogin و Raw TCP مدیریت کنید — با ترمینال واقعی xterm، اجرای هم‌زمان یک دستور روی صدها دستگاه، قالب‌های دستور قابل‌استفاده‌ی مجدد، دسته‌بندی رنگی دستگاه‌ها، پشتیبان‌گیری زمان‌بندی‌شده از کانفیگ و گزارش‌گیری کامل از همه‌ی عملیات.',
+    titleAccent: 'در یک برنامه.',
+    lead: 'لینک‌اپس دسکتاپ همه‌ی شبکه‌ی شما را در یک‌جا جمع می‌کند. به سوئیچ‌ها، روترها، فایروال‌ها و سرورها از طریق SSH، Telnet، Rlogin یا Raw TCP وصل شوید — ترمینال واقعی باز کنید، یک دستور را هم‌زمان روی چند دستگاه اجرا کنید، قالب‌های دستور پرتکرار را دوباره استفاده کنید، دستگاه‌ها را با دسته‌بندی رنگی مرتب کنید، پشتیبان‌گیری زمان‌بندی‌شده از کانفیگ داشته باشید و همیشه بدانید چه چیزی، کجا و کی اجرا شده است.',
     ctaPrimary: 'دانلود',
     ctaSecondary: 'مشاهده‌ی امکانات',
     guideLink: 'مطالعه‌ی راهنما',
-    note: 'رابط دوزبانه EN/FA با RTL کامل · تم روشن و تیره',
+    note: 'انگلیسی و فارسی · تم روشن و تیره',
     terminalTitle: 'linkops — نشست زنده',
     terminalLines: [
       'Connected to router-edge-01 (netops@192.168.10.1:22)',
@@ -709,71 +709,71 @@ const fa: typeof en = {
       'Gi1/0/2   access  connected   up   a-100 10/100/1000BaseTX',
       '$ █'
     ],
-    badges: ['SSH', 'Telnet', 'Rlogin', 'Raw TCP', 'ترمینال xterm', 'اجرای گروهی']
+    badges: ['SSH', 'Telnet', 'Rlogin', 'Raw TCP', 'ترمینال واقعی', 'اجرای گروهی']
   },
   features: {
     tag: '// امکانات',
     title: 'هرچه برای مدیریت شبکه لازم دارید، در یک ابزار',
-    lead: 'دیگر لازم نیست بین چند پنجره‌ی ترمینال و صفحه‌های اکسل جابه‌جا شوید؛ همه‌چیز اینجا سر جای خودش است.',
+    lead: 'هرچه برای مدیریت شبکه لازم دارید در یک‌جا — دیگر لازم نیست بین چند ابزار جابه‌جا شوید.',
     items: [
       {
-        title: 'چهار پروتکل، به سبک MobaXterm',
-        desc: 'SSH، Telnet، Rlogin و Raw TCP — برای هر دستگاه پروتکل مناسبش را انتخاب کنید. Rlogin و Raw به اعتبارنامه نیاز ندارند و همه از همان موتور هوشمند تشخیص پرامپت استفاده می‌کنند.',
+        title: 'چهار راه اتصال',
+        desc: 'SSH، Telnet، Rlogin و Raw TCP — برای هر دستگاه روش مناسبش را انتخاب کنید. Rlogin و Raw به اعتبارنامه نیاز ندارند و دستورها در هر چهار روش یکسان اجرا می‌شوند.',
         tag: 'protocols'
       },
       {
         title: 'فهرست دستگاه‌ها و دسته‌بندی',
-        desc: 'جستجو، فیلتر، مرتب‌سازی و سازمان‌دهی دستگاه‌ها در دسته‌های رنگی با آیکون — سویچ‌های یک منطقه، روترهای منطقه‌ی دیگر. برچسب‌ها، سازنده، مدل و موقعیت، ناوگانی با صدها دستگاه را ساده می‌کند.',
+        desc: 'همه‌ی دستگاه‌ها در یک فهرست، منظم‌شده در دسته‌های رنگی با آیکون — سویچ‌های یک منطقه، روترهای منطقه‌ی دیگر. کل ناوگان را در چند ثانیه جستجو، فیلتر و مرتب کنید.',
         tag: 'devices'
       },
       {
         title: 'ترمینال واقعی',
-        desc: 'ترمینال کامل xterm.js با رنگ ANSI، جستجوی زنده، ثبت زمان، کپی و دانلود خروجی؛ نشست‌های SSH و Telnet در کنار هم.',
+        desc: 'ترمینال کامل با خروجی رنگی، جستجوی زنده، ثبت زمان، کپی و دانلود؛ نشست‌های SSH و Telnet را کنار هم باز نگه دارید.',
         tag: 'sessions'
       },
       {
         title: 'حالت دسکتاپ سرور',
-        desc: 'به سرور لینوکسی با SSH وصل شوید و آن را در یک محیط گرافیکی دوستانه مدیریت کنید — فایل‌ها، فرایندها، سرویس‌ها، بسته‌ها، لاگ‌ها و نمای شبکه؛ دیگر خبری از شل خشک نیست.',
+        desc: 'به سرور لینوکسی با SSH وصل شوید و آن را در یک نمای گرافیکی دوستانه مدیریت کنید — فایل‌ها، فرایندها، سرویس‌ها، بسته‌ها، لاگ‌ها و شبکه در یک نگاه.',
         tag: 'server'
       },
       {
         title: 'اجرای گروهی',
-        desc: 'یک دستور را هم‌زمان روی چند نشست اجرا کنید؛ با خروجی جداگانه‌ی هر دستگاه، کد خروج و امکان توقف در میانه‌ی اجرا.',
+        desc: 'یک دستور را هم‌زمان روی چند نشست زنده اجرا کنید و خروجی هر دستگاه را کنار هم ببینید — هر وقت خواستید وسط اجرا متوقفش کنید.',
         tag: 'batch'
       },
       {
         title: 'قالب‌ها و گروه‌های دستور',
-        desc: 'دستورهای پرتکرار را یک‌بار ذخیره کنید و هر وقت خواستید اجرا کنید؛ یا چند دستور را در یک پروفایل ترتیبی بچینید.',
+        desc: 'دستورهای پرتکرار را ذخیره کنید و با یک کلیک دوباره اجرا کنید؛ یا چند دستور را در یک دنباله‌ی منظم بچینید.',
         tag: 'commands'
       },
       {
         title: 'پشتیبان‌گیری کانفیگ',
-        desc: 'snapshot زمان‌بندی‌شده از کانفیگ دستگاه‌ها با تاریخچه‌ی نسخه و diff خط‌به‌خط — هر تغییر خرابی همیشه دیده و قابل بازیابی است.',
+        desc: 'ذخیره‌ی زمان‌بندی‌شده از کانفیگ دستگاه‌ها با تاریخچه‌ی نسخه‌ها و مقایسه‌ی کنارهم — هر تغییر خرابی همیشه دیده و قابل تشخیص است.',
         tag: 'backups'
       },
       {
-        title: 'گزارش‌گیری کامل',
-        desc: 'هر اجرا با جزئیات ثبت می‌شود: دستور، دستگاه، کاربر، زمان، کد خروج و خروجی. تاریخچه قابل جستجو و خروجی‌گیری است.',
+        title: 'تاریخچه‌ی کامل',
+        desc: 'هر دستوری که اجرا کنید ثبت می‌شود — چه چیزی، کجا، کی و چه نتیجه‌ای. هر وقت خواستید جستجو و خروجی بگیرید.',
         tag: 'history'
       },
       {
-        title: 'دوزبانه، راست‌به‌چپ',
-        desc: 'رابط کاملاً فارسی با چیدمان راست‌به‌چپ، تقویم و ارقام فارسی، به‌همراه انگلیسی — جابه‌جایی آنی از تنظیمات.',
+        title: 'انگلیسی و فارسی',
+        desc: 'رابط کاملاً فارسی با چیدمان راست‌به‌چپ و ارقام فارسی، به‌همراه انگلیسی — جابه‌جایی آنی از تنظیمات.',
         tag: 'i18n'
       },
       {
         title: 'امنیت در اولویت',
-        desc: 'همه‌ی اتصالات در فرایند اصلی اجرا می‌شوند، رابط کاربری ایزوله است، ورودی‌های IPC اعتبارسنجی می‌شوند و اعتبارنامه‌ها با کلید سیستم‌عامل رمزنگاری می‌شوند.',
+        desc: 'رمزها و کلیدها توسط سیستم‌عامل شما رمزنگاری و ذخیره می‌شوند و هر دستور قبل از اجرا بررسی می‌شود.',
         tag: 'security'
       },
       {
         title: 'تم روشن و تیره',
-        desc: 'هفت پالت رنگی — هرکدام با تم تیره و روشنِ شکیل — به‌همراه رابط کاملاً فارسی با RTL کامل و تاریخ و اعداد منطبق بر تقویم فارسی.',
+        desc: 'هفت پالت رنگی، هرکدام با تم تیره و روشنِ شکیل — ظاهری که دوست دارید انتخاب کنید.',
         tag: 'themes'
       },
       {
         title: 'قفل برنامه و کاربران مشترک',
-        desc: 'کل برنامه را با رمز عبور محافظت کنید و اعتبارنامه‌های مشترک را یک‌بار ذخیره کنید — یک‌جا تغییر دهید، همه‌ی دستگاه‌ها استفاده می‌کنند.',
+        desc: 'کل برنامه را با رمز عبور محافظت کنید و اعتبارنامه‌های مشترک را یک‌بار ذخیره کنید — یک‌جا تغییر دهید، همه‌ی دستگاه‌ها اعمال می‌شود.',
         tag: 'security'
       }
     ]
@@ -801,7 +801,7 @@ const fa: typeof en = {
       categories:
         'دسته‌بندی‌های رنگی با آیکون — سویچ‌های یک منطقه، روترهای منطقه‌ی دیگر؛ و فیلتر کل ناوگان با یک کلیک.',
       terminal:
-        'نشست تعاملی xterm.js با رنگ ANSI، جستجوی زنده و قالب‌های آماده در دسترس.',
+        'ترمینال تعاملی با خروجی رنگی، ثبت زمان، جستجوی زنده و قالب‌های آماده در دسترس.',
       batchRuns:
         'یک دستور روی چند نشست زنده به‌صورت موازی؛ با نتیجه‌ی هر دستگاه، کد خروج و گزارش قابل دانلود.',
       commands:
@@ -816,61 +816,61 @@ const fa: typeof en = {
   },
   protocols: {
     tag: '// اتصال',
-    title: 'چهار پروتکل، یک جریان کاری',
-    lead: 'تجهیزات قدیمی و جدید در یک فهرست. پروتکل را برای هر دستگاه انتخاب کنید؛ بقیه‌اش با برنامه و همان موتور هوشمند تشخیص پرامپت.',
+    title: 'به روشی که تجهیزات‌تان نیاز دارند وصل شوید',
+    lead: 'تجهیزات قدیمی و جدید در یک فهرست. پروتکل را برای هر دستگاه انتخاب کنید — بقیه‌اش با برنامه، و دستورها در هر چهار روش یکسان رفتار می‌کنند.',
     ssh: {
       title: 'SSH',
       points: [
-        'ترابری رمزنگاری‌شده با پشتیبانی از الگوریتم‌های قدیمی برای تجهیزات قدیمی‌تر',
-        'احراز هویت با رمز یا کلید خصوصی، با پشتیبانی از عبارت عبور',
-        'کانال سریع برای هر دستور همراه با کد خروج',
-        'keep-alive برای پایداری نشست‌های طولانی'
+        'اتصال امن و رمزنگاری‌شده — با تجهیزات قدیمی‌تر هم کار می‌کند',
+        'ورود با رمز یا کلید خصوصی، با پشتیبانی از عبارت عبور',
+        'اجرای سریع دستورها با نتیجه‌ی مطمئن روی سرورها',
+        'نشست‌های طولانی را زنده نگه می‌دارد'
       ]
     },
     telnet: {
       title: 'Telnet',
       points: [
         'مناسب تجهیزاتی که از SSH پشتیبانی نمی‌کنند',
-        'ورود خودکار: برنامه به پرامپت‌های Username/Password پاسخ می‌دهد',
-        'مدیریت کامل مذاکره‌ی IAC و تشخیص پرامپت',
-        'جمع‌آوری خروجی تا بازگشت پرامپت shell با مدیریت خودکار صفحه‌بندی --More--'
+        'ورود خودکار: برنامه به پرامپت‌های ورود پاسخ می‌دهد',
+        'مدیریت اتصال و تشخیص پرامپت به‌صورت خودکار',
+        'جمع‌آوری خروجی تا بازگشت پرامپت و رد شدن خودکار از صفحه‌بندی --More--'
       ]
     },
     rlogin: {
       title: 'Rlogin',
       points: [
-        'دست‌دهی RFC 1282 با تأیید NUL',
+        'اتصال ساده برای میزبان‌های مورداعتماد',
         'بدون نیاز به رمز عبور — مدل میزبانِ مورداعتماد',
-        'همان تشخیص پرامپت و شل تعاملی Telnet',
+        'همان تشخیص پرامپت و ترمینال تعاملی Telnet',
         'پورت پیش‌فرض ۵۱۳، کاملاً قابل تنظیم'
       ]
     },
     raw: {
       title: 'Raw TCP',
       points: [
-        'سوکت خام برای کنسول‌سرورها و مبدل‌های سریال به شبکه',
-        'لحظه‌ی باز شدن پورت آماده است — بدون دست‌دهی احراز هویت',
-        'دریافت بنر و پرامپت با مهلت کوتاه',
-        'همان موتور اجرای دستور مثل بقیه‌ی پروتکل‌ها'
+        'اتصال مستقیم برای کنسول‌سرورها و مبدل‌های سریال به شبکه',
+        'لحظه‌ی باز شدن پورت وصل می‌شود — بدون دست‌دهی ورود',
+        'تشخیص خودکار بنر و پرامپت',
+        'همان مدیریت دستور مثل بقیه‌ی پروتکل‌ها'
       ]
     }
   },
   security: {
     tag: '// امنیت',
-    title: 'امنیت، از پایه طراحی شده',
-    lead: 'برنامه با تجهیزات واقعیِ شبکه در ارتباط است؛ برای همین از پایه امن ساخته شده.',
+    title: 'ساخته‌شده برای امن ماندن روی شبکه‌ی شما',
+    lead: 'برنامه با تجهیزات واقعی در ارتباط است؛ برای همین به‌درستی ساخته شده.',
     items: [
       {
         title: 'رابط کاربری ایزوله',
-        desc: 'contextIsolation فعال، nodeIntegration خاموش و sandbox روشن. رابط فقط یک کلاینت سبک روی پل تایپ‌شده‌ی preload است.'
+        desc: 'رابط جدا از موتوری اجرا می‌شود که با دستگاه‌های شما در ارتباط است؛ پس هرگز نمی‌تواند مستقیم به سیستم شما برسد.'
       },
       {
-        title: 'اعتبارسنجی همه‌ی ورودی‌ها',
-        desc: 'هر درخواست به فرایند اصلی با schema از پیش تعریف‌شده اعتبارسنجی می‌شود و هیچ ورودی‌ای بدون بررسی پذیرفته نمی‌شود.'
+        title: 'همه‌چیز بررسی می‌شود',
+        desc: 'هر درخواست و دستوری قبل از اجرا بررسی می‌شود — هیچ‌چیز کورکورانه پذیرفته نمی‌شود.'
       },
       {
-        title: 'اعتبارنامه در گاوصندوق سیستم‌عامل',
-        desc: 'رمزها و کلیدها با DPAPI / Keychain / libsecret رمزنگاری می‌شوند و هرگز به رابط برنمی‌گردند.'
+        title: 'اعتبارنامه‌ها رمزنگاری‌شده می‌مانند',
+        desc: 'رمزها و کلیدها توسط سیستم‌عامل شما رمزنگاری و ذخیره می‌شوند و هرگز به رابط برنمی‌گردند.'
       },
       {
         title: 'کاملاً آفلاین',
@@ -905,8 +905,8 @@ const fa: typeof en = {
     save: '{{pct}}٪ تخفیف',
     buy: 'خرید {{name}}',
     includes: [
-      'دسترسی کامل به برنامه — SSH و Telnet',
-      'اجرای گروهی، قالب‌ها و گزارش کامل',
+      'دسترسی کامل به برنامه — همه‌ی پروتکل‌ها',
+      'اجرای گروهی، قالب‌ها و تاریخچه‌ی کامل',
       'به‌روزرسانی رایگان در طول دوره',
       'پشتیبانی ایمیلی'
     ],
@@ -945,10 +945,10 @@ const fa: typeof en = {
       overview: {
         title: 'آشنایی',
         intro:
-          'لینک‌اپس دسکتاپ یک ایستگاه کاری برای عملیات شبکه است. به‌جای چند پنجره‌ی PuTTY، فایل‌های اکسل و اسکریپت‌های پراکنده، همه‌ی سوئیچ‌ها، روترها و فایروال‌ها — از طریق SSH یا Telnet — از یک‌جا در دسترس شماست: اجرای هم‌زمان دستورها، قالب‌های آماده و گزارش کامل از هر عملیات.',
+          'لینک‌اپس دسکتاپ برنامه‌ای است که کل شبکه‌ی شما را در یک‌جا جمع می‌کند. هر سوئیچ، روتر، فایروال و سروری — از طریق SSH، Telnet، Rlogin یا Raw TCP — از یک پنجره مدیریت می‌شود: نشست‌های ترمینال واقعی، اجرای یک دستور روی چند دستگاه هم‌زمان، قالب‌های دستور قابل‌استفاده‌ی مجدد، پشتیبان‌گیری زمان‌بندی‌شده از کانفیگ و تاریخچه‌ی کامل همه‌ی کارها.',
         steps: [
           'برنامه را برای ویندوز یا لینوکس نصب و با کلید لایسنس خود فعال کنید.',
-          'دستگاه‌ها را یک‌بار اضافه کنید: نام، آدرس، اعتبارنامه و پروتکل (SSH یا Telnet).',
+          'دستگاه‌ها را یک‌بار اضافه کنید: نام، آدرس، اعتبارنامه و پروتکل.',
           'نشست‌های زنده باز کنید، در یک ترمینال واقعی دستور بزنید یا قالب‌ها و اجرای گروهی را روی چند دستگاه هم‌زمان اجرا کنید.',
           'هر اجرا به‌صورت خودکار در تاریخچه ذخیره می‌شود؛ قابل جستجو و خروجی‌گیری.'
         ],
@@ -959,7 +959,7 @@ const fa: typeof en = {
       install: {
         title: 'نصب و فعال‌سازی لایسنس',
         intro:
-          'سیستم‌عامل خود را در صفحه‌ی اصلی انتخاب کنید. ویندوز از نصب‌کننده‌ی NSIS استفاده می‌کند و لینوکس یک بسته‌ی .deb برای دبیان/اوبونتو و یک AppImage برای هر توزیعی دارد.',
+          'سیستم‌عامل خود را در صفحه‌ی اصلی انتخاب کنید. ویندوز از یک نصب‌کننده استفاده می‌کند و لینوکس یک بسته‌ی .deb برای دبیان/اوبونتو و یک AppImage برای هر توزیعی دارد.',
         steps: [
           'ویندوز: فایل LinkOPS.Desktop.Setup.2.0.0.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
           'لینوکس (.deb): با apt نصب کنید و با دستور linkops-desktop اجرا کنید.',
@@ -997,7 +997,7 @@ const fa: typeof en = {
         ],
         notes: [
           { type: 'tip', text: 'نوع دستگاه را با دقت انتخاب کنید: تجهیزات شبکه (سوئیچ، روتر، OLT، فایروال…) دستورها را از طریق شل تعاملی با تشخیص پرامپت اجرا می‌کنند — دقیقاً مثل تایپ دستی — در حالی که سرورها از کانال سریع exec استفاده می‌کنند.' },
-          { type: 'note', text: 'رمزها و کلیدهای خصوصی با گاوصندوق سیستم‌عامل (DPAPI / libsecret) رمزنگاری می‌شوند و هرگز به‌صورت متن ساده ذخیره نمی‌شوند.' }
+          { type: 'note', text: 'رمزها و کلیدهای خصوصی توسط سیستم‌عامل شما رمزنگاری و به‌صورت امن ذخیره می‌شوند — هرگز به‌صورت متن ساده.' }
         ]
       },
       users: {
@@ -1036,10 +1036,10 @@ const fa: typeof en = {
           'هر دستگاه یک پروتکل می‌گیرد. SSH برای هرچه مدرن است، Telnet برای تجهیزات قدیمی، Rlogin برای میزبان‌های مورداعتماد و Raw TCP برای کنسول‌سرورها و مبدل‌های سریال به شبکه. هر کدام را انتخاب کنید، دستورها با همان موتور هوشمند تشخیص پرامپت اجرا می‌شوند.',
         steps: [
           'در فرم دستگاه پروتکل را انتخاب کنید: SSH (۲۲)، Telnet (۲۳)، Rlogin (۵۱۳) یا Raw TCP (پیش‌فرض ۲۳) — پورت پیش‌فرض خودکار پر می‌شود و قابل ویرایش است.',
-          'Rlogin و Raw TCP به اعتبارنامه نیاز ندارند: Rlogin دست‌دهی RFC 1282 را انجام می‌دهد (برنامه تأیید NUL را می‌فرستد) و Raw لحظه‌ی باز شدن پورت وصل می‌شود.',
-          'برای Rlogin هنوز نام کاربری لازم است — در دست‌دهی ارسال می‌شود تا میزبان شما را authorize کند.',
+          'Rlogin و Raw TCP به اعتبارنامه نیاز ندارند: Rlogin از مدل میزبانِ مورداعتماد وصل می‌شود و Raw لحظه‌ی باز شدن پورت.',
+          'برای Rlogin هنوز نام کاربری لازم است — ارسال می‌شود تا میزبان شما را تأیید کند.',
           'بج پروتکل روی هر ردیف دستگاه و کارت نشست نشان می‌دهد کدام پروتکل در جریان است.',
-          'بقیه‌ی چیزها — مقداردهی اولیه فروشنده، غیرفعال‌کردن paging، ارتقای سطح دسترسی و پاسخ خودکار به تأییدیه‌ها — روی هر چهار پروتکل یکسان کار می‌کند.'
+          'بقیه‌ی چیزها — آماده‌سازی دستگاه، خاموش‌کردن صفحه‌بندی خروجی، ارتقای سطح دسترسی و پاسخ به تأییدیه‌ها — روی هر چهار پروتکل یکسان کار می‌کند.'
         ],
         notes: [
           { type: 'tip', text: 'کنسول‌سرورها و مبدل‌های سریال معمولاً Raw TCP هستند — به پورت‌شان وصل شوید و کنسول دستگاه را مستقیم بگیرید.' },
@@ -1049,15 +1049,15 @@ const fa: typeof en = {
       connect: {
         title: 'اتصال و ترمینال',
         intro:
-          'نشست‌ها یک ترمینال واقعی xterm.js در اختیارتان می‌گذارند — رنگ ANSI، ثبت زمان، جستجوی زنده، کپی و دانلود لاگ — برای SSH، Telnet، Rlogin و Raw.',
+          'نشست‌ها یک ترمینال واقعی در اختیارتان می‌گذارند — خروجی رنگی، ثبت زمان، جستجوی زنده، کپی و دانلود لاگ — برای SSH، Telnet، Rlogin و Raw.',
         steps: [
           'صفحه‌ی نشست‌ها را باز کنید و «اتصال به دستگاه» را بزنید، سپس دستگاه را از فهرست انتخاب کنید.',
-          'نشست با یک ترمینال باز می‌شود؛ دقیقاً مثل PuTTY یا هر کلاینت SSH دستور بزنید.',
+          'نشست با یک ترمینال باز می‌شود — دقیقاً مثل هر کلاینت SSH دستور بزنید.',
           'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل.',
-          'وقتی برای دستگاه اتصال مجدد خودکار فعال باشد، نشست قطع‌شده با backoff خودکار دوباره وصل می‌شود — ترمینال و تاریخچه‌اش زنده می‌مانند.',
+          'وقتی برای دستگاه اتصال مجدد خودکار فعال باشد، نشست قطع‌شده خودکار دوباره وصل می‌شود — ترمینال و تاریخچه‌اش زنده می‌مانند.',
           'اگر نشستی روی حالت خطا/در حال اتصال مجدد گیر کرد، دکمه‌ی «اتصال مجدد» را در صفحه‌ی نشست یا فهرست نشست‌ها بزنید — با همان شناسه‌ی نشست دوباره وصل می‌شود.',
           'از نوار ابزار برای جستجوی خروجی، ثبت زمان، تغییر اندازه‌ی فونت، پاک کردن بافر، کپی یا دانلود فایل .log استفاده کنید.',
-          'اعتبارنامه‌ها به‌صورت خودکار از گاوصندوق سیستم‌عامل خوانده می‌شوند و هیچ‌چیز به‌صورت متن ساده ذخیره نمی‌شود.'
+          'اعتبارنامه‌ها به‌صورت خودکار از حافظه‌ی رمزنگاری‌شده پر می‌شوند و هیچ‌چیز به‌صورت متن ساده نگهداری نمی‌شود.'
         ],
         notes: [
           { type: 'tip', text: 'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل.' },
@@ -1073,7 +1073,7 @@ const fa: typeof en = {
           'چند قالب را در یک گروه برای یک روال عیب‌یابی ترتیبی بچینید (مثلاً show version ← show interfaces status ← show log).',
           'از هر نشست از منوی «اجرای قالب» و از هر دستگاه از عمل اجرای سریع استفاده کنید.',
           'روی تجهیزات شبکه، دستور در شل تعاملی تایپ می‌شود و پایان‌یافتن آن از روی پرامپت تشخیص داده می‌شود؛ صفحه‌بندی --More-- هم خودکار ادامه می‌یابد تا خروجی‌های طولانی گیر نکنند.',
-          'قبل از اولین دستور خودکار روی سوئیچ یا روتر، برنامه شل را مثل Netmiko آماده می‌کند: صفحه‌بندی CLI را برای سازنده غیرفعال می‌کند، از حالت کاربری (SW1>) به حالت ممتاز (SW1#) ارتقا می‌دهد و به تأییدیه‌های تعاملی («Destination filename»، «[confirm]»، «[y/n]») خودکار پاسخ می‌دهد.',
+          'قبل از اولین دستور خودکار روی سوئیچ یا روتر، برنامه دستگاه را برایتان آماده می‌کند: صفحه‌بندی خروجی را خاموش می‌کند، وقتی دستگاه پشتیبانی کند سطح دسترسی را ارتقا می‌دهد و به تأییدیه‌ها خودکار پاسخ می‌دهد — پس یک گروه «conf t» دقیقاً مثل این اجرا می‌شود که خودتان تایپش کرده باشید.',
           'خطاهای CLI زود تشخیص داده می‌شوند: «% Invalid input» یا «% Access denied» اجرا را با پیام خود دستگاه ناموفق می‌کنند، نه اینکه بی‌صدا با خروجی ناقص «موفق» شمرده شود.',
           'نتیجه به‌صورت زنده در ترمینال نمایش داده می‌شود و نسخه‌ای از آن با کد خروج و مدت اجرا در تاریخچه ذخیره می‌شود.'
         ],
@@ -1111,14 +1111,14 @@ const fa: typeof en = {
           'مثل همیشه به یک سرور لینوکسی وصل شوید (SSH، نوع دستگاه «سرور») و سپس دکمه‌ی «دسکتاپ» را در هدر نشست بزنید.',
           'نمای کلی: مصرف CPU/حافظه/دیسک و مشخصات پایه‌ی سیستم در یک نگاه.',
           'فایل‌ها: مرور و دانلود فایل از طریق SFTP — مدیر فایل روی همان اتصال زنده کار می‌کند.',
-          'فرایندها و سرویس‌ها: فهرست فرایندهای در حال اجرا و سرویس‌های systemd را ببینید، جستجو و بررسی کنید.',
+          'فرایندها و سرویس‌ها: فهرست فرایندهای در حال اجرا و سرویس‌ها را ببینید، جستجو و بررسی کنید.',
           'بسته‌ها: بسته‌های نصب‌شده و مدیر بسته در حال استفاده (apt / dnf / apk / pacman) را ببینید.',
           'لاگ‌ها: خط‌های اخیر لاگ‌های سیستم را با جعبه‌ی جستجو دنبال کنید و از منوی کشویی فایل لاگ را عوض کنید.',
           'شبکه: اینترفیس‌ها، آدرس‌ها و مسیریابی — تصویر سریعی از سلامت سرور.',
           'هر وقت خواستید ترمینال فقط یک کلیک با صفحه‌ی نشست فاصله دارد.'
         ],
         notes: [
-          { type: 'note', text: 'دسکتاپ سرور از همان اتصال SSH می‌خواند — هیچ‌چیز اضافه‌ای روی سرور نصب نمی‌شود و با یک sshd ساده همه‌چیز کار می‌کند.' },
+          { type: 'note', text: 'دسکتاپ سرور از همان اتصال SSH می‌خواند — هیچ‌چیز اضافه‌ای روی سرور نصب نمی‌شود و با یک سرور SSH استاندارد همه‌چیز کار می‌کند.' },
           { type: 'tip', text: 'برای کارهای روزمره از حالت دسکتاپ و برای دستورهای یک‌باره از ترمینال استفاده کنید — هر دو روی همان نشست زنده کار می‌کنند.' }
         ]
       },
@@ -1193,7 +1193,7 @@ const fa: typeof en = {
           'با پاک کردن رمز در تنظیمات ← امنیت، قفل را بردارید.'
         ],
         notes: [
-          { type: 'warning', text: 'رمز هرگز ذخیره نمی‌شود — فقط hash اسکریپت با نمک ذخیره می‌شود. اگر فراموشش کنید، تنها راه حذف قفل، بازنشانی داده‌های برنامه است.' },
+          { type: 'warning', text: 'رمز هرگز ذخیره نمی‌شود — فقط یک نسخه‌ی امن از آن ذخیره می‌شود. اگر فراموشش کنید، تنها راه حذف قفل، بازنشانی داده‌های برنامه است.' },
           { type: 'tip', text: 'قفل کردن همه‌چیز را پشت یک صفحه‌ی متحرک تمیز پنهان می‌کند — برای وقتی که از یک سیستم مشترک کنار می‌روید عالی است.' }
         ]
       },
@@ -1299,7 +1299,7 @@ const fa: typeof en = {
       {
         heading: 'اعتبارنامه‌ها',
         paragraphs: [
-          'رمزها و کلیدهای خصوصی دستگاه‌ها با گاوصندوق سیستم‌عامل شما (DPAPI در ویندوز و libsecret در لینوکس) رمزنگاری می‌شوند و هرگز به‌صورت متن ساده ذخیره یا ارسال نمی‌شوند.'
+          'رمزها و کلیدهای خصوصی دستگاه‌ها توسط سیستم‌عامل شما رمزنگاری و به‌صورت امن ذخیره می‌شوند و هرگز به‌صورت متن ساده نگهداری یا ارسال نمی‌شوند.'
         ]
       },
       {

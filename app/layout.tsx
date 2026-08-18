@@ -77,14 +77,14 @@ const softwareJsonLd = `{
   "name": "LinkOPS Desktop",
   "applicationCategory": "NetworkApplication",
   "operatingSystem": "Windows, Linux, macOS",
-  "description": "Manage switches, routers and firewalls over SSH and Telnet from one terminal — with batch runs, command templates and a full audit trail.",
+  "description": "Manage switches, routers, firewalls and servers from one app — real terminal sessions, batch runs, command templates, config backups and a complete history.",
   "offers": {
     "@type": "Offer",
     "price": "14.99",
     "priceCurrency": "USD",
     "description": "License plans from 3 to 12 months"
   },
-  "featureList": "SSH, Telnet, xterm terminal, batch runs, command templates, config backups, app lock, bilingual EN/FA"
+  "featureList": "SSH, Telnet, Rlogin, Raw TCP, real terminal, batch runs, command templates, config backups, app lock, bilingual EN/FA"
 }`
 
 /** Apply the saved theme + language before paint to avoid a flash of the wrong theme/language. */
