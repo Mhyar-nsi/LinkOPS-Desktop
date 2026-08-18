@@ -15,6 +15,26 @@ export interface Release {
 
 export const RELEASES: Release[] = [
   {
+    version: '2.0.0',
+    date: '2026-08-18',
+    notes: {
+      en: [
+        'Four protocols now, MobaXterm-style: SSH, Telnet, Rlogin (RFC 1282 handshake + NUL ack) and Raw TCP for console servers and serial-to-TCP adapters — each with its own default port, and Rlogin/Raw need no credentials.',
+        'Device categories: organize switches, routers and servers into named groups with a Lucide icon and a color of your choice — filters, the device table and the device dialog all show the colored icon badge, and a new Categories manager handles create / edit / delete.',
+        'Commands running during an auto-reconnect now wait for the link to come back instead of failing with “Session is not connected”.',
+        'The IOS “Configuring from terminal, memory, or network?” prompt is auto-answered (Enter = terminal), so `conf`-style command groups run end-to-end on real switches.',
+        'Rlogin / Raw sessions keep the same prompt-based execution, vendor init (paging off) and privilege escalation as Telnet.'
+      ],
+      fa: [
+        'چهار پروتکل به سبک MobaXterm: SSH، Telnet، Rlogin (دست‌دهی RFC 1282 + تأیید NUL) و Raw TCP برای کنسول‌سرورها و مبدل‌های سریال به شبکه — هرکدام با پورت پیش‌فرض خودش، و Rlogin/Raw به اعتبارنامه نیاز ندارند.',
+        'دسته‌بندی دستگاه‌ها: سویچ‌ها، روترها و سرورها را در دسته‌های نام‌دار با آیکون Lucide و رنگ دلخواه سازمان‌دهی کنید — فیلترها، جدول دستگاه‌ها و دیالوگ دستگاه همه بج آیکون رنگی را نشان می‌دهند، و مدیر دسته‌ها ساخت/ویرایش/حذف را انجام می‌دهد.',
+        'اجرای دستور در حین اتصال مجدد خودکار حالا منتظر برگشتن اتصال می‌ماند به‌جای خطای «سشن متصل نیست».',
+        'پرامپت «Configuring from terminal, memory, or network?» سیسکو خودکار جواب داده می‌شود (Enter = terminal)، پس گروه‌های دستور با `conf` روی سویچ واقعی کامل اجرا می‌شوند.',
+        'نشست‌های Rlogin/Raw از همان اجرای مبتنی بر پرامپت، مقداردهی اولیه فروشنده (غیرفعال‌کردن paging) و ارتقای سطح دسترسی مثل Telnet استفاده می‌کنند.'
+      ]
+    }
+  },
+  {
     version: '1.1.1',
     date: '2026-08-17',
     notes: {

@@ -1,8 +1,15 @@
 'use client'
 
-import { Check, Lock, RadioTower } from 'lucide-react'
+import { Check, Lock, RadioTower, Server, Cable } from 'lucide-react'
 import { Reveal } from '@/components/ui/Reveal'
 import { useLang } from '@/lib/lang'
+
+const CARDS = [
+  { key: 'ssh', Icon: Lock, tint: 'text-success', bg: 'bg-success/10', ring: 'hover:border-success/40' },
+  { key: 'telnet', Icon: RadioTower, tint: 'text-info', bg: 'bg-info/10', ring: 'hover:border-info/40' },
+  { key: 'rlogin', Icon: Server, tint: 'text-warning', bg: 'bg-warning/10', ring: 'hover:border-warning/40' },
+  { key: 'raw', Icon: Cable, tint: 'text-primary', bg: 'bg-primary/10', ring: 'hover:border-primary/40' }
+] as const
 
 export function Protocols(): React.JSX.Element {
   const { t } = useLang()
@@ -17,43 +24,29 @@ export function Protocols(): React.JSX.Element {
         </Reveal>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <Reveal delay={0.1} className="h-full">
-          <div className="h-full rounded-lg border border-border bg-card p-6">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-success/10 text-success">
-                <Lock className="h-5 w-5" />
-              </div>
-              <h3 className="font-mono text-lg font-semibold">{t.protocols.ssh.title}</h3>
-            </div>
-            <ul className="mt-5 space-y-3">
-              {t.protocols.ssh.points.map((p) => (
-                <li key={p} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-          </Reveal>
-
-          <Reveal delay={0.2} className="h-full">
-          <div className="h-full rounded-lg border border-border bg-card p-6">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-info/10 text-info">
-                <RadioTower className="h-5 w-5" />
-              </div>
-              <h3 className="font-mono text-lg font-semibold">{t.protocols.telnet.title}</h3>
-            </div>
-            <ul className="mt-5 space-y-3">
-              {t.protocols.telnet.points.map((p) => (
-                <li key={p} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-info" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-          </Reveal>
+          {CARDS.map(({ key, Icon, tint, bg, ring }, i) => {
+            const data = t.protocols[key]
+            return (
+              <Reveal key={key} delay={0.1 + i * 0.05} className="h-full">
+                <div className={`h-full rounded-lg border border-border bg-card p-6 transition-colors ${ring}`}>
+                  <div className="flex items-center gap-3">
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-md ${bg} ${tint}`}>
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-mono text-lg font-semibold">{data.title}</h3>
+                  </div>
+                  <ul className="mt-5 space-y-3">
+                    {data.points.map((p) => (
+                      <li key={p} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                        <Check className={`mt-0.5 h-4 w-4 shrink-0 ${tint}`} />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>

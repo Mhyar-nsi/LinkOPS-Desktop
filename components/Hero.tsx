@@ -15,20 +15,15 @@ export function Hero(): React.JSX.Element {
 
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* Interactive pixel field behind the hero content — ripples on click. */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
+      {/* Interactive pixel-particle background (WebGL) — sits behind the
+          content, reacts to the cursor, and matches the theme accent. */}
+      <div aria-hidden="true" className="absolute inset-0 opacity-40">
         <PixelBlast
           variant="square"
-          pixelSize={3}
           color={BLAST_COLOR}
-          patternDensity={0.6}
-          patternScale={2.2}
-          edgeFade={0.55}
-          enableRipples
-          rippleIntensityScale={0.9}
-          rippleThickness={0.12}
-          rippleSpeed={0.35}
-          className="opacity-60"
+          transparent
+          autoPauseOffscreen
+          speed={0.5}
         />
       </div>
       <div className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
@@ -84,43 +79,43 @@ export function Hero(): React.JSX.Element {
         <Reveal delay={0.15}>
           {/* Terminal mock — styled exactly like the app's session view */}
           <div className="glow-border mx-auto mt-14 max-w-3xl overflow-hidden rounded-lg border border-border bg-terminal-background">
-          <div className="flex items-center gap-2 border-b border-border bg-sidebar px-4 py-2.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-destructive/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-warning/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-success/80" />
-            <span className="ms-2 font-mono text-xs text-muted-foreground">{t.hero.terminalTitle}</span>
-          </div>
-          {/* dir=ltr: terminal content is English/technical and must not
+            <div className="flex items-center gap-2 border-b border-border bg-sidebar px-4 py-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-destructive/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-warning/80" />
+              <span className="h-2.5 w-2.5 rounded-full bg-success/80" />
+              <span className="ms-2 font-mono text-xs text-muted-foreground">{t.hero.terminalTitle}</span>
+            </div>
+            {/* dir=ltr: terminal content is English/technical and must not
               mirror inside the Persian RTL layout. */}
-          <div dir="ltr" className="flex items-start gap-3 px-4 py-4 text-left sm:px-5 sm:py-5">
-          <div className="hidden select-none flex-col items-center gap-2 font-mono text-[10px] leading-5 text-terminal-muted sm:flex">
-            <Lock className="h-3 w-3" />
-            <TerminalSquare className="h-3 w-3" />
-          </div>
-            <pre className="min-w-0 flex-1 overflow-x-auto font-mono text-xs leading-5 text-terminal-foreground sm:text-[13px] sm:leading-6">
-              {t.hero.terminalLines.map((line, i) => {
-                const isCommand = line.startsWith('$')
-                const isPrompt = line.endsWith('█')
-                const isOutput = !isCommand && !isPrompt && line.trim() !== ''
-                return (
-                  <div
-                    key={i}
-                    className={
-                      isCommand
-                        ? 'text-terminal-accent'
-                        : isOutput
-                          ? 'text-terminal-foreground'
-                          : isPrompt
-                            ? 'text-terminal-accent'
-                            : 'text-terminal-foreground'
-                    }
-                  >
-                    {line}
-                  </div>
-                )
-              })}
-            </pre>
-          </div>
+            <div dir="ltr" className="flex items-start gap-3 px-4 py-4 text-left sm:px-5 sm:py-5">
+              <div className="hidden select-none flex-col items-center gap-2 font-mono text-[10px] leading-5 text-terminal-muted sm:flex">
+                <Lock className="h-3 w-3" />
+                <TerminalSquare className="h-3 w-3" />
+              </div>
+              <pre className="min-w-0 flex-1 overflow-x-auto font-mono text-xs leading-5 text-terminal-foreground sm:text-[13px] sm:leading-6">
+                {t.hero.terminalLines.map((line, i) => {
+                  const isCommand = line.startsWith('$')
+                  const isPrompt = line.endsWith('█')
+                  const isOutput = !isCommand && !isPrompt && line.trim() !== ''
+                  return (
+                    <div
+                      key={i}
+                      className={
+                        isCommand
+                          ? 'text-terminal-accent'
+                          : isOutput
+                            ? 'text-terminal-foreground'
+                            : isPrompt
+                              ? 'text-terminal-accent'
+                              : 'text-terminal-foreground'
+                      }
+                    >
+                      {line}
+                    </div>
+                  )
+                })}
+              </pre>
+            </div>
           </div>
         </Reveal>
 

@@ -6,6 +6,7 @@ import {
   Loader2,
   MonitorPlay,
   FolderKanban,
+  FolderTree,
   History,
   Settings2,
   Cable,
@@ -17,11 +18,21 @@ import { useLang } from '@/lib/lang'
 import { useTheme } from '@/lib/theme'
 import { cn } from '@/lib/utils'
 
-type TabKey = 'dashboard' | 'devices' | 'terminal' | 'batchRuns' | 'commands' | 'groups' | 'history' | 'settings'
+type TabKey =
+  | 'dashboard'
+  | 'devices'
+  | 'categories'
+  | 'terminal'
+  | 'batchRuns'
+  | 'commands'
+  | 'groups'
+  | 'history'
+  | 'settings'
 
 const TABS: { key: TabKey; icon: typeof LayoutDashboard }[] = [
   { key: 'dashboard', icon: LayoutDashboard },
   { key: 'devices', icon: Boxes },
+  { key: 'categories', icon: FolderTree },
   { key: 'terminal', icon: MonitorPlay },
   { key: 'batchRuns', icon: Cable },
   { key: 'commands', icon: ListChecks },
@@ -33,6 +44,7 @@ const TABS: { key: TabKey; icon: typeof LayoutDashboard }[] = [
 const SHOT_FILES: Record<TabKey, string> = {
   dashboard: 'dashboard.png',
   devices: 'devices.png',
+  categories: 'categories.png',
   terminal: 'sessions.png',
   batchRuns: 'batch-runs.png',
   commands: 'commands.png',

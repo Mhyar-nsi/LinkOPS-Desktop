@@ -20,7 +20,7 @@ const en = {
     tag: 'network operations platform',
     titleLine1: 'Your whole network,',
     titleAccent: 'one terminal.',
-    lead: 'LinkOPS Desktop manages switches, routers and firewalls over SSH and Telnet — with an interactive terminal, one-command batch runs across many devices, reusable command templates, and a complete audit trail.',
+    lead: 'LinkOPS Desktop is a complete network operations workstation. Manage switches, routers, firewalls and servers over SSH, Telnet, Rlogin and Raw TCP — with a real xterm terminal, one-command batch runs across hundreds of devices, reusable command templates, colored device categories, scheduled config backups and a full audit trail.',
     ctaPrimary: 'Download',
     ctaSecondary: 'Explore features',
     guideLink: 'Read the guide',
@@ -36,7 +36,7 @@ const en = {
       'Gi1/0/2   access  connected   up   a-100 10/100/1000BaseTX',
       '$ █'
     ],
-    badges: ['SSH', 'Telnet', 'xterm terminal', 'Batch runs', 'Audit trail']
+    badges: ['SSH', 'Telnet', 'Rlogin', 'Raw TCP', 'xterm terminal', 'Batch runs']
   },
   features: {
     tag: '// capabilities',
@@ -44,14 +44,24 @@ const en = {
     lead: 'Built by network engineers for network engineers — no more bouncing between terminal windows and spreadsheets.',
     items: [
       {
-        title: 'Device inventory',
-        desc: 'Search, filter, sort and group every device. Tags, vendors, models and locations keep a fleet of hundreds manageable.',
+        title: 'Four protocols, MobaXterm-style',
+        desc: 'SSH, Telnet, Rlogin and Raw TCP — pick the right one per device. Rlogin and Raw need no credentials, and every protocol shares the same prompt-smart execution engine.',
+        tag: 'protocols'
+      },
+      {
+        title: 'Device inventory & categories',
+        desc: 'Search, filter, sort and organize every device into colored categories with icons — switches of one region, routers of another. Tags, vendors, models and locations keep a fleet of hundreds manageable.',
         tag: 'devices'
       },
       {
         title: 'Real terminal',
         desc: 'A full xterm.js terminal with ANSI color, live search, timestamps, copy and download. SSH and Telnet sessions side by side.',
         tag: 'sessions'
+      },
+      {
+        title: 'Server desktop mode',
+        desc: 'Connect to a Linux server over SSH and manage it in a friendly graphical desktop — file manager, processes, services, packages, logs and network overview, no dry shell needed.',
+        tag: 'server'
       },
       {
         title: 'Batch runs',
@@ -62,6 +72,11 @@ const en = {
         title: 'Command templates & groups',
         desc: 'Reusable commands and sequential profiles. Quick-run from any device, or execute a whole diagnostics group at once.',
         tag: 'commands'
+      },
+      {
+        title: 'Config backups',
+        desc: 'Scheduled snapshots of device configurations with a version history and line-level diffs — a bad change is always visible and recoverable.',
+        tag: 'backups'
       },
       {
         title: 'Full audit trail',
@@ -80,8 +95,13 @@ const en = {
       },
       {
         title: 'Light & dark themes',
-        desc: 'A polished dark theme and a light one, plus a complete Persian interface with full RTL and locale-aware dates and digits.',
+        desc: 'Seven color palettes — each with a polished dark theme and a light one, plus a complete Persian interface with full RTL and locale-aware dates and digits.',
         tag: 'themes'
+      },
+      {
+        title: 'App lock & shared users',
+        desc: 'Protect the whole app with a password, and store shared credentials once — update in one place, used by every device.',
+        tag: 'security'
       }
     ]
   },
@@ -92,6 +112,7 @@ const en = {
     tabs: {
       dashboard: 'Dashboard',
       devices: 'Devices',
+      categories: 'Categories',
       terminal: 'Terminal',
       batchRuns: 'Batch Runs',
       commands: 'Commands',
@@ -103,7 +124,9 @@ const en = {
       dashboard:
         'Activity at a glance — connected sessions, executions today, frequently used commands and the device inventory.',
       devices:
-        'Search, filter and group the whole fleet. Tags, vendors, models and protocol badges (SSH / Telnet) on every row.',
+        'Search, filter and organize the whole fleet. Tags, vendors, models and protocol badges (SSH / Telnet / Rlogin / Raw) on every row.',
+      categories:
+        'Colored categories with icons — group switches of one region, routers of another, and filter the whole fleet by one click.',
       terminal:
         'An interactive xterm.js session with ANSI colors, timestamps, live search and command templates at hand.',
       batchRuns:
@@ -115,19 +138,19 @@ const en = {
       history:
         'The full audit trail — every command, device, trigger, duration, exit code and output, searchable and exportable.',
       settings:
-        'Appearance, language, SSH defaults, terminal behavior, logging, import/export and shortcuts.'
+        'Appearance, seven color palettes, language, SSH defaults, terminal behavior, logging, import/export and shortcuts.'
     }
   },
   protocols: {
     tag: '// connectivity',
-    title: 'SSH where you can, Telnet where you must',
-    lead: 'Modern and legacy equipment in one inventory. Pick the protocol per device — the app handles the rest.',
+    title: 'Four protocols. One workflow.',
+    lead: 'Modern and legacy equipment in one inventory. Pick the protocol per device — the app handles the rest with the same prompt-smart engine.',
     ssh: {
       title: 'SSH',
       points: [
         'Encrypted transport with legacy cipher/kex support for older gear',
         'Password and private-key authentication, passphrases supported',
-        'Clean per-command channels with exit codes',
+        'Fast per-command channels with exit codes for servers',
         'Keep-alive to hold long sessions'
       ]
     },
@@ -138,6 +161,24 @@ const en = {
         'Automatic login — the app answers Username/Password prompts',
         'Full IAC option negotiation and prompt detection',
         'Command output captured until the shell prompt returns, with --More-- paging handled'
+      ]
+    },
+    rlogin: {
+      title: 'Rlogin',
+      points: [
+        'RFC 1282 handshake with NUL acknowledgement',
+        'No password needed — the trusted-host model',
+        'Same prompt detection and interactive shell as Telnet',
+        'Default port 513, fully configurable'
+      ]
+    },
+    raw: {
+      title: 'Raw TCP',
+      points: [
+        'Plain socket for console servers and serial-to-TCP adapters',
+        'Connect the moment the port opens — no auth handshake',
+        'Banner and prompt capture with a short settle window',
+        'Same command engine as every other protocol'
       ]
     }
   },
@@ -172,7 +213,10 @@ const en = {
     guide: 'Read the guide'
   },
   footer: {
-    rights: 'All rights reserved.'
+    rights: 'All rights reserved.',
+    developed: 'Developed by Alborz Telecommunications Company (ATC) and this developer',
+    developedShort: 'Alborz Telecommunications Company',
+    heart: 'Made with care for network engineers'
   },
   pricing: {
     metaTitle: 'Pricing — LinkOPS Desktop',
@@ -211,9 +255,12 @@ const en = {
       install: 'Install & license',
       devices: 'Add devices',
       users: 'Shared credentials',
+      categories: 'Categories',
+      protocols: 'Protocols',
       connect: 'Connect & terminal',
       commands: 'Run commands',
       batch: 'Batch runs',
+      server: 'Server desktop',
       backups: 'Config backups',
       history: 'History & audit',
       settings: 'Settings',
@@ -240,7 +287,7 @@ const en = {
         intro:
           'Pick your platform on the landing page. Windows uses an NSIS installer; Linux offers a .deb package for Debian/Ubuntu and an AppImage that runs on any distribution.',
         steps: [
-          'Windows: run LinkOPS.Desktop.Setup.1.1.1.exe, follow the wizard, then launch from the Start menu.',
+          'Windows: run LinkOPS.Desktop.Setup.2.0.0.exe, follow the wizard, then launch from the Start menu.',
           'Linux (.deb): install with apt and launch with the linkops-desktop command.',
           'Linux (AppImage): make it executable and run it directly — no installation needed.',
           'macOS: open the .dmg and drag LinkOPS Desktop into the Applications folder.',
@@ -250,11 +297,11 @@ const en = {
         terminal: [
           {
             title: '.deb — Debian / Ubuntu',
-            lines: ['sudo apt install ./linkops-desktop_1.1.1_amd64.deb', 'linkops-desktop']
+            lines: ['sudo apt install ./linkops-desktop_2.0.0_amd64.deb', 'linkops-desktop']
           },
           {
             title: 'AppImage — any distro',
-            lines: ['chmod +x LinkOPS.Desktop-1.1.1.AppImage', './LinkOPS.Desktop-1.1.1.AppImage']
+            lines: ['chmod +x LinkOPS.Desktop-2.0.0.AppImage', './LinkOPS.Desktop-2.0.0.AppImage']
           }
         ],
         notes: [
@@ -295,21 +342,52 @@ const en = {
           { type: 'tip', text: 'Name profiles after the role or access level (e.g. “netops-admin”, “backup-ro”) so it is obvious what each device will use.' }
         ]
       },
+      categories: {
+        title: 'Device categories',
+        intro:
+          'Categories are the colored folders of your inventory. Group the switches of one region, the routers of another — each category gets a name, a Lucide icon and a color, so a glance is enough to know where a device belongs.',
+        steps: [
+          'Open Categories in the sidebar — the page shows every category as a colored card with its icon and device count.',
+          'Click “New category”, give it a name and pick an icon from the gallery and a color from the swatches; the live badge previews your choice.',
+          'Back on Devices, open a device and pick its category in the device dialog — the colored icon badge shows in the table and in filters.',
+          'Click a category card to jump to the Devices page pre-filtered to that category.',
+          'Deleting a category keeps the devices — they simply become uncategorized, with all their settings intact.'
+        ],
+        notes: [
+          { type: 'tip', text: 'Name categories after the topology you actually run: “Core”, “Branch”, “Lab” or a region name — then filter the whole fleet with one click.' }
+        ]
+      },
+      protocols: {
+        title: 'Protocols: SSH, Telnet, Rlogin & Raw',
+        intro:
+          'Every device gets a protocol. SSH for anything modern, Telnet for legacy gear, Rlogin for trusted hosts and Raw TCP for console servers and serial-to-network adapters. Whichever you pick, commands run through the same prompt-smart engine.',
+        steps: [
+          'In the device editor, pick the protocol: SSH (22), Telnet (23), Rlogin (513) or Raw TCP (23 by default) — the default port fills in automatically and stays editable.',
+          'Rlogin and Raw TCP need no credentials: Rlogin follows the RFC 1282 handshake (the app sends the NUL acknowledgement) and Raw connects the moment the port opens.',
+          'For Rlogin a username is still required — it is sent in the handshake so the host can authorize you.',
+          'The protocol badge on each device row and session card tells you which one is in use.',
+          'Everything else — vendor init, paging off, privilege escalation, auto-answering confirmations — works identically on all four protocols.'
+        ],
+        notes: [
+          { type: 'tip', text: 'Console servers and serial adapters usually speak Raw TCP — connect to their port and you get the device console directly.' },
+          { type: 'note', text: 'SSH stays the first choice: it is encrypted. Use Telnet, Rlogin or Raw only where the equipment forces you to.' }
+        ]
+      },
       connect: {
         title: 'Connecting & the terminal',
         intro:
-          'Sessions give you a real xterm.js terminal — ANSI colors, timestamps, live search, copy and log download — for both SSH and Telnet.',
+          'Sessions give you a real xterm.js terminal — ANSI colors, timestamps, live search, copy and log download — for SSH, Telnet, Rlogin and Raw.',
         steps: [
           'Open Sessions and click “Connect to device”, then pick a device from the list.',
           'The session opens a terminal; type commands exactly as you would in PuTTY or any SSH client.',
-          'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge (SSH / Telnet).',
+          'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge.',
           'When auto-reconnect is enabled for a device, a dropped session reconnects automatically with backoff — the terminal and its history stay alive.',
           'If a session is stuck on error/reconnecting, hit the Reconnect button on the session page or in the session list — it reconnects with the same session id.',
           'Use the toolbar to search output, toggle timestamps, change the font size, clear the buffer, copy it or download a .log file.',
           'Credentials come from the OS keychain automatically; nothing is stored in plain text.'
         ],
         notes: [
-          { type: 'tip', text: 'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge (SSH / Telnet).' },
+          { type: 'tip', text: 'Keep several sessions open side by side — each shows a live status badge (connecting, connected, executing, error) and a protocol badge.' },
           { type: 'note', text: 'Press Ctrl+F inside a terminal to search its output instantly, and use ↑ / ↓ to recall commands you typed earlier.' }
         ]
       },
@@ -350,6 +428,25 @@ const en = {
         notes: [
           { type: 'note', text: 'A batch needs live sessions — connect to the devices first, then select them on the Sessions page.' },
           { type: 'tip', text: 'Sessions dropped mid-run are reconnected through the device’s saved credentials, so a batch survives a flaky link.' }
+        ]
+      },
+      server: {
+        title: 'Server desktop mode',
+        intro:
+          'For Linux servers, the terminal is optional. Click “Desktop” on a live server session and LinkOPS opens a friendly graphical console over the same SSH connection — browse files, watch processes, manage services, install packages, tail logs and see the network at a glance.',
+        steps: [
+          'Connect to a Linux server as usual (SSH, device type “server”), then click the “Desktop” button in the session header.',
+          'Overview: CPU/memory/disk usage and the basic system facts at a glance.',
+          'Files: browse and download files over SFTP — the file manager works on the same live connection.',
+          'Processes & services: list running processes and systemd services, search and inspect them.',
+          'Packages: see installed packages and the package manager in use (apt / dnf / apk / pacman).',
+          'Logs: tail recent lines of system logs with a search box, and switch log files from a dropdown.',
+          'Network: interfaces, addresses and routing — a quick health picture of the server.',
+          'The terminal is still one click away from the session page whenever you need it.'
+        ],
+        notes: [
+          { type: 'note', text: 'Server desktop reads over the same SSH connection — nothing extra to install on the server, everything works with a plain sshd.' },
+          { type: 'tip', text: 'Use desktop mode for day-to-day administration and keep the terminal for one-off commands — both share the same live session.' }
         ]
       },
       backups: {
@@ -458,7 +555,7 @@ const en = {
       cta: 'Download installer',
       stepsTitle: 'Install',
       steps: [
-        'Run LinkOPS.Desktop.Setup.1.1.1.exe and follow the setup wizard',
+        'Run LinkOPS.Desktop.Setup.2.0.0.exe and follow the setup wizard',
         'Choose an install folder and finish the wizard',
         'Launch LinkOPS from the Start menu or the desktop shortcut'
       ]
@@ -472,7 +569,7 @@ const en = {
         cta: 'Download .deb',
         stepsTitle: 'Install',
         steps: [
-          'sudo apt install ./linkops-desktop_1.1.1_amd64.deb',
+          'sudo apt install ./linkops-desktop_2.0.0_amd64.deb',
           'linkops-desktop'
         ]
       },
@@ -482,8 +579,8 @@ const en = {
         cta: 'Download AppImage',
         stepsTitle: 'Run',
         steps: [
-          'chmod +x LinkOPS.Desktop-1.1.1.AppImage',
-          './LinkOPS.Desktop-1.1.1.AppImage'
+          'chmod +x LinkOPS.Desktop-2.0.0.AppImage',
+          './LinkOPS.Desktop-2.0.0.AppImage'
         ]
       }
     },
@@ -493,7 +590,7 @@ const en = {
       cta: 'Download .dmg',
       stepsTitle: 'Install',
       steps: [
-        'Open the downloaded LinkOPS.Desktop-1.1.1.dmg',
+        'Open the downloaded LinkOPS.Desktop-2.0.0.dmg',
         'Drag LinkOPS Desktop into the Applications folder',
         'Launch from Launchpad or the Applications folder'
       ]
@@ -596,7 +693,7 @@ const fa: typeof en = {
     tag: 'پلتفرم مدیریت شبکه',
     titleLine1: 'تمام شبکه‌ی شما،',
     titleAccent: 'در یک ترمینال.',
-    lead: 'لینک‌اپس دسکتاپ سوئیچ‌ها، روترها و فایروال‌ها را از راه دور و از طریق SSH و Telnet مدیریت می‌کند — با ترمینال تعاملی، اجرای هم‌زمان یک دستور روی چندین دستگاه، قالب‌های دستور قابل‌استفاده‌ی مجدد و گزارش‌گیری کامل از همه‌ی عملیات.',
+    lead: 'لینک‌اپس دسکتاپ یک ایستگاه کاری کامل برای عملیات شبکه است. سوئیچ‌ها، روترها، فایروال‌ها و سرورها را از طریق SSH، Telnet، Rlogin و Raw TCP مدیریت کنید — با ترمینال واقعی xterm، اجرای هم‌زمان یک دستور روی صدها دستگاه، قالب‌های دستور قابل‌استفاده‌ی مجدد، دسته‌بندی رنگی دستگاه‌ها، پشتیبان‌گیری زمان‌بندی‌شده از کانفیگ و گزارش‌گیری کامل از همه‌ی عملیات.',
     ctaPrimary: 'دانلود',
     ctaSecondary: 'مشاهده‌ی امکانات',
     guideLink: 'مطالعه‌ی راهنما',
@@ -612,7 +709,7 @@ const fa: typeof en = {
       'Gi1/0/2   access  connected   up   a-100 10/100/1000BaseTX',
       '$ █'
     ],
-    badges: ['SSH', 'Telnet', 'ترمینال xterm', 'اجرای گروهی', 'گزارش کامل']
+    badges: ['SSH', 'Telnet', 'Rlogin', 'Raw TCP', 'ترمینال xterm', 'اجرای گروهی']
   },
   features: {
     tag: '// امکانات',
@@ -620,14 +717,24 @@ const fa: typeof en = {
     lead: 'دیگر لازم نیست بین چند پنجره‌ی ترمینال و صفحه‌های اکسل جابه‌جا شوید؛ همه‌چیز اینجا سر جای خودش است.',
     items: [
       {
-        title: 'فهرست دستگاه‌ها',
-        desc: 'جستجو، فیلتر، مرتب‌سازی و گروه‌بندی همه‌ی دستگاه‌ها. برچسب‌ها، سازنده، مدل و موقعیت، مدیریت ناوگانی با صدها دستگاه را ساده می‌کند.',
+        title: 'چهار پروتکل، به سبک MobaXterm',
+        desc: 'SSH، Telnet، Rlogin و Raw TCP — برای هر دستگاه پروتکل مناسبش را انتخاب کنید. Rlogin و Raw به اعتبارنامه نیاز ندارند و همه از همان موتور هوشمند تشخیص پرامپت استفاده می‌کنند.',
+        tag: 'protocols'
+      },
+      {
+        title: 'فهرست دستگاه‌ها و دسته‌بندی',
+        desc: 'جستجو، فیلتر، مرتب‌سازی و سازمان‌دهی دستگاه‌ها در دسته‌های رنگی با آیکون — سویچ‌های یک منطقه، روترهای منطقه‌ی دیگر. برچسب‌ها، سازنده، مدل و موقعیت، ناوگانی با صدها دستگاه را ساده می‌کند.',
         tag: 'devices'
       },
       {
         title: 'ترمینال واقعی',
         desc: 'ترمینال کامل xterm.js با رنگ ANSI، جستجوی زنده، ثبت زمان، کپی و دانلود خروجی؛ نشست‌های SSH و Telnet در کنار هم.',
         tag: 'sessions'
+      },
+      {
+        title: 'حالت دسکتاپ سرور',
+        desc: 'به سرور لینوکسی با SSH وصل شوید و آن را در یک محیط گرافیکی دوستانه مدیریت کنید — فایل‌ها، فرایندها، سرویس‌ها، بسته‌ها، لاگ‌ها و نمای شبکه؛ دیگر خبری از شل خشک نیست.',
+        tag: 'server'
       },
       {
         title: 'اجرای گروهی',
@@ -638,6 +745,11 @@ const fa: typeof en = {
         title: 'قالب‌ها و گروه‌های دستور',
         desc: 'دستورهای پرتکرار را یک‌بار ذخیره کنید و هر وقت خواستید اجرا کنید؛ یا چند دستور را در یک پروفایل ترتیبی بچینید.',
         tag: 'commands'
+      },
+      {
+        title: 'پشتیبان‌گیری کانفیگ',
+        desc: 'snapshot زمان‌بندی‌شده از کانفیگ دستگاه‌ها با تاریخچه‌ی نسخه و diff خط‌به‌خط — هر تغییر خرابی همیشه دیده و قابل بازیابی است.',
+        tag: 'backups'
       },
       {
         title: 'گزارش‌گیری کامل',
@@ -656,8 +768,13 @@ const fa: typeof en = {
       },
       {
         title: 'تم روشن و تیره',
-        desc: 'تم تیره‌ی شکیل و تم روشن، به‌همراه رابط کاملاً فارسی با RTL کامل و تاریخ و اعداد منطبق بر تقویم فارسی.',
+        desc: 'هفت پالت رنگی — هرکدام با تم تیره و روشنِ شکیل — به‌همراه رابط کاملاً فارسی با RTL کامل و تاریخ و اعداد منطبق بر تقویم فارسی.',
         tag: 'themes'
+      },
+      {
+        title: 'قفل برنامه و کاربران مشترک',
+        desc: 'کل برنامه را با رمز عبور محافظت کنید و اعتبارنامه‌های مشترک را یک‌بار ذخیره کنید — یک‌جا تغییر دهید، همه‌ی دستگاه‌ها استفاده می‌کنند.',
+        tag: 'security'
       }
     ]
   },
@@ -668,6 +785,7 @@ const fa: typeof en = {
     tabs: {
       dashboard: 'داشبورد',
       devices: 'دستگاه‌ها',
+      categories: 'دسته‌بندی‌ها',
       terminal: 'ترمینال',
       batchRuns: 'اجرای گروهی',
       commands: 'دستورات',
@@ -679,7 +797,9 @@ const fa: typeof en = {
       dashboard:
         'نمای کلی فعالیت: نشست‌های متصل، اجراهای امروز، پرکاربردترین دستورها و فهرست دستگاه‌ها.',
       devices:
-        'جستجو، فیلتر و گروه‌بندی ناوگان. برچسب‌ها، سازنده، مدل و نشان پروتکل (SSH / Telnet) روی هر ردیف.',
+        'جستجو، فیلتر و سازمان‌دهی ناوگان. برچسب‌ها، سازنده، مدل و نشان پروتکل (SSH / Telnet / Rlogin / Raw) روی هر ردیف.',
+      categories:
+        'دسته‌بندی‌های رنگی با آیکون — سویچ‌های یک منطقه، روترهای منطقه‌ی دیگر؛ و فیلتر کل ناوگان با یک کلیک.',
       terminal:
         'نشست تعاملی xterm.js با رنگ ANSI، جستجوی زنده و قالب‌های آماده در دسترس.',
       batchRuns:
@@ -691,19 +811,19 @@ const fa: typeof en = {
       history:
         'گزارش کامل: هر دستور، دستگاه، نوع اجرا، مدت، کد خروج و خروجی؛ قابل جستجو و خروجی‌گیری.',
       settings:
-        'ظاهر، زبان، پیش‌فرض‌های SSH، رفتار ترمینال، گزارش‌گیری، ورود/خروجی داده‌ها و میانبرها.'
+        'ظاهر، هفت پالت رنگی، زبان، پیش‌فرض‌های SSH، رفتار ترمینال، گزارش‌گیری، ورود/خروجی داده‌ها و میانبرها.'
     }
   },
   protocols: {
     tag: '// اتصال',
-    title: 'SSH هرجا ممکن است، Telnet هرجا لازم',
-    lead: 'تجهیزات قدیمی و جدید در یک فهرست. پروتکل را برای هر دستگاه انتخاب کنید؛ بقیه‌اش با برنامه.',
+    title: 'چهار پروتکل، یک جریان کاری',
+    lead: 'تجهیزات قدیمی و جدید در یک فهرست. پروتکل را برای هر دستگاه انتخاب کنید؛ بقیه‌اش با برنامه و همان موتور هوشمند تشخیص پرامپت.',
     ssh: {
       title: 'SSH',
       points: [
         'ترابری رمزنگاری‌شده با پشتیبانی از الگوریتم‌های قدیمی برای تجهیزات قدیمی‌تر',
         'احراز هویت با رمز یا کلید خصوصی، با پشتیبانی از عبارت عبور',
-        'کانال جداگانه برای هر دستور همراه با کد خروج',
+        'کانال سریع برای هر دستور همراه با کد خروج',
         'keep-alive برای پایداری نشست‌های طولانی'
       ]
     },
@@ -714,6 +834,24 @@ const fa: typeof en = {
         'ورود خودکار: برنامه به پرامپت‌های Username/Password پاسخ می‌دهد',
         'مدیریت کامل مذاکره‌ی IAC و تشخیص پرامپت',
         'جمع‌آوری خروجی تا بازگشت پرامپت shell با مدیریت خودکار صفحه‌بندی --More--'
+      ]
+    },
+    rlogin: {
+      title: 'Rlogin',
+      points: [
+        'دست‌دهی RFC 1282 با تأیید NUL',
+        'بدون نیاز به رمز عبور — مدل میزبانِ مورداعتماد',
+        'همان تشخیص پرامپت و شل تعاملی Telnet',
+        'پورت پیش‌فرض ۵۱۳، کاملاً قابل تنظیم'
+      ]
+    },
+    raw: {
+      title: 'Raw TCP',
+      points: [
+        'سوکت خام برای کنسول‌سرورها و مبدل‌های سریال به شبکه',
+        'لحظه‌ی باز شدن پورت آماده است — بدون دست‌دهی احراز هویت',
+        'دریافت بنر و پرامپت با مهلت کوتاه',
+        'همان موتور اجرای دستور مثل بقیه‌ی پروتکل‌ها'
       ]
     }
   },
@@ -749,7 +887,10 @@ const fa: typeof en = {
     guide: 'مطالعه‌ی راهنما'
   },
   footer: {
-    rights: 'تمامی حقوق محفوظ است.'
+    rights: 'تمامی حقوق محفوظ است.',
+    developed: 'در حال توسعه توسط شرکت مخابرات البرز (ATC) و این برنامه‌نویس',
+    developedShort: 'شرکت مخابرات البرز',
+    heart: 'ساخته‌شده با دقت برای مهندسان شبکه'
   },
   pricing: {
     metaTitle: 'پلن‌ها — لینک‌اپس دسکتاپ',
@@ -788,9 +929,12 @@ const fa: typeof en = {
       install: 'نصب و لایسنس',
       devices: 'افزودن دستگاه',
       users: 'اعتبارنامه‌های مشترک',
+      categories: 'دسته‌بندی‌ها',
+      protocols: 'پروتکل‌ها',
       connect: 'اتصال و ترمینال',
       commands: 'اجرای دستور',
       batch: 'اجرای گروهی',
+      server: 'دسکتاپ سرور',
       backups: 'پشتیبان‌گیری کانفیگ',
       history: 'تاریخچه و گزارش',
       settings: 'تنظیمات',
@@ -817,7 +961,7 @@ const fa: typeof en = {
         intro:
           'سیستم‌عامل خود را در صفحه‌ی اصلی انتخاب کنید. ویندوز از نصب‌کننده‌ی NSIS استفاده می‌کند و لینوکس یک بسته‌ی .deb برای دبیان/اوبونتو و یک AppImage برای هر توزیعی دارد.',
         steps: [
-          'ویندوز: فایل LinkOPS.Desktop.Setup.1.1.1.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
+          'ویندوز: فایل LinkOPS.Desktop.Setup.2.0.0.exe را اجرا کنید، مراحل نصب را دنبال کنید و از منوی استارت برنامه را باز کنید.',
           'لینوکس (.deb): با apt نصب کنید و با دستور linkops-desktop اجرا کنید.',
           'لینوکس (AppImage): فایل را قابل‌اجرا کنید و مستقیم اجرا کنید — نیازی به نصب نیست.',
           'مک‌اواس: فایل .dmg را باز کنید و لینک‌اپس دسکتاپ را به پوشه‌ی Applications بکشید.',
@@ -827,11 +971,11 @@ const fa: typeof en = {
         terminal: [
           {
             title: '.deb — دبیان / اوبونتو',
-            lines: ['sudo apt install ./linkops-desktop_1.1.1_amd64.deb', 'linkops-desktop']
+            lines: ['sudo apt install ./linkops-desktop_2.0.0_amd64.deb', 'linkops-desktop']
           },
           {
             title: 'AppImage — هر توزیعی',
-            lines: ['chmod +x LinkOPS.Desktop-1.1.1.AppImage', './LinkOPS.Desktop-1.1.1.AppImage']
+            lines: ['chmod +x LinkOPS.Desktop-2.0.0.AppImage', './LinkOPS.Desktop-2.0.0.AppImage']
           }
         ],
         notes: [
@@ -872,21 +1016,51 @@ const fa: typeof en = {
           { type: 'tip', text: 'پروفایل‌ها را بر اساس نقش یا سطح دسترسی نام‌گذاری کنید (مثلاً «netops-admin»، «backup-ro») تا مشخص باشد هر دستگاه از چه حسابی استفاده می‌کند.' }
         ]
       },
+      categories: {
+        title: 'دسته‌بندی دستگاه‌ها',
+        intro:
+          'دسته‌بندی‌ها پوشه‌های رنگی فهرست دستگاه‌های شما هستند. سویچ‌های یک منطقه را کنار هم بگذارید، روترهای منطقه‌ی دیگر را — هر دسته یک نام، یک آیکون Lucide و یک رنگ می‌گیرد تا با یک نگاه بدانید هر دستگاه کجاست.',
+        steps: [
+          'از نوار کناری، «دسته‌بندی‌ها» را باز کنید — صفحه هر دسته را به‌صورت کارت رنگی با آیکون و تعداد دستگاه نشان می‌دهد.',
+          '«دسته‌ی جدید» را بزنید، نام بدهید و از گالری آیکون و رنگ‌ها انتخاب کنید؛ پیش‌نمایش زنده‌ی بج انتخاب شما را نشان می‌دهد.',          'برگردید به دستگاه‌ها و در فرم دستگاه، دسته‌ی آن را انتخاب کنید — بج آیکون رنگی در جدول و فیلترها نمایش داده می‌شود.',
+          'روی کارت یک دسته کلیک کنید تا به صفحه‌ی دستگاه‌ها با فیلتر همان دسته بروید.',
+          'حذف یک دسته دستگاه‌ها را نگه می‌دارد — فقط بدون دسته می‌شوند و همه‌ی تنظیماتشان حفظ می‌شود.'
+        ],
+        notes: [
+          { type: 'tip', text: 'دسته‌ها را بر اساس توپولوژی واقعی‌تان نام‌گذاری کنید: «هسته»، «شاخه»، «آزمایشگاه» یا نام یک منطقه — بعد کل ناوگان را با یک کلیک فیلتر کنید.' }
+        ]
+      },
+      protocols: {
+        title: 'پروتکل‌ها: SSH، Telnet، Rlogin و Raw',
+        intro:
+          'هر دستگاه یک پروتکل می‌گیرد. SSH برای هرچه مدرن است، Telnet برای تجهیزات قدیمی، Rlogin برای میزبان‌های مورداعتماد و Raw TCP برای کنسول‌سرورها و مبدل‌های سریال به شبکه. هر کدام را انتخاب کنید، دستورها با همان موتور هوشمند تشخیص پرامپت اجرا می‌شوند.',
+        steps: [
+          'در فرم دستگاه پروتکل را انتخاب کنید: SSH (۲۲)، Telnet (۲۳)، Rlogin (۵۱۳) یا Raw TCP (پیش‌فرض ۲۳) — پورت پیش‌فرض خودکار پر می‌شود و قابل ویرایش است.',
+          'Rlogin و Raw TCP به اعتبارنامه نیاز ندارند: Rlogin دست‌دهی RFC 1282 را انجام می‌دهد (برنامه تأیید NUL را می‌فرستد) و Raw لحظه‌ی باز شدن پورت وصل می‌شود.',
+          'برای Rlogin هنوز نام کاربری لازم است — در دست‌دهی ارسال می‌شود تا میزبان شما را authorize کند.',
+          'بج پروتکل روی هر ردیف دستگاه و کارت نشست نشان می‌دهد کدام پروتکل در جریان است.',
+          'بقیه‌ی چیزها — مقداردهی اولیه فروشنده، غیرفعال‌کردن paging، ارتقای سطح دسترسی و پاسخ خودکار به تأییدیه‌ها — روی هر چهار پروتکل یکسان کار می‌کند.'
+        ],
+        notes: [
+          { type: 'tip', text: 'کنسول‌سرورها و مبدل‌های سریال معمولاً Raw TCP هستند — به پورت‌شان وصل شوید و کنسول دستگاه را مستقیم بگیرید.' },
+          { type: 'note', text: 'SSH همچنان انتخاب اول است: رمزنگاری‌شده است. Telnet، Rlogin یا Raw را فقط جایی استفاده کنید که تجهیزات مجبورتان می‌کنند.' }
+        ]
+      },
       connect: {
         title: 'اتصال و ترمینال',
         intro:
-          'نشست‌ها یک ترمینال واقعی xterm.js در اختیارتان می‌گذارند — رنگ ANSI، ثبت زمان، جستجوی زنده، کپی و دانلود لاگ — هم برای SSH و هم Telnet.',
+          'نشست‌ها یک ترمینال واقعی xterm.js در اختیارتان می‌گذارند — رنگ ANSI، ثبت زمان، جستجوی زنده، کپی و دانلود لاگ — برای SSH، Telnet، Rlogin و Raw.',
         steps: [
           'صفحه‌ی نشست‌ها را باز کنید و «اتصال به دستگاه» را بزنید، سپس دستگاه را از فهرست انتخاب کنید.',
           'نشست با یک ترمینال باز می‌شود؛ دقیقاً مثل PuTTY یا هر کلاینت SSH دستور بزنید.',
-          'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل (SSH / Telnet).',
+          'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل.',
           'وقتی برای دستگاه اتصال مجدد خودکار فعال باشد، نشست قطع‌شده با backoff خودکار دوباره وصل می‌شود — ترمینال و تاریخچه‌اش زنده می‌مانند.',
           'اگر نشستی روی حالت خطا/در حال اتصال مجدد گیر کرد، دکمه‌ی «اتصال مجدد» را در صفحه‌ی نشست یا فهرست نشست‌ها بزنید — با همان شناسه‌ی نشست دوباره وصل می‌شود.',
           'از نوار ابزار برای جستجوی خروجی، ثبت زمان، تغییر اندازه‌ی فونت، پاک کردن بافر، کپی یا دانلود فایل .log استفاده کنید.',
           'اعتبارنامه‌ها به‌صورت خودکار از گاوصندوق سیستم‌عامل خوانده می‌شوند و هیچ‌چیز به‌صورت متن ساده ذخیره نمی‌شود.'
         ],
         notes: [
-          { type: 'tip', text: 'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل (SSH / Telnet).' },
+          { type: 'tip', text: 'چند نشست را کنار هم باز نگه دارید — هرکدام نشان وضعیت زنده دارد (در حال اتصال، متصل، در حال اجرا، خطا) و نشان پروتکل.' },
           { type: 'note', text: 'داخل ترمینال Ctrl+F را بزنید تا خروجی آنی جستجو شود و با ↑ / ↓ دستورهای قبلی را مرور کنید.' }
         ]
       },
@@ -927,6 +1101,25 @@ const fa: typeof en = {
         notes: [
           { type: 'note', text: 'اجرای گروهی به نشست‌های زنده نیاز دارد — اول به دستگاه‌ها متصل شوید، بعد آن‌ها را در صفحه‌ی نشست‌ها انتخاب کنید.' },
           { type: 'tip', text: 'نشست‌هایی که وسط اجرا قطع شوند با اعتبارنامه‌ی ذخیره‌شده‌ی دستگاه دوباره وصل می‌شوند؛ پس اجرای گروهی از یک لینک ناپایدار هم جان سالم به در می‌برد.' }
+        ]
+      },
+      server: {
+        title: 'حالت دسکتاپ سرور',
+        intro:
+          'برای سرورهای لینوکسی، ترمینال دیگر اختیاری است. روی نشست زنده‌ی یک سرور دکمه‌ی «دسکتاپ» را بزنید و لینک‌اپس یک کنسول گرافیکی دوستانه روی همان اتصال SSH باز می‌کند — فایل‌ها را مرور کنید، فرایندها را ببینید، سرویس‌ها را مدیریت کنید، بسته نصب کنید، لاگ دنبال کنید و شبکه را در یک نگاه ببینید.',
+        steps: [
+          'مثل همیشه به یک سرور لینوکسی وصل شوید (SSH، نوع دستگاه «سرور») و سپس دکمه‌ی «دسکتاپ» را در هدر نشست بزنید.',
+          'نمای کلی: مصرف CPU/حافظه/دیسک و مشخصات پایه‌ی سیستم در یک نگاه.',
+          'فایل‌ها: مرور و دانلود فایل از طریق SFTP — مدیر فایل روی همان اتصال زنده کار می‌کند.',
+          'فرایندها و سرویس‌ها: فهرست فرایندهای در حال اجرا و سرویس‌های systemd را ببینید، جستجو و بررسی کنید.',
+          'بسته‌ها: بسته‌های نصب‌شده و مدیر بسته در حال استفاده (apt / dnf / apk / pacman) را ببینید.',
+          'لاگ‌ها: خط‌های اخیر لاگ‌های سیستم را با جعبه‌ی جستجو دنبال کنید و از منوی کشویی فایل لاگ را عوض کنید.',
+          'شبکه: اینترفیس‌ها، آدرس‌ها و مسیریابی — تصویر سریعی از سلامت سرور.',
+          'هر وقت خواستید ترمینال فقط یک کلیک با صفحه‌ی نشست فاصله دارد.'
+        ],
+        notes: [
+          { type: 'note', text: 'دسکتاپ سرور از همان اتصال SSH می‌خواند — هیچ‌چیز اضافه‌ای روی سرور نصب نمی‌شود و با یک sshd ساده همه‌چیز کار می‌کند.' },
+          { type: 'tip', text: 'برای کارهای روزمره از حالت دسکتاپ و برای دستورهای یک‌باره از ترمینال استفاده کنید — هر دو روی همان نشست زنده کار می‌کنند.' }
         ]
       },
       backups: {
@@ -1035,7 +1228,7 @@ const fa: typeof en = {
       cta: 'دانلود نصب‌کننده',
       stepsTitle: 'نصب',
       steps: [
-        'فایل LinkOPS.Desktop.Setup.1.1.1.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
+        'فایل LinkOPS.Desktop.Setup.2.0.0.exe را اجرا کنید و مراحل نصب‌کننده را دنبال کنید',
         'پوشه‌ی نصب را انتخاب کنید و نصب را تمام کنید',
         'لینک‌اپس را از منوی استارت یا میانبر دسکتاپ اجرا کنید'
       ]
@@ -1049,7 +1242,7 @@ const fa: typeof en = {
         cta: 'دانلود .deb',
         stepsTitle: 'نصب',
         steps: [
-          'sudo apt install ./linkops-desktop_1.1.1_amd64.deb',
+          'sudo apt install ./linkops-desktop_2.0.0_amd64.deb',
           'linkops-desktop'
         ]
       },
@@ -1059,8 +1252,8 @@ const fa: typeof en = {
         cta: 'دانلود AppImage',
         stepsTitle: 'اجرا',
         steps: [
-          'chmod +x LinkOPS.Desktop-1.1.1.AppImage',
-          './LinkOPS.Desktop-1.1.1.AppImage'
+          'chmod +x LinkOPS.Desktop-2.0.0.AppImage',
+          './LinkOPS.Desktop-2.0.0.AppImage'
         ]
       }
     },
@@ -1070,7 +1263,7 @@ const fa: typeof en = {
       cta: 'دانلود .dmg',
       stepsTitle: 'نصب',
       steps: [
-        'فایل LinkOPS.Desktop-1.1.1.dmg دانلودشده را باز کنید',
+        'فایل LinkOPS.Desktop-2.0.0.dmg دانلودشده را باز کنید',
         'لینک‌اپس دسکتاپ را به پوشه‌ی Applications بکشید',
         'از Launchpad یا پوشه‌ی Applications اجرا کنید'
       ]
